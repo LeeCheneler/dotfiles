@@ -100,13 +100,13 @@ dotfiles/
 
 ### Phase 3: Shell Configuration
 
-- [ ] 3.1 Add starship and kitty to Brewfile
-- [ ] 3.2 Create `config/zsh/.zshrc` with zinit + plugins (autosuggestions, syntax-highlighting, completions)
-- [ ] 3.3 Create `config/kitty/kitty.conf` with sensible defaults
-- [ ] 3.4 Create `config/starship/starship.toml` with prompt config
-- [ ] 3.5 Write `scripts/shell.sh` - backup existing configs, symlink new ones, install zinit
-- [ ] 3.6 Update `apply.sh` to call shell.sh
-- [ ] 3.7 Test: new terminal session has full shell setup
+- [x] 3.1 Add starship and kitty to Brewfile
+- [x] 3.2 Create `config/zsh/.zshrc` with zinit + plugins (autosuggestions, syntax-highlighting, completions)
+- [x] 3.3 Create `config/kitty/kitty.conf` with sensible defaults
+- [x] 3.4 Create `config/starship/starship.toml` with prompt config
+- [x] 3.5 Write `scripts/shell.sh` - backup existing configs, symlink new ones, install zinit
+- [x] 3.6 Update `apply.sh` to call shell.sh
+- [x] 3.7 Test: new terminal session has full shell setup
 
 ### Phase 4: Git & GitHub
 

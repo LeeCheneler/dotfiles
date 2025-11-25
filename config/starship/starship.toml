@@ -1,0 +1,113 @@
+# =============================================================================
+# Starship Prompt Configuration
+# =============================================================================
+
+# Timeout for commands that take too long (ms)
+command_timeout = 500
+
+# Add a blank line before prompt
+add_newline = true
+
+# =============================================================================
+# Prompt Format
+# =============================================================================
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$python\
+$rust\
+$golang\
+$docker_context\
+$cmd_duration\
+$line_break\
+$character"""
+
+# =============================================================================
+# Directory
+# =============================================================================
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "bold cyan"
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+# =============================================================================
+# Git
+# =============================================================================
+
+[git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style) "
+symbol = " "
+style = "bold purple"
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+style = "bold red"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "*"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+# =============================================================================
+# Languages (only show when relevant)
+# =============================================================================
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "bold green"
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+detect_folders = ["node_modules"]
+
+[python]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "bold yellow"
+
+[rust]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "bold red"
+
+[golang]
+format = "[$symbol($version )]($style)"
+symbol = " "
+style = "bold cyan"
+
+# =============================================================================
+# Docker
+# =============================================================================
+
+[docker_context]
+format = "[$symbol$context]($style) "
+symbol = " "
+style = "bold blue"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+
+# =============================================================================
+# Command Duration
+# =============================================================================
+
+[cmd_duration]
+min_time = 2000
+format = "[$duration]($style) "
+style = "bold yellow"
+
+# =============================================================================
+# Prompt Character
+# =============================================================================
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"

@@ -27,5 +27,6 @@ fi
 # Run setup scripts
 export DOTFILES_DIR
 "$DOTFILES_DIR/scripts/packages.sh"
+"$DOTFILES_DIR/scripts/shell.sh"
 
 echo "==> Done!"
