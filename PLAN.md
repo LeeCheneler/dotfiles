@@ -6,7 +6,7 @@ Personal machine provisioning and configuration management.
 
 1. Provision tools on any machine (node, brew, zsh, git, ssh, gpg, etc.)
 2. Keep tools up to date
-3. Single curl command to bootstrap a fresh machine
+3. Single curl command to apply configuration to any machine
 4. Stateless and idempotent - run it 100 times, get the same result
 5. AI development tooling (Claude config, Copilot instructions, MCP servers)
 
@@ -36,7 +36,7 @@ Why:
 
 ```
 dotfiles/
-├── bootstrap.sh           # curl target, pure shell, minimal
+├── apply.sh               # curl target, idempotent entry point
 ├── Brewfile               # homebrew packages
 ├── scripts/
 │   ├── packages.sh        # brew bundle + non-brew packages
@@ -64,7 +64,7 @@ dotfiles/
 
 - [x] 1.1 Initialize git repo
 - [x] 1.2 Create directory structure
-- [x] 1.3 Write minimal `bootstrap.sh` (clones repo, nothing else yet)
+- [x] 1.3 Write minimal `apply.sh` (clones repo, nothing else yet)
 - [x] 1.4 Write README with usage instructions
 - [x] 1.5 Add pre-commit formatting (shfmt, dprint, lefthook)
 - [x] 1.6 Push to GitHub
@@ -73,8 +73,8 @@ dotfiles/
 
 - [ ] 2.1 Create `Brewfile` with initial packages (brew, casks, taps)
 - [ ] 2.2 Write `scripts/packages.sh` - installs Homebrew if missing, runs bundle
-- [ ] 2.3 Update `bootstrap.sh` to install Xcode CLI tools and call packages script
-- [ ] 2.4 Test: curl bootstrap on fresh-ish terminal
+- [ ] 2.3 Update `apply.sh` to install Xcode CLI tools and call packages script
+- [ ] 2.4 Test: curl apply on fresh-ish terminal
 
 ### Phase 3: Shell Configuration
 
@@ -113,19 +113,13 @@ dotfiles/
 
 ## Usage (Target State)
 
-### Fresh Machine Setup
-
 ```bash
-curl -fsSL https://raw.githubusercontent.com/leecheneler/dotfiles/main/bootstrap.sh | bash
+curl -fsSL https://raw.githubusercontent.com/leecheneler/dotfiles/main/apply.sh | bash
 ```
 
-### Update Existing Machine
+Same command for fresh machines and updates - it's idempotent.
 
-```bash
-cd ~/.dotfiles && git pull && ./bootstrap.sh
-```
-
-### Bootstrap Copilot Instructions in a Repo
+### Initialize Copilot Instructions in a Repo
 
 ```bash
 ~/.dotfiles/bin/init-copilot

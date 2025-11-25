@@ -2,19 +2,13 @@
 
 Personal machine provisioning and configuration management.
 
-## Quick Start
-
-### Fresh Machine
+## Usage
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/leecheneler/dotfiles/main/bootstrap.sh | bash
+curl -fsSL https://raw.githubusercontent.com/leecheneler/dotfiles/main/apply.sh | bash
 ```
 
-### Update Existing
-
-```bash
-cd ~/.dotfiles && git pull && ./bootstrap.sh
-```
+Same command for fresh machines and updates - it's idempotent.
 
 ## What's Included
 
@@ -27,7 +21,7 @@ cd ~/.dotfiles && git pull && ./bootstrap.sh
 
 ```
 dotfiles/
-├── bootstrap.sh       # Entry point
+├── apply.sh           # Entry point (idempotent)
 ├── Brewfile           # Homebrew packages
 ├── scripts/           # Setup scripts
 ├── config/            # Dotfiles and configs
