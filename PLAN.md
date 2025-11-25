@@ -62,11 +62,12 @@ dotfiles/
 
 ### Phase 1: Foundation
 
-- [ ] 1.1 Initialize git repo
-- [ ] 1.2 Create directory structure
-- [ ] 1.3 Write minimal `bootstrap.sh` (clones repo, nothing else yet)
-- [ ] 1.4 Write README with usage instructions
-- [ ] 1.5 Push to GitHub
+- [x] 1.1 Initialize git repo
+- [x] 1.2 Create directory structure
+- [x] 1.3 Write minimal `bootstrap.sh` (clones repo, nothing else yet)
+- [x] 1.4 Write README with usage instructions
+- [x] 1.5 Add pre-commit formatting (shfmt, dprint, lefthook)
+- [x] 1.6 Push to GitHub
 
 ### Phase 2: Package Management
 
