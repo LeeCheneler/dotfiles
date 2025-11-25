@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Secrets
+.env
+.env.local
+
+# Editor
+*.swp
+*~

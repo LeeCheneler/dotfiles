@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  commands:
+    shfmt:
+      glob: "*.sh"
+      run: shfmt -w {staged_files}
+      stage_fixed: true
+    dprint:
+      glob: "*.{md,json,yaml,yml}"
+      run: dprint fmt {staged_files}
+      stage_fixed: true
