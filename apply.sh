@@ -6,6 +6,15 @@ DOTFILES_REPO="https://github.com/leecheneler/dotfiles.git"
 
 echo "==> Applying dotfiles"
 
+# Install Xcode Command Line Tools if not present
+if ! xcode-select -p &>/dev/null; then
+	echo "==> Installing Xcode Command Line Tools"
+	xcode-select --install
+	echo "==> Waiting for Xcode CLI tools installation..."
+	echo "    Please complete the installation prompt, then re-run this script."
+	exit 0
+fi
+
 # Clone or update dotfiles repo
 if [[ -d "$DOTFILES_DIR" ]]; then
 	echo "==> Pulling latest changes"
@@ -14,5 +23,9 @@ else
 	echo "==> Cloning dotfiles"
 	git clone "$DOTFILES_REPO" "$DOTFILES_DIR"
 fi
+
+# Run setup scripts
+export DOTFILES_DIR
+"$DOTFILES_DIR/scripts/packages.sh"
 
 echo "==> Done!"

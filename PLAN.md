@@ -71,10 +71,10 @@ dotfiles/
 
 ### Phase 2: Package Management
 
-- [ ] 2.1 Create `Brewfile` with initial packages (brew, casks, taps)
-- [ ] 2.2 Write `scripts/packages.sh` - installs Homebrew if missing, runs bundle
-- [ ] 2.3 Update `apply.sh` to install Xcode CLI tools and call packages script
-- [ ] 2.4 Test: curl apply on fresh-ish terminal
+- [x] 2.1 Create `Brewfile` with initial packages (brew, casks, taps)
+- [x] 2.2 Write `scripts/packages.sh` - installs Homebrew if missing, runs bundle
+- [x] 2.3 Update `apply.sh` to install Xcode CLI tools and call packages script
+- [x] 2.4 Test: curl apply on fresh-ish terminal
 
 ### Phase 3: Shell Configuration
 
