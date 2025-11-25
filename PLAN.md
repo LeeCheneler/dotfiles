@@ -30,7 +30,24 @@ Why:
 | Package management | Homebrew Bundle | Native, idempotent, handles casks/taps |
 | Node versions      | fnm             | Faster than nvm, Rust-based            |
 | Shell              | zsh + zinit     | Fast plugin manager, lazy loading      |
+| Terminal           | Kitty           | GPU-accelerated, fast, extensible      |
+| Prompt             | Starship        | Cross-shell, fast, sensible defaults   |
 | Dotfile management | Shell scripts   | Simple, no extra dependencies          |
+
+### Config File Backup Strategy
+
+Before symlinking any config file, the script checks if the target exists and is not already our symlink. If it exists, it's backed up to `~/.dotfiles-backup/` with a timestamp before creating the symlink.
+
+```
+~/.zshrc (exists) → ~/.dotfiles-backup/.zshrc.20250525-143022
+~/.zshrc → ~/.dotfiles/config/zsh/.zshrc (symlink created)
+```
+
+Why:
+
+- Never destroys existing configuration
+- Idempotent - re-running doesn't re-backup already-symlinked files
+- Easy recovery - backups are timestamped and in one place
 
 ## Directory Structure
 
@@ -40,12 +57,17 @@ dotfiles/
 ├── Brewfile               # homebrew packages
 ├── scripts/
 │   ├── packages.sh        # brew bundle + non-brew packages
-│   ├── shell.sh           # zsh, plugins, config
+│   ├── shell.sh           # zsh, zinit, kitty, starship
 │   ├── git.sh             # config, gpg signing, ssh keys
 │   ├── macos.sh           # system preferences
 │   └── ai.sh              # claude, copilot, mcp servers
 ├── config/
 │   ├── zsh/
+│   │   └── .zshrc         # zsh config with zinit plugins
+│   ├── kitty/
+│   │   └── kitty.conf     # kitty terminal config
+│   ├── starship/
+│   │   └── starship.toml  # starship prompt config
 │   ├── git/
 │   ├── claude/
 │   └── copilot/
@@ -78,10 +100,13 @@ dotfiles/
 
 ### Phase 3: Shell Configuration
 
-- [ ] 3.1 Add zsh config files to `config/zsh/`
-- [ ] 3.2 Write `scripts/shell.sh` - symlinks configs, installs zinit + plugins
-- [ ] 3.3 Define plugin list (syntax highlighting, autosuggestions, completions, etc.)
-- [ ] 3.4 Test: new terminal session has full shell setup
+- [ ] 3.1 Add starship and kitty to Brewfile
+- [ ] 3.2 Create `config/zsh/.zshrc` with zinit + plugins (autosuggestions, syntax-highlighting, completions)
+- [ ] 3.3 Create `config/kitty/kitty.conf` with sensible defaults
+- [ ] 3.4 Create `config/starship/starship.toml` with prompt config
+- [ ] 3.5 Write `scripts/shell.sh` - backup existing configs, symlink new ones, install zinit
+- [ ] 3.6 Update `apply.sh` to call shell.sh
+- [ ] 3.7 Test: new terminal session has full shell setup
 
 ### Phase 4: Git & GitHub
 
