@@ -26,6 +26,7 @@ brew "lefthook"   # Git hooks manager
 cask "font-jetbrains-mono-nerd-font"  # Programming font with icons
 
 # GUI Applications
+cask "google-chrome"       # Browser
 cask "visual-studio-code"  # Code editor
 cask "docker-desktop"      # Containers
 cask "kitty"               # Terminal emulator
