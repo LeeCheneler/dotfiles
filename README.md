@@ -26,7 +26,7 @@ Same command for fresh machines and updates - it's idempotent.
 
 ### GUI Apps
 
-Google Chrome, VS Code, Docker Desktop, Kitty, Rectangle, 1Password, Slack, Raycast
+Google Chrome, VS Code, Docker Desktop, Kitty, Rectangle, 1Password, Slack, Raycast, Claude, Claude Code
 
 ### Shell Setup
 
