@@ -28,7 +28,7 @@ Why:
 | Concern            | Choice          | Why                                    |
 | ------------------ | --------------- | -------------------------------------- |
 | Package management | Homebrew Bundle | Native, idempotent, handles casks/taps |
-| Node versions      | fnm             | Faster than nvm, Rust-based            |
+| Runtime versions   | mise            | Polyglot (Node, Deno, Python), fast    |
 | Shell              | zsh + zinit     | Fast plugin manager, lazy loading      |
 | Terminal           | Kitty           | GPU-accelerated, fast, extensible      |
 | Prompt             | Starship        | Cross-shell, fast, sensible defaults   |
@@ -118,12 +118,12 @@ dotfiles/
 
 ### Phase 5: AI Development Tooling
 
-- [ ] 5.1 Add Claude config to `config/claude/` (CLAUDE.md, settings)
-- [ ] 5.2 Write `scripts/ai.sh` - symlinks Claude config
-- [ ] 5.3 Add MCP server installation to `scripts/ai.sh`
-- [ ] 5.4 Write `bin/init-copilot` - bootstraps `.github/copilot-instructions.md` into target repo
-- [ ] 5.5 Add default copilot instructions template to `config/copilot/`
-- [ ] 5.6 Document AI tooling in README
+- [x] 5.1 Add Claude config to `config/claude/` (CLAUDE.md, settings, hooks/, agents/)
+- [x] 5.2 Write `scripts/ai.sh` - symlinks Claude config
+- [ ] 5.3 Add MCP server installation to `scripts/ai.sh` (deferred - need to upskill)
+- [x] 5.4 Write `bin/init-copilot` - bootstraps `.github/copilot-instructions.md` into target repo
+- [x] 5.5 Add default copilot instructions template to `config/copilot/`
+- [x] 5.6 Document AI tooling in README
 
 ### Phase 6: Polish & Extras
 

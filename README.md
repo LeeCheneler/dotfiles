@@ -43,11 +43,18 @@ dotfiles/
 ├── Brewfile                 # Homebrew packages
 ├── scripts/
 │   ├── packages.sh          # Homebrew install + bundle
-│   └── shell.sh             # Shell config symlinks
+│   ├── shell.sh             # Shell config symlinks
+│   ├── git.sh               # Git config + SSH keys
+│   └── ai.sh                # AI tooling config
+├── bin/
+│   └── init-copilot         # Bootstrap copilot instructions
 └── config/
     ├── zsh/.zshrc           # Zsh + zinit config
     ├── kitty/kitty.conf     # Kitty terminal config
-    └── starship/starship.toml
+    ├── starship/starship.toml
+    ├── git/.gitconfig       # Git configuration
+    ├── claude/              # Claude Code config
+    └── copilot/             # Copilot instructions template
 ```
 
 ## How It Works
@@ -91,6 +98,28 @@ Create `~/.zshrc.local` for machine-specific config (not tracked in git):
 # Example: work-specific paths
 export PATH="/work/tools:$PATH"
 ```
+
+## AI Tooling
+
+### Claude Code
+
+Global Claude Code configuration is symlinked to `~/.claude/`:
+
+- `CLAUDE.md` - Global instructions
+- `settings.json` - Auto-approve rules and preferences
+- `hooks/` - Custom hooks (empty by default)
+- `agents/` - Custom agents (empty by default)
+
+### Copilot Instructions
+
+Bootstrap `.github/copilot-instructions.md` into any repo:
+
+```bash
+cd your-project
+init-copilot
+```
+
+This copies the template from `config/copilot/` - edit it to add project-specific context.
 
 ## Design
 
