@@ -110,11 +110,11 @@ dotfiles/
 
 ### Phase 4: Git & GitHub
 
-- [ ] 4.1 Add git config template to `config/git/`
-- [ ] 4.2 Write `scripts/git.sh` - applies git config
-- [ ] 4.3 Add SSH key generation (if not exists) + instructions to add to GitHub
-- [ ] 4.4 Add GPG key setup for commit signing
-- [ ] 4.5 Test: can clone private repos, commits are signed
+- [x] 4.1 Add git config template to `config/git/`
+- [x] 4.2 Write `scripts/git.sh` - applies git config
+- [x] 4.3 Add SSH key generation (if not exists) + instructions to add to GitHub
+- [x] 4.4 Add SSH signing setup for commits
+- [x] 4.5 Test: can clone private repos, commits are signed
 
 ### Phase 5: AI Development Tooling
 

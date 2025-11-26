@@ -28,5 +28,6 @@ fi
 export DOTFILES_DIR
 "$DOTFILES_DIR/scripts/packages.sh"
 "$DOTFILES_DIR/scripts/shell.sh"
+"$DOTFILES_DIR/scripts/git.sh"
 
 echo "==> Done!"
