@@ -2,38 +2,13 @@
 set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
-BACKUP_DIR="$HOME/.dotfiles-backup"
 SSH_KEY="$HOME/.ssh/id_ed25519"
 GPG_EMAIL="leecheneler@users.noreply.github.com"
 
+# shellcheck source=lib/helpers.sh
+source "$DOTFILES_DIR/scripts/lib/helpers.sh"
+
 echo "==> Setting up git"
-
-# =============================================================================
-# Backup Helper (same as shell.sh)
-# =============================================================================
-
-backup_and_link() {
-	local source="$1"
-	local target="$2"
-
-	mkdir -p "$(dirname "$target")"
-
-	if [[ -e "$target" || -L "$target" ]]; then
-		if [[ -L "$target" && "$(readlink "$target")" == "$source" ]]; then
-			echo "    Already linked: $target"
-			return
-		fi
-
-		mkdir -p "$BACKUP_DIR"
-		local backup_name
-		backup_name="$(basename "$target").$(date +%Y%m%d-%H%M%S)"
-		echo "    Backing up: $target -> $BACKUP_DIR/$backup_name"
-		mv "$target" "$BACKUP_DIR/$backup_name"
-	fi
-
-	echo "    Linking: $target -> $source"
-	ln -sf "$source" "$target"
-}
 
 # =============================================================================
 # Git Config
