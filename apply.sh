@@ -28,6 +28,7 @@ fi
 export DOTFILES_DIR
 "$DOTFILES_DIR/scripts/packages.sh"
 "$DOTFILES_DIR/scripts/shell.sh"
+"$DOTFILES_DIR/scripts/vscode.sh"
 "$DOTFILES_DIR/scripts/git.sh"
 "$DOTFILES_DIR/scripts/ai.sh"
 

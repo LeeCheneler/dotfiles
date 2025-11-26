@@ -1,0 +1,46 @@
+# Formatting/Linting
+biomejs.biome
+
+# TypeScript
+yoavbls.pretty-ts-errors
+mattpocock.ts-error-translator
+
+# React/Styling
+formulahendry.auto-rename-tag
+bradlc.vscode-tailwindcss
+antfu.unocss
+
+# Testing
+vitest.explorer
+ms-playwright.playwright
+orta.vscode-jest
+
+# Git/GitHub
+eamodio.gitlens
+mhutchie.git-graph
+github.vscode-github-actions
+
+# AI
+github.copilot
+github.copilot-chat
+
+# Infrastructure
+hashicorp.terraform
+hashicorp.hcl
+
+# Deno
+denoland.vscode-deno
+
+# DX/Productivity
+usernamehw.errorlens
+christian-kohler.path-intellisense
+mikestead.dotenv
+redhat.vscode-yaml
+editorconfig.editorconfig
+streetsidesoftware.code-spell-checker
+yzhang.markdown-all-in-one
+unifiedjs.vscode-mdx
+
+# Theme/UI
+enkia.tokyo-night
+pkief.material-icon-theme
