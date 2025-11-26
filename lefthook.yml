@@ -2,10 +2,13 @@ pre-commit:
   parallel: true
   commands:
     shfmt:
-      glob: "*.sh"
+      glob: "**/*.sh"
       run: shfmt -w {staged_files}
       stage_fixed: true
+    shellcheck:
+      glob: "**/*.sh"
+      run: shellcheck -e SC1091 {staged_files}
     dprint:
-      glob: "*.{md,json,yaml,yml}"
+      glob: "**/*.{md,json}"
       run: dprint fmt {staged_files}
       stage_fixed: true

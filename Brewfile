@@ -19,6 +19,7 @@ brew "starship"   # Cross-shell prompt
 
 # Formatting & linting
 brew "shfmt"      # Shell formatter
+brew "shellcheck" # Shell script linter
 brew "dprint"     # Markdown/JSON/YAML formatter
 brew "lefthook"   # Git hooks manager
 
