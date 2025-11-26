@@ -34,3 +34,5 @@ cask "rectangle"           # Window management
 cask "1password"           # Password manager
 cask "slack"               # Team communication
 cask "raycast"             # Launcher/productivity
+cask "claude"              # Claude desktop app
+cask "claude-code"         # Claude Code (agentic coding)

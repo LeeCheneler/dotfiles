@@ -123,6 +123,9 @@ export VISUAL='code --wait'
 # Add dotfiles bin to PATH
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
+# Claude Code CLI
+export PATH="$HOME/.local/bin:$PATH"
+
 # =============================================================================
 # Local Overrides (machine-specific, not in repo)
 # =============================================================================
