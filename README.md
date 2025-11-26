@@ -14,17 +14,17 @@ Same command for fresh machines and updates - it's idempotent.
 
 ### CLI Tools
 
-| Tool                | Purpose                              |
-| ------------------- | ------------------------------------ |
-| git, curl, jq       | Core utilities                       |
-| ripgrep, fd, fzf    | Fast search                          |
-| bat, eza, tree      | Better cat/ls/tree                   |
-| zoxide              | Smarter cd                           |
-| mise                | Runtime manager (Node, Deno, Python) |
-| gh                  | GitHub CLI                           |
-| starship            | Cross-shell prompt                   |
-| shfmt, shellcheck   | Shell formatting and linting         |
-| dprint, lefthook    | Formatting and git hooks             |
+| Tool              | Purpose                              |
+| ----------------- | ------------------------------------ |
+| git, curl, jq     | Core utilities                       |
+| ripgrep, fd, fzf  | Fast search                          |
+| bat, eza, tree    | Better cat/ls/tree                   |
+| zoxide            | Smarter cd                           |
+| mise              | Runtime manager (Node, Deno, Python) |
+| gh                | GitHub CLI                           |
+| starship          | Cross-shell prompt                   |
+| shfmt, shellcheck | Shell formatting and linting         |
+| dprint, lefthook  | Formatting and git hooks             |
 
 ### 🖥️ GUI Apps
 
