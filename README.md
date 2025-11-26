@@ -37,6 +37,22 @@ Google Chrome, VS Code, Docker Desktop, Kitty, Rectangle, 1Password, Slack, Rayc
 - **Starship prompt** - Git status, language versions, command duration
 - **Kitty terminal** - GPU-accelerated, Tokyo Night theme
 
+### 🆚 VSCode
+
+Declarative extension management - extensions not in the list are removed.
+
+| Category        | Extensions                                          |
+| --------------- | --------------------------------------------------- |
+| Formatting      | Biome                                               |
+| TypeScript      | Pretty TS Errors, TS Error Translator               |
+| React/Styling   | Auto Rename Tag, Tailwind CSS, UnoCSS               |
+| Testing         | Vitest, Playwright, Jest                            |
+| Git/GitHub      | GitLens, Git Graph, GitHub Actions                  |
+| AI              | GitHub Copilot, Copilot Chat                        |
+| Infrastructure  | Terraform, HCL                                      |
+| DX              | Error Lens, Path Intellisense, dotenv, YAML, etc.   |
+| Theme           | Tokyo Night, Material Icon Theme                    |
+
 ## 📁 Structure
 
 ```
@@ -47,6 +63,7 @@ dotfiles/
 │   ├── lib/helpers.sh       # Shared helper functions
 │   ├── packages.sh          # Homebrew install + bundle
 │   ├── shell.sh             # Shell config symlinks
+│   ├── vscode.sh            # VSCode settings + extensions
 │   ├── git.sh               # Git config + SSH keys
 │   └── ai.sh                # AI tooling config
 ├── bin/
@@ -56,6 +73,7 @@ dotfiles/
     ├── kitty/kitty.conf     # Kitty terminal config
     ├── starship/starship.toml
     ├── git/.gitconfig       # Git configuration
+    ├── vscode/              # VSCode settings + extensions
     ├── claude/              # Claude Code config
     └── copilot/             # Copilot instructions template
 ```
@@ -67,6 +85,7 @@ dotfiles/
 3. Installs Homebrew (if missing) and all packages
 4. Backs up existing configs to `~/.dotfiles-backup/`
 5. Symlinks config files
+6. Installs VSCode extensions (removes unlisted ones)
 
 ## 🔄 Runtime Version Management
 

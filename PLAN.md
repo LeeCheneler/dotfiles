@@ -402,12 +402,12 @@ New command to bootstrap per-project Claude configuration:
 
 ## Implementation Order
 
-1. [ ] Phase 1: VSCode Management
+1. [x] Phase 1: VSCode Management
 
-   - [ ] Create `config/vscode/settings.json`
-   - [ ] Create `config/vscode/extensions.txt`
-   - [ ] Create `scripts/vscode.sh`
-   - [ ] Update `apply.sh`
+   - [x] Create `config/vscode/settings.json`
+   - [x] Create `config/vscode/extensions.txt`
+   - [x] Create `scripts/vscode.sh` (installs + removes unlisted extensions)
+   - [x] Update `apply.sh`
 
 2. [ ] Phase 2: Claude Code Agents
 
