@@ -17,6 +17,7 @@ $directory\
 $git_branch\
 $git_status\
 $nodejs\
+$deno\
 $python\
 $rust\
 $golang\
@@ -64,24 +65,30 @@ deleted = "✘${count}"
 
 [nodejs]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = "⬢ "
 style = "bold green"
 detect_files = ["package.json", ".node-version", ".nvmrc"]
 detect_folders = ["node_modules"]
 
+[deno]
+format = "[$symbol($version )]($style)"
+symbol = "🦕 "
+style = "bold green"
+detect_files = ["deno.json", "deno.jsonc", "deno.lock", ".deno-version"]
+
 [python]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = "🐍 "
 style = "bold yellow"
 
 [rust]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = "🦀 "
 style = "bold red"
 
 [golang]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = "🐹 "
 style = "bold cyan"
 
 # =============================================================================

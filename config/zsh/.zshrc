@@ -82,8 +82,10 @@ eval "$(starship init zsh)"
 # Zoxide (smarter cd)
 eval "$(zoxide init zsh)"
 
-# fnm (Fast Node Manager)
-eval "$(fnm env --use-on-cd)"
+# mise (polyglot runtime manager - Node, Deno, Python, etc.)
+# Automatically installs and switches versions based on .node-version, .nvmrc,
+# .tool-versions, or mise.toml when changing directories
+eval "$(mise activate zsh)"
 
 # fzf key bindings and completion
 source <(fzf --zsh)

@@ -13,7 +13,7 @@ brew "tree"       # Directory structure display
 brew "zoxide"     # Smarter cd
 
 # Development
-brew "fnm"        # Fast Node Manager
+brew "mise"       # Polyglot runtime manager (Node, Deno, Python, etc.)
 brew "gh"         # GitHub CLI
 brew "starship"   # Cross-shell prompt
 

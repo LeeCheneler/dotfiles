@@ -14,15 +14,15 @@ Same command for fresh machines and updates - it's idempotent.
 
 ### CLI Tools
 
-| Tool             | Purpose            |
-| ---------------- | ------------------ |
-| git, curl, jq    | Core utilities     |
-| ripgrep, fd, fzf | Fast search        |
-| bat, eza, tree   | Better cat/ls/tree |
-| zoxide           | Smarter cd         |
-| fnm              | Fast Node Manager  |
-| gh               | GitHub CLI         |
-| starship         | Cross-shell prompt |
+| Tool             | Purpose                              |
+| ---------------- | ------------------------------------ |
+| git, curl, jq    | Core utilities                       |
+| ripgrep, fd, fzf | Fast search                          |
+| bat, eza, tree   | Better cat/ls/tree                   |
+| zoxide           | Smarter cd                           |
+| mise             | Runtime manager (Node, Deno, Python) |
+| gh               | GitHub CLI                           |
+| starship         | Cross-shell prompt                   |
 
 ### GUI Apps
 
@@ -57,6 +57,31 @@ dotfiles/
 3. Installs Homebrew (if missing) and all packages
 4. Backs up existing configs to `~/.dotfiles-backup/`
 5. Symlinks config files
+
+## Runtime Version Management
+
+Uses [mise](https://mise.jdx.dev/) for automatic version switching. When you `cd` into a directory with a version file, mise automatically installs (if needed) and activates the correct version.
+
+**Supported version files:**
+
+| Runtime | Files                                       |
+| ------- | ------------------------------------------- |
+| Node.js | `.node-version`, `.nvmrc`, `.tool-versions` |
+| Deno    | `.deno-version`, `.tool-versions`           |
+| Python  | `.python-version`, `.tool-versions`         |
+
+**Quick start:**
+
+```bash
+# Install a runtime
+mise use node@22
+mise use deno@2
+
+# In a project, create a version file
+echo "22" > .node-version
+# or use mise
+mise use node@22  # creates .tool-versions
+```
 
 ## Local Overrides
 
