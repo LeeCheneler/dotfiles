@@ -62,7 +62,7 @@ ssh-add --apple-use-keychain "$SSH_KEY" 2>/dev/null || ssh-add "$SSH_KEY"
 
 # Check if key is registered with GitHub
 echo "    Testing GitHub SSH connection..."
-if ssh -T git@github.com 2>&1 | grep -q "successfully authenticated"; then
+if ssh -T git@github.com 2>&1 | grep -q "You've successfully authenticated"; then
 	echo "    SSH key is registered with GitHub"
 else
 	echo ""
