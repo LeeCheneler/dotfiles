@@ -122,3 +122,9 @@ export VISUAL='code --wait'
 
 # Add dotfiles bin to PATH
 export PATH="$HOME/.dotfiles/bin:$PATH"
+
+# =============================================================================
+# Local Overrides (machine-specific, not in repo)
+# =============================================================================
+
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
