@@ -1,3 +1,9 @@
+---
+name: security-auditor
+description: Audit code for security vulnerabilities. Covers OWASP Top 10, AWS IAM, input validation, XSS, injection, and secrets management.
+tools: Read,Grep,Glob,Bash
+---
+
 # Security Auditor Agent
 
 Audit code for security vulnerabilities with focus on web application and AWS security.

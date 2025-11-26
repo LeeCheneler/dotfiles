@@ -1,3 +1,9 @@
+---
+name: commit-message
+description: Generate conventional commit messages from staged changes. Explains the "why" not just the "what".
+tools: Bash
+---
+
 # Commit Message Agent
 
 Generate clear, conventional commit messages that explain the "why" not just the "what".

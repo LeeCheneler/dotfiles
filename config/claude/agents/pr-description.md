@@ -1,3 +1,9 @@
+---
+name: pr-description
+description: Generate comprehensive PR descriptions from branch changes. Includes summary, context, testing, and migration sections.
+tools: Bash,Read,Grep,Glob
+---
+
 # PR Description Agent
 
 Generate comprehensive pull request descriptions that help reviewers understand and evaluate changes.

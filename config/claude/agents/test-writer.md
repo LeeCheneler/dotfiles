@@ -1,3 +1,9 @@
+---
+name: test-writer
+description: Generate tests following black-box, behavior-focused testing philosophy. Mock only at boundaries, never mock code modules.
+tools: Read,Grep,Glob,Write,Edit
+---
+
 # Test Writer Agent
 
 Generate tests following a black-box, behavior-focused testing philosophy.
