@@ -1,8 +1,8 @@
-# Dotfiles
+# 🏠 Dotfiles
 
 Personal machine provisioning and configuration management.
 
-## Usage
+## 🚀 Usage
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/leecheneler/dotfiles/main/apply.sh | bash
@@ -10,38 +10,41 @@ curl -fsSL https://raw.githubusercontent.com/leecheneler/dotfiles/main/apply.sh 
 
 Same command for fresh machines and updates - it's idempotent.
 
-## What's Installed
+## 📦 What's Installed
 
 ### CLI Tools
 
-| Tool             | Purpose                              |
-| ---------------- | ------------------------------------ |
-| git, curl, jq    | Core utilities                       |
-| ripgrep, fd, fzf | Fast search                          |
-| bat, eza, tree   | Better cat/ls/tree                   |
-| zoxide           | Smarter cd                           |
-| mise             | Runtime manager (Node, Deno, Python) |
-| gh               | GitHub CLI                           |
-| starship         | Cross-shell prompt                   |
+| Tool                | Purpose                              |
+| ------------------- | ------------------------------------ |
+| git, curl, jq       | Core utilities                       |
+| ripgrep, fd, fzf    | Fast search                          |
+| bat, eza, tree      | Better cat/ls/tree                   |
+| zoxide              | Smarter cd                           |
+| mise                | Runtime manager (Node, Deno, Python) |
+| gh                  | GitHub CLI                           |
+| starship            | Cross-shell prompt                   |
+| shfmt, shellcheck   | Shell formatting and linting         |
+| dprint, lefthook    | Formatting and git hooks             |
 
-### GUI Apps
+### 🖥️ GUI Apps
 
 Google Chrome, VS Code, Docker Desktop, Kitty, Rectangle, 1Password, Slack, Raycast, Claude, Claude Code
 
-### Shell Setup
+### 🐚 Shell Setup
 
 - **zsh + zinit** - Fast plugin manager with lazy loading
 - **Plugins** - autosuggestions, syntax-highlighting, completions, history-substring-search
 - **Starship prompt** - Git status, language versions, command duration
 - **Kitty terminal** - GPU-accelerated, Tokyo Night theme
 
-## Structure
+## 📁 Structure
 
 ```
 dotfiles/
-├── apply.sh                 # Entry point
+├── apply.sh                 # Entry point (curl target)
 ├── Brewfile                 # Homebrew packages
 ├── scripts/
+│   ├── lib/helpers.sh       # Shared helper functions
 │   ├── packages.sh          # Homebrew install + bundle
 │   ├── shell.sh             # Shell config symlinks
 │   ├── git.sh               # Git config + SSH keys
@@ -57,7 +60,7 @@ dotfiles/
     └── copilot/             # Copilot instructions template
 ```
 
-## How It Works
+## ⚙️ How It Works
 
 1. Installs Xcode CLI tools (if missing)
 2. Clones/updates this repo to `~/.dotfiles`
@@ -65,7 +68,7 @@ dotfiles/
 4. Backs up existing configs to `~/.dotfiles-backup/`
 5. Symlinks config files
 
-## Runtime Version Management
+## 🔄 Runtime Version Management
 
 Uses [mise](https://mise.jdx.dev/) for automatic version switching. When you `cd` into a directory with a version file, mise automatically installs (if needed) and activates the correct version.
 
@@ -90,7 +93,7 @@ echo "22" > .node-version
 mise use node@22  # creates .tool-versions
 ```
 
-## Local Overrides
+## 🔧 Local Overrides
 
 Create `~/.zshrc.local` for machine-specific config (not tracked in git):
 
@@ -99,7 +102,7 @@ Create `~/.zshrc.local` for machine-specific config (not tracked in git):
 export PATH="/work/tools:$PATH"
 ```
 
-## AI Tooling
+## 🤖 AI Tooling
 
 ### Claude Code
 
@@ -121,8 +124,10 @@ init-copilot
 
 This copies the template from `config/copilot/` - edit it to add project-specific context.
 
-## Design
+## 🔐 Secrets
 
-**Stateless and idempotent.** Removing something from config doesn't uninstall it - just stops managing it. Manual cleanup when needed.
+Use [1Password](https://1password.com/) for storing and retrieving secrets. Never commit API keys or tokens.
 
-See [PLAN.md](PLAN.md) for implementation details and roadmap.
+## 🎨 Design
+
+**Stateless and idempotent.** Removing something from config doesn't uninstall it - just stops managing it. Manual cleanup when needed (`brew uninstall X`).
