@@ -10,26 +10,65 @@ curl -fsSL https://raw.githubusercontent.com/leecheneler/dotfiles/main/apply.sh 
 
 Same command for fresh machines and updates - it's idempotent.
 
-## What's Included
+## What's Installed
 
-- **Package management** - Homebrew packages, casks, and taps via Brewfile
-- **Shell** - zsh configuration with zinit plugins
-- **Git** - Config, SSH keys, GPG signing
-- **AI tooling** - Claude Code config, MCP servers, Copilot instructions
+### CLI Tools
+
+| Tool             | Purpose            |
+| ---------------- | ------------------ |
+| git, curl, jq    | Core utilities     |
+| ripgrep, fd, fzf | Fast search        |
+| bat, eza, tree   | Better cat/ls/tree |
+| zoxide           | Smarter cd         |
+| fnm              | Fast Node Manager  |
+| gh               | GitHub CLI         |
+| starship         | Cross-shell prompt |
+
+### GUI Apps
+
+Google Chrome, VS Code, Docker Desktop, Kitty, Rectangle, 1Password, Slack, Raycast
+
+### Shell Setup
+
+- **zsh + zinit** - Fast plugin manager with lazy loading
+- **Plugins** - autosuggestions, syntax-highlighting, completions, history-substring-search
+- **Starship prompt** - Git status, language versions, command duration
+- **Kitty terminal** - GPU-accelerated, Tokyo Night theme
 
 ## Structure
 
 ```
 dotfiles/
-├── apply.sh           # Entry point (idempotent)
-├── Brewfile           # Homebrew packages
-├── scripts/           # Setup scripts
-├── config/            # Dotfiles and configs
-└── bin/               # Custom scripts (added to PATH)
+├── apply.sh                 # Entry point
+├── Brewfile                 # Homebrew packages
+├── scripts/
+│   ├── packages.sh          # Homebrew install + bundle
+│   └── shell.sh             # Shell config symlinks
+└── config/
+    ├── zsh/.zshrc           # Zsh + zinit config
+    ├── kitty/kitty.conf     # Kitty terminal config
+    └── starship/starship.toml
+```
+
+## How It Works
+
+1. Installs Xcode CLI tools (if missing)
+2. Clones/updates this repo to `~/.dotfiles`
+3. Installs Homebrew (if missing) and all packages
+4. Backs up existing configs to `~/.dotfiles-backup/`
+5. Symlinks config files
+
+## Local Overrides
+
+Create `~/.zshrc.local` for machine-specific config (not tracked in git):
+
+```bash
+# Example: work-specific paths
+export PATH="/work/tools:$PATH"
 ```
 
 ## Design
 
-**Stateless and idempotent.** Run it as many times as you want - each run ensures the desired state without tracking what was previously installed.
+**Stateless and idempotent.** Removing something from config doesn't uninstall it - just stops managing it. Manual cleanup when needed.
 
-See [PLAN.md](PLAN.md) for detailed implementation plan.
+See [PLAN.md](PLAN.md) for implementation details and roadmap.
