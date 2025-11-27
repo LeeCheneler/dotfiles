@@ -41,17 +41,17 @@ Google Chrome, VS Code, Docker Desktop, Kitty, Rectangle, 1Password, Slack, Rayc
 
 Declarative extension management - extensions not in the list are removed.
 
-| Category        | Extensions                                          |
-| --------------- | --------------------------------------------------- |
-| Formatting      | Biome                                               |
-| TypeScript      | Pretty TS Errors, TS Error Translator               |
-| React/Styling   | Auto Rename Tag, Tailwind CSS, UnoCSS               |
-| Testing         | Vitest, Playwright, Jest                            |
-| Git/GitHub      | GitLens, Git Graph, GitHub Actions                  |
-| AI              | GitHub Copilot, Copilot Chat                        |
-| Infrastructure  | Terraform, HCL                                      |
-| DX              | Error Lens, Path Intellisense, dotenv, YAML, etc.   |
-| Theme           | Tokyo Night, Material Icon Theme                    |
+| Category       | Extensions                                        |
+| -------------- | ------------------------------------------------- |
+| Formatting     | Biome                                             |
+| TypeScript     | Pretty TS Errors, TS Error Translator             |
+| React/Styling  | Auto Rename Tag, Tailwind CSS, UnoCSS             |
+| Testing        | Vitest, Playwright, Jest                          |
+| Git/GitHub     | GitLens, Git Graph, GitHub Actions                |
+| AI             | GitHub Copilot, Copilot Chat                      |
+| Infrastructure | Terraform, HCL                                    |
+| DX             | Error Lens, Path Intellisense, dotenv, YAML, etc. |
+| Theme          | Tokyo Night, Material Icon Theme                  |
 
 ## 📁 Structure
 
@@ -134,15 +134,15 @@ Global Claude Code configuration is symlinked to `~/.claude/`:
 
 #### Agents
 
-| Agent | Purpose |
-| --- | --- |
-| `code-reviewer` | Review code changes for quality, patterns, security |
-| `test-writer` | Generate tests following black-box, behavior-focused philosophy |
-| `doc-writer` | Generate article-style documentation (READMEs, ADRs, API docs) |
-| `refactor-advisor` | Identify refactoring opportunities, flag breaking changes |
-| `security-auditor` | Audit for OWASP Top 10, dependency vulnerabilities, secrets |
-| `commit-message` | Generate conventional commit messages |
-| `pr-description` | Generate comprehensive PR descriptions |
+| Agent              | Purpose                                                         |
+| ------------------ | --------------------------------------------------------------- |
+| `code-reviewer`    | Review code changes for quality, patterns, security             |
+| `test-writer`      | Generate tests following black-box, behavior-focused philosophy |
+| `doc-writer`       | Generate article-style documentation (READMEs, ADRs, API docs)  |
+| `refactor-advisor` | Identify refactoring opportunities, flag breaking changes       |
+| `security-auditor` | Audit for OWASP Top 10, dependency vulnerabilities, secrets     |
+| `commit-message`   | Generate conventional commit messages                           |
+| `pr-description`   | Generate comprehensive PR descriptions                          |
 
 ### Copilot Instructions
 
