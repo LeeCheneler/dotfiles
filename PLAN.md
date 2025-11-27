@@ -419,10 +419,10 @@ New command to bootstrap per-project Claude configuration:
    - [x] Create `config/claude/agents/commit-message.md`
    - [x] Create `config/claude/agents/pr-description.md`
 
-3. [ ] Phase 3: World-Class CLAUDE.md
+3. [x] Phase 3: World-Class CLAUDE.md
 
-   - [ ] Rewrite `config/claude/CLAUDE.md`
-   - [ ] Create `config/claude/templates/project.md`
+   - [x] Rewrite `config/claude/CLAUDE.md` (lean, delegation-focused)
+   - [x] Create `bin/init-claude` (Claude-powered project setup)
 
 4. [ ] Phase 4: Copilot Instructions
 

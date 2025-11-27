@@ -144,6 +144,17 @@ Global Claude Code configuration is symlinked to `~/.claude/`:
 | `commit-message`   | Generate conventional commit messages                           |
 | `pr-description`   | Generate comprehensive PR descriptions                          |
 
+#### Project Setup
+
+Bootstrap project-specific Claude instructions:
+
+```bash
+cd your-project
+init-claude
+```
+
+This prints a prompt to paste into Claude, which will analyze your codebase and generate a `.claude/CLAUDE.md` tailored to the project.
+
 ### Copilot Instructions
 
 Bootstrap `.github/copilot-instructions.md` into any repo:
@@ -162,4 +173,3 @@ Use [1Password](https://1password.com/) for storing and retrieving secrets. Neve
 ## 🎨 Design
 
 **Stateless and idempotent.** Removing something from config doesn't uninstall it - just stops managing it. Manual cleanup when needed (`brew uninstall X`).
-test
