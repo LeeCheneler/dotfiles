@@ -133,6 +133,14 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # =============================================================================
+# Secrets (loaded from 1Password)
+# =============================================================================
+
+if command -v op &>/dev/null; then
+	export GITHUB_PACKAGES_TOKEN="$(op read 'op://Private/GitHub PAT/credential')"
+fi
+
+# =============================================================================
 # Local Overrides (machine-specific, not in repo)
 # =============================================================================
 
