@@ -3,6 +3,14 @@
   "editor.fontFamily": "JetBrainsMono Nerd Font, Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 14,
   "editor.fontLigatures": true,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": ["comment", "keyword", "storage.type", "storage.modifier"],
+        "settings": { "fontStyle": "italic" }
+      }
+    ]
+  },
   "editor.lineHeight": 1.6,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
