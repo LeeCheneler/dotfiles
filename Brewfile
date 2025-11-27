@@ -26,6 +26,8 @@ brew "cspell"     # Spell checker for code
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"  # Programming font with icons
+cask "font-victor-mono"               # Elegant font with cursive italics
+cask "font-monaspace"                 # GitHub's variable font family
 
 # GUI Applications
 cask "google-chrome"       # Browser
