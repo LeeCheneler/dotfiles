@@ -41,4 +41,6 @@ unifiedjs.vscode-mdx
 
 # Theme/UI
 enkia.tokyo-night
+AiyuAyaan.neon-cyberpunk
+GatomontesRoselll.quantum-vscode
 pkief.material-icon-theme
