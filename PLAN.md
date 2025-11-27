@@ -409,15 +409,15 @@ New command to bootstrap per-project Claude configuration:
    - [x] Create `scripts/vscode.sh` (installs + removes unlisted extensions)
    - [x] Update `apply.sh`
 
-2. [ ] Phase 2: Claude Code Agents
+2. [x] Phase 2: Claude Code Agents
 
-   - [ ] Create `config/claude/agents/code-reviewer.md`
-   - [ ] Create `config/claude/agents/test-writer.md`
-   - [ ] Create `config/claude/agents/doc-writer.md`
-   - [ ] Create `config/claude/agents/refactor-advisor.md`
-   - [ ] Create `config/claude/agents/security-auditor.md`
-   - [ ] Create `config/claude/agents/commit-message.md`
-   - [ ] Create `config/claude/agents/pr-description.md`
+   - [x] Create `config/claude/agents/code-reviewer.md`
+   - [x] Create `config/claude/agents/test-writer.md`
+   - [x] Create `config/claude/agents/doc-writer.md`
+   - [x] Create `config/claude/agents/refactor-advisor.md`
+   - [x] Create `config/claude/agents/security-auditor.md`
+   - [x] Create `config/claude/agents/commit-message.md`
+   - [x] Create `config/claude/agents/pr-description.md`
 
 3. [ ] Phase 3: World-Class CLAUDE.md
 
