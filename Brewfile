@@ -22,6 +22,7 @@ brew "shfmt"      # Shell formatter
 brew "shellcheck" # Shell script linter
 brew "dprint"     # Markdown/JSON/YAML formatter
 brew "lefthook"   # Git hooks manager
+brew "cspell"     # Spell checker for code
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"  # Programming font with icons

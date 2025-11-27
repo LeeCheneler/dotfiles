@@ -162,3 +162,4 @@ Use [1Password](https://1password.com/) for storing and retrieving secrets. Neve
 ## 🎨 Design
 
 **Stateless and idempotent.** Removing something from config doesn't uninstall it - just stops managing it. Manual cleanup when needed (`brew uninstall X`).
+test
