@@ -424,9 +424,9 @@ New command to bootstrap per-project Claude configuration:
    - [x] Rewrite `config/claude/CLAUDE.md` (lean, delegation-focused)
    - [x] Create `bin/init-claude` (Claude-powered project setup)
 
-4. [ ] Phase 4: Copilot Instructions
+4. [x] Phase 4: Copilot Instructions
 
-   - [ ] Rewrite `config/copilot/copilot-instructions.md`
+   - [x] Rewrite `config/copilot/copilot-instructions.md`
 
 5. [ ] Phase 5: Integration
    - [ ] Verify `scripts/ai.sh` handles new structure
