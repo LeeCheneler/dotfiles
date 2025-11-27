@@ -428,10 +428,10 @@ New command to bootstrap per-project Claude configuration:
 
    - [x] Rewrite `config/copilot/copilot-instructions.md`
 
-5. [ ] Phase 5: Integration
-   - [ ] Verify `scripts/ai.sh` handles new structure
-   - [ ] Create `bin/init-claude` command
-   - [ ] Test full `apply.sh` run
+5. [x] Phase 5: Integration
+   - [x] Verify `scripts/ai.sh` handles new structure
+   - [x] Create `bin/init-claude` command (done in Phase 3)
+   - [x] Test `ai.sh` run
 
 ---
 
