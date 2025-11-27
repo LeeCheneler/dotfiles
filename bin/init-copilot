@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
@@ -17,18 +17,51 @@ if [[ ! -f "$TEMPLATE" ]]; then
 	exit 1
 fi
 
-# Check if target already exists
-if [[ -f "$TARGET" ]]; then
-	echo "Error: $TARGET already exists"
-	echo "       Remove it first if you want to reinitialize"
-	exit 1
-fi
-
 # Create .github directory if needed
 mkdir -p .github
 
-# Copy template
-cp "$TEMPLATE" "$TARGET"
+# Copy template if it doesn't exist
+if [[ ! -f "$TARGET" ]]; then
+	cp "$TEMPLATE" "$TARGET"
+	echo "Created $TARGET"
+fi
 
-echo "Created $TARGET"
-echo "Edit it to add project-specific instructions"
+cat << 'BANNER'
+╔═══════════════════════════════════════════════════════════════════╗
+║                     Copilot Project Setup                         ║
+╠═══════════════════════════════════════════════════════════════════╣
+║                                                                   ║
+║  1. Run: claude                                                   ║
+║  2. Paste the prompt below                                        ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+BANNER
+
+cat << 'PROMPT'
+────────────────────────────────────────────────────────────────────
+PROMPT TO PASTE:
+────────────────────────────────────────────────────────────────────
+
+Explore this codebase thoroughly with extended thinking. Analyze:
+
+- Tech stack and frameworks used
+- Project structure and architecture patterns
+- Testing patterns and conventions
+- Naming conventions and code style
+- Build/dev/test commands in package.json or similar
+
+Then update .github/copilot-instructions.md:
+
+1. Keep the existing template structure
+2. Fill in the "Project Context" section at the bottom with:
+   - Brief project description
+   - Key directories and their purposes
+   - Project-specific patterns or conventions
+   - Common commands (dev, build, test, lint)
+   - Any gotchas or important notes
+
+Keep it concise - Copilot uses this for inline completions.
+
+────────────────────────────────────────────────────────────────────
+PROMPT
