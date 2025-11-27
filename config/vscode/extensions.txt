@@ -11,9 +11,7 @@ bradlc.vscode-tailwindcss
 antfu.unocss
 
 # Testing
-vitest.explorer
 ms-playwright.playwright
-orta.vscode-jest
 
 # Git/GitHub
 eamodio.gitlens
