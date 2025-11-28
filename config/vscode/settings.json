@@ -29,13 +29,9 @@
     "strings": true
   },
 
-  // Formatting (Biome)
+  // Formatting
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "biomejs.biome",
-  "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit",
-    "quickfix.biome": "explicit"
-  },
+  "editor.defaultFormatter": "denoland.vscode-deno",
 
   // Files
   "files.trimTrailingWhitespace": true,
@@ -68,7 +64,7 @@
   "terminal.integrated.smoothScrolling": true,
 
   // Workbench
-  "workbench.colorTheme": "Neon Cyberpunk",
+  "workbench.colorTheme": "Quantum Synthwave",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "none",
   "workbench.editor.enablePreview": false,
@@ -159,5 +155,8 @@
 
   // Telemetry
   "telemetry.telemetryLevel": "off",
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
+  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideBasicTips": true,
+  "chat.agent.maxRequests": 50
 }
