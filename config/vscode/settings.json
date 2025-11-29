@@ -64,7 +64,7 @@
   "terminal.integrated.smoothScrolling": true,
 
   // Workbench
-  "workbench.colorTheme": "Quantum Synthwave",
+  "workbench.colorTheme": "Neon Cyberpunk",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "none",
   "workbench.editor.enablePreview": false,
@@ -158,5 +158,10 @@
   "redhat.telemetry.enabled": false,
   "totalTypeScript.hideAllTips": false,
   "totalTypeScript.hideBasicTips": true,
-  "chat.agent.maxRequests": 50
+  "chat.agent.maxRequests": 50,
+  "totalTypeScript.hiddenTips": [
+    "passing-generics-to-types",
+    "non-null-expression",
+    "never-keyword"
+  ]
 }
