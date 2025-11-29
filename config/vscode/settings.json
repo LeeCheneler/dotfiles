@@ -156,12 +156,7 @@
   // Telemetry
   "telemetry.telemetryLevel": "off",
   "redhat.telemetry.enabled": false,
-  "totalTypeScript.hideAllTips": false,
+  "totalTypeScript.hideAllTips": true,
   "totalTypeScript.hideBasicTips": true,
-  "chat.agent.maxRequests": 50,
-  "totalTypeScript.hiddenTips": [
-    "passing-generics-to-types",
-    "non-null-expression",
-    "never-keyword"
-  ]
+  "chat.agent.maxRequests": 50
 }
