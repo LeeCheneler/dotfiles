@@ -1,5 +1,6 @@
 # Formatting/Linting
 biomejs.biome
+esbenp.prettier-vscode
 
 # TypeScript
 yoavbls.pretty-ts-errors

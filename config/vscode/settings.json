@@ -31,7 +31,6 @@
 
   // Formatting
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "denoland.vscode-deno",
 
   // Files
   "files.trimTrailingWhitespace": true,
@@ -94,7 +93,7 @@
 
   // Language-specific formatters
   "[typescript]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
@@ -106,7 +105,7 @@
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "[markdown]": {
-    "editor.defaultFormatter": null,
+    "editor.defaultFormatter": "denoland.vscode-deno",
     "editor.wordWrap": "on"
   },
   "[yaml]": {
@@ -158,5 +157,7 @@
   "redhat.telemetry.enabled": false,
   "totalTypeScript.hideAllTips": true,
   "totalTypeScript.hideBasicTips": true,
-  "chat.agent.maxRequests": 50
+  "chat.agent.maxRequests": 50,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1"
 }
