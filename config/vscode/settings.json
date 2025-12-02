@@ -159,5 +159,6 @@
   "totalTypeScript.hideBasicTips": true,
   "chat.agent.maxRequests": 50,
   "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4.1"
+  "gitlens.ai.vscode.model": "copilot:claude-opus-4.5",
+  "diffEditor.ignoreTrimWhitespace": false
 }
