@@ -105,7 +105,7 @@
     "editor.defaultFormatter": "denoland.vscode-deno"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "denoland.vscode-deno",
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one",
     "editor.wordWrap": "on"
   },
   "[yaml]": {
