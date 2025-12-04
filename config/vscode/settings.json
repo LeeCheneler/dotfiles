@@ -24,6 +24,8 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
   "editor.stickyScroll.enabled": true,
+  "editor.copyWithSyntaxHighlighting": false,
+  "richCopy.enable": false,
   "editor.inlineSuggest.enabled": true,
   "editor.quickSuggestions": {
     "strings": true
@@ -160,5 +162,8 @@
   "chat.agent.maxRequests": 50,
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:claude-opus-4.5",
-  "diffEditor.ignoreTrimWhitespace": false
+  "diffEditor.ignoreTrimWhitespace": false,
+  "chat.tools.terminal.autoApprove": {
+    "pnpm": true
+  }
 }
