@@ -1,4 +1,7 @@
 {
+  "additionalDirectories": [
+    "~/projects"
+  ],
   "permissions": {
     "allow": [
       "Read",

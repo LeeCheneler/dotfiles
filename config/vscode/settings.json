@@ -152,7 +152,11 @@
 
   // Spell Checker
   "cSpell.enableFiletypes": ["markdown", "plaintext"],
-  "cSpell.userWords": [],
+  "cSpell.userWords": [
+    "frontmatter",
+    "Shiki",
+    "tabirun"
+  ],
 
   // Telemetry
   "telemetry.telemetryLevel": "off",
