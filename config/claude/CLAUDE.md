@@ -81,6 +81,25 @@ Delegate to specialized agents for deep work:
 | Commit messages | `commit-message`   | Generating conventional commits                |
 | PR descriptions | `pr-description`   | Writing PR summaries                           |
 
+## Implementation Workflow
+
+Follow this workflow for each discrete unit of work:
+
+1. **Implement** - Write the code
+2. **Write tests** - Use `test-writer` agent to generate tests
+3. **Verify** - Run tests, lint, and type check
+4. **Review** - Use `code-reviewer` and `security-auditor` agents
+5. **Fix** - Address any issues found in review
+6. **Present** - Summarize changes and await user approval
+7. **Commit** - Only after explicit user approval, use `commit-message` agent
+
+Key rules:
+
+- Never commit without explicit user approval
+- Each step must complete before proceeding to the next
+- If issues are found in review, loop back to fix before presenting
+- Use `pr-description` agent when creating pull requests
+
 ## What NOT to Do
 
 - Don't add features beyond what's asked

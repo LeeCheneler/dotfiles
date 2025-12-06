@@ -165,5 +165,6 @@
   "diffEditor.ignoreTrimWhitespace": false,
   "chat.tools.terminal.autoApprove": {
     "pnpm": true
-  }
+  },
+  "extensions.ignoreRecommendations": true
 }
