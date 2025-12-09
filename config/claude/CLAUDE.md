@@ -73,6 +73,8 @@ Delegate to specialized agents for deep work:
 
 | Task            | Agent              | When                                           |
 | --------------- | ------------------ | ---------------------------------------------- |
+| Research        | `researcher`       | Deep codebase exploration for a task           |
+| Planning        | `planner`          | Creating structured implementation plans       |
 | Code review     | `code-reviewer`    | Reviewing PRs, branch changes, implementations |
 | Writing tests   | `test-writer`      | Generating tests, improving coverage           |
 | Documentation   | `doc-writer`       | READMEs, API docs, ADRs, changelogs            |
@@ -81,24 +83,52 @@ Delegate to specialized agents for deep work:
 | Commit messages | `commit-message`   | Generating conventional commits                |
 | PR descriptions | `pr-description`   | Writing PR summaries                           |
 
-## Implementation Workflow
+## Development Workflow
 
-Follow this workflow for each discrete unit of work:
+Use slash commands for structured development:
 
-1. **Implement** - Write the code
-2. **Write tests** - Use `test-writer` agent to generate tests
-3. **Verify** - Run tests, lint, and type check
-4. **Review** - Use `code-reviewer` and `security-auditor` agents
-5. **Fix** - Address any issues found in review
-6. **Present** - Summarize changes and await user approval
-7. **Commit** - Only after explicit user approval, use `commit-message` agent
+| Command          | Purpose                                        |
+| ---------------- | ---------------------------------------------- |
+| `/begin <task>`  | Start new work: research, plan, signoff        |
+| `/next`          | Execute next commit cycle                      |
+| `/resume`        | Resume existing plan from another session      |
+| `/status`        | Show current plan progress                     |
+| `/abort`         | Abort current plan safely                      |
+| `/pr`            | Open pull request                              |
 
-Key rules:
+Standalone phase commands (for manual control or recovery):
+
+| Command     | Purpose                              |
+| ----------- | ------------------------------------ |
+| `/research` | Run research phase only              |
+| `/plan`     | Run planning phase only              |
+| `/signoff`  | Present and get approval             |
+| `/dev`      | Run dev phase for current commit     |
+| `/review`   | Run review phase for current changes |
+| `/present`  | Present changes for user approval    |
+| `/commit`   | Commit with approval                 |
+
+### Workflow Phases
+
+```
+1. RESEARCH ──► 2. PLAN ──► 3. SIGNOFF ──► 4. EXECUTE ──► 5. PR
+```
+
+**Execute loop (per commit):**
+```
+DEV ──► REVIEW ──► PRESENT ──► COMMIT
+```
+
+Plans are stored in `docs/plans/<task-slug>/` with:
+- `research.md` - Codebase research and findings
+- `plan.md` - Commit breakdown with checklists
+
+### Key Rules
 
 - Never commit without explicit user approval
-- Each step must complete before proceeding to the next
-- If issues are found in review, loop back to fix before presenting
-- Use `pr-description` agent when creating pull requests
+- Never skip research or planning for non-trivial work
+- Fix Critical/High review issues before presenting
+- Update plan.md checklists as work progresses
 
 ## What NOT to Do
 
