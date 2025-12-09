@@ -34,3 +34,4 @@
 	br = branch
 	cm = commit
 	lg = log --oneline --graph --decorate
+	bd = branch -D
