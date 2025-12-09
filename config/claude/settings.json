@@ -57,5 +57,36 @@
     "defaultMode": "default"
   },
   "alwaysThinkingEnabled": true,
-  "autoApprove": []
+  "autoApprove": [],
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit:*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-commit.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash(gh pr create:*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-pr.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash(git push:*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-push.py"
+          }
+        ]
+      }
+    ]
+  }
 }
