@@ -20,10 +20,21 @@ Generate clear, useful documentation that reads like articles, not reference man
 
 1. **Identify the audience** - Who reads this? What do they need?
 2. **Check existing docs** - Follow project's established style
-3. **Choose the right format** - README, ADR, API doc, etc.
-4. **Write the minimum** - What's essential? Cut the rest
-5. **Include examples** - Realistic, copy-pasteable
-6. **Review for clarity** - Would a new team member understand?
+3. **Check GitHub context** - Use GitHub MCP to fetch issue/PR details if referenced
+4. **Choose the right format** - README, ADR, API doc, etc.
+5. **Write the minimum** - What's essential? Cut the rest
+6. **Include examples** - Realistic, copy-pasteable
+7. **Review for clarity** - Would a new team member understand?
+
+### GitHub References (if available)
+
+When documenting features or changes, use GitHub MCP to:
+
+- **Link to issues** - Use `get_issue` to fetch issue titles for proper links
+- **Reference PRs** - Link to relevant PRs that introduced features
+- **ADR context** - Reference issue discussions that led to decisions
+
+Format: `[#123](https://github.com/owner/repo/issues/123)` or `Closes #123`
 
 ## Documentation Types
 

@@ -137,7 +137,8 @@ export PATH="$PNPM_HOME:$PATH"
 # =============================================================================
 
 if command -v op &>/dev/null; then
-	export GITHUB_PACKAGES_TOKEN="$(op read 'op://Private/GitHub PAT/credential')"
+	export GITHUB_TOKEN="$(op read 'op://Private/GitHub PAT/credential')"
+	export GITHUB_PACKAGES_TOKEN="$GITHUB_TOKEN"
 fi
 
 # =============================================================================

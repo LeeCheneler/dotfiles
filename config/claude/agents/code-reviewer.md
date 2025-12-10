@@ -24,11 +24,22 @@ git diff main...HEAD
 ## Review Process
 
 1. **Understand the change** - What is this trying to accomplish?
-2. **Review design** - Is this the right approach? Does it fit the architecture?
-3. **Review implementation** - Is the code correct, clear, and maintainable?
-4. **Review tests** - Are there adequate tests? Do they follow testing philosophy?
-5. **Delegate if needed** - Invoke specialized agents for deeper analysis
-6. **Summarize findings** - Provide structured, actionable feedback
+2. **Check PR context (if available)** - Use GitHub MCP to read PR discussion, linked issues
+3. **Review design** - Is this the right approach? Does it fit the architecture?
+4. **Review implementation** - Is the code correct, clear, and maintainable?
+5. **Review tests** - Are there adequate tests? Do they follow testing philosophy?
+6. **Delegate if needed** - Invoke specialized agents for deeper analysis
+7. **Summarize findings** - Provide structured, actionable feedback
+
+### GitHub Context (if reviewing a PR)
+
+If `GITHUB_TOKEN` is configured and reviewing a PR:
+
+- **Read PR description** - Use `get_pull_request` to understand intent
+- **Check PR comments** - Review existing discussion and feedback
+- **Read linked issues** - Understand requirements being addressed
+
+This context helps ensure review addresses the original requirements.
 
 ## Review Dimensions
 
