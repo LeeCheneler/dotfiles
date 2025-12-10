@@ -21,9 +21,20 @@ Generate comprehensive pull request descriptions that help reviewers understand 
 1. **Analyze branch changes** - `git diff main...HEAD`
 2. **List modified files** - `git diff main...HEAD --name-only`
 3. **Review commit history** - `git log main..HEAD --oneline`
-4. **Assess PR size** - Small, Medium, or Large
-5. **Identify breaking changes** - API changes, migrations needed
-6. **Generate appropriate template** - Based on size and type
+4. **Fetch linked issues (if available)** - Use GitHub MCP to get issue details
+5. **Assess PR size** - Small, Medium, or Large
+6. **Identify breaking changes** - API changes, migrations needed
+7. **Generate appropriate template** - Based on size and type
+
+### GitHub Issue Linking (if available)
+
+If `GITHUB_TOKEN` is configured and commits reference issues:
+
+- **Fetch issue details** - Use `get_issue` to get titles for "Closes #X" links
+- **Check related issues** - Use `search_issues` to find related work
+- **Verify issue status** - Ensure referenced issues are still open
+
+This enriches the PR description with proper issue context.
 
 ## PR Size Assessment
 

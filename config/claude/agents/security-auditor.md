@@ -39,6 +39,18 @@ If directed to specific files, features, or modules, focus on those instead.
 
 ## Automated Checks
 
+### GitHub Security Advisories (if available)
+
+If `GITHUB_TOKEN` is configured, check for security context:
+
+- **Repository security advisories** - Use `list_security_advisories` to check for known vulnerabilities in the repo
+- **Search security issues** - Use `search_issues` with "security" or "vulnerability" keywords
+- **Dependabot alerts** - Check if there are open security alerts
+
+This provides context on known security issues before manual review.
+
+### Package Audits
+
 Run these checks matching the repo's package manager:
 
 ### Dependency Audit

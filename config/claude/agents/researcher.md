@@ -11,6 +11,7 @@ Conduct deep codebase exploration to build understanding for a given task.
 ## Scope
 
 Research the codebase to understand:
+
 1. What exists relevant to the task
 2. What patterns should be followed
 3. What constraints or decisions apply
@@ -31,12 +32,29 @@ find . -path "*/plans/*" -name "*.md"
 ```
 
 Priority order:
+
 1. Vision documents (project direction)
 2. ADRs (architectural decisions)
 3. Existing plans (related work)
 4. READMEs (component documentation)
 
-### 2. Explore Relevant Code
+### 2. Check GitHub Context (if available)
+
+If the task references a GitHub issue or PR, or if `GITHUB_TOKEN` is configured:
+
+- **Read issue details** - Get full requirements, acceptance criteria, discussion
+- **Check related PRs** - See if similar work was attempted before
+- **Review issue comments** - Understand context and decisions made
+
+Use the GitHub MCP tools:
+
+- `get_issue` - Fetch issue details by number
+- `search_issues` - Find related issues by keyword
+- `get_pull_request` - Check PR details and discussion
+
+Skip this step if no GitHub context is relevant to the task.
+
+### 3. Explore Relevant Code
 
 Based on the task, find relevant code:
 
@@ -45,9 +63,10 @@ Based on the task, find relevant code:
 - Use `Read` to understand implementations
 - Use `Task` with Explore agent for broad searches
 
-### 3. Identify Patterns
+### 4. Identify Patterns
 
 Look for:
+
 - How similar features are implemented
 - Directory structure conventions
 - Naming conventions
@@ -55,17 +74,19 @@ Look for:
 - Error handling patterns
 - API patterns
 
-### 4. Note Constraints
+### 5. Note Constraints
 
 Identify:
+
 - Architectural decisions that apply (from ADRs)
 - Technical constraints
 - Dependencies
 - Integration points
 
-### 5. Ask Clarifying Questions
+### 6. Ask Clarifying Questions
 
 If genuinely uncertain about:
+
 - Scope boundaries (what's in/out)
 - Ambiguous requirements
 - Multiple valid approaches with significant trade-offs
@@ -76,63 +97,76 @@ Ask using `AskUserQuestion`. Do NOT force questions - only ask if truly needed.
 
 Write to `docs/plans/<task-slug>/research.md`:
 
-```markdown
+````markdown
 # Research: <Task Description>
 
 ## Task
+
 <original task description as provided>
 
 ## Codebase Overview
+
 <relevant structure, tech stack, key directories>
 
 ### Tech Stack
+
 - <framework/runtime>
 - <key libraries>
 - <build tools>
 
 ### Relevant Directories
+
 - `src/...` - <purpose>
 - `lib/...` - <purpose>
 
 ## Relevant Files
+
 <files that will be affected or referenced>
 
-| File | Relevance |
-|------|-----------|
+| File              | Relevance        |
+| ----------------- | ---------------- |
 | `path/to/file.ts` | <why it matters> |
 
 ## Existing Patterns
 
 ### <Pattern Name>
+
 <description of pattern found>
 
 ```typescript
 // Example from codebase
 <code snippet>
 ```
+````
 
 ## Documentation Found
 
 ### Vision
+
 <summary if exists, or "None found">
 
 ### ADRs
+
 - **ADR-001: <title>** - <summary and relevance>
 - **ADR-002: <title>** - <summary and relevance>
 
 ### READMEs
+
 - `src/feature/README.md` - <relevant info>
 
 ### Existing Plans
+
 - `docs/plans/related-feature/` - <relevance>
 
 ## Key Considerations
+
 <architectural decisions, constraints, gotchas that affect this task>
 
 - <consideration 1>
 - <consideration 2>
 
 ## Recommended Approach
+
 <suggested implementation strategy based on research>
 
 1. <step 1>
@@ -140,14 +174,15 @@ Write to `docs/plans/<task-slug>/research.md`:
 3. <step 3>
 
 ## Open Questions
+
 <questions for user if any>
 
 - <question 1>
 - <question 2>
 
 Or: "None - research is sufficient to proceed."
-```
 
+```
 ## Guidelines
 
 ### Be Thorough But Focused
@@ -171,3 +206,4 @@ Or: "None - research is sufficient to proceed."
 - **Concise** - No filler, get to the point
 - **Actionable** - Recommendations should guide implementation
 - **Honest** - Flag concerns and gaps clearly
+```
