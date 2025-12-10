@@ -17,13 +17,14 @@ Symlinked to `~/.claude/` via `apply.sh`.
 
 ## Hooks
 
-Git operation enforcement via `PreToolUse` hooks.
+Operation enforcement via `PreToolUse` hooks.
 
-| Hook            | Trigger        | Behavior                                             |
-| --------------- | -------------- | ---------------------------------------------------- |
-| `pre-commit.py` | `git commit`   | Blocks until approval; on main asks about new branch |
-| `pre-pr.py`     | `gh pr create` | Blocks until PR description approved                 |
-| `pre-push.py`   | `git push`     | Blocks push to main; allows feature branches         |
+| Hook               | Trigger        | Behavior                                             |
+| ------------------ | -------------- | ---------------------------------------------------- |
+| `protect-files.py` | `Bash`         | Asks permission before deleting files outside ~/projects |
+| `pre-commit.py`    | `git commit`   | Blocks until approval; on main asks about new branch |
+| `pre-pr.py`        | `gh pr create` | Blocks until PR description approved                 |
+| `pre-push.py`      | `git push`     | Blocks push to main; allows feature branches         |
 
 All hooks exit code 2 to block, with instructions in stderr.
 
@@ -186,9 +187,10 @@ Shows current commit, remaining work.
   },
   "hooks": {
     "PreToolUse": [
-      { "matcher": "Bash(git commit:*)", "hooks": [...] },
-      { "matcher": "Bash(gh pr create:*)", "hooks": [...] },
-      { "matcher": "Bash(git push:*)", "hooks": [...] }
+      { "matcher": "Bash", "hooks": ["protect-files.py"] },
+      { "matcher": "Bash(git commit:*)", "hooks": ["pre-commit.py"] },
+      { "matcher": "Bash(gh pr create:*)", "hooks": ["pre-pr.py"] },
+      { "matcher": "Bash(git push:*)", "hooks": ["pre-push.py"] }
     ]
   }
 }
