@@ -19,12 +19,12 @@ Symlinked to `~/.claude/` via `apply.sh`.
 
 Operation enforcement via `PreToolUse` hooks.
 
-| Hook               | Trigger        | Behavior                                             |
-| ------------------ | -------------- | ---------------------------------------------------- |
+| Hook               | Trigger        | Behavior                                                 |
+| ------------------ | -------------- | -------------------------------------------------------- |
 | `protect-files.py` | `Bash`         | Asks permission before deleting files outside ~/projects |
-| `pre-commit.py`    | `git commit`   | Blocks until approval; on main asks about new branch |
-| `pre-pr.py`        | `gh pr create` | Blocks until PR description approved                 |
-| `pre-push.py`      | `git push`     | Blocks push to main; allows feature branches         |
+| `pre-commit.py`    | `git commit`   | Blocks until approval; on main asks about new branch     |
+| `pre-pr.py`        | `gh pr create` | Blocks until PR description approved                     |
+| `pre-push.py`      | `git push`     | Blocks push to main; allows feature branches             |
 
 All hooks exit code 2 to block, with instructions in stderr.
 
@@ -115,6 +115,7 @@ docs/plans/user-authentication/
 ```
 
 **research.md** contains:
+
 - Task description
 - Codebase overview
 - Relevant files
@@ -123,6 +124,7 @@ docs/plans/user-authentication/
 - Recommended approach
 
 **plan.md** contains:
+
 - Metadata (task, branch, status)
 - Summary
 - Commits with:
@@ -134,11 +136,13 @@ docs/plans/user-authentication/
 ### Typical Usage
 
 **Start new work:**
+
 ```
 /begin add user authentication to the API
 ```
 
 Claude will:
+
 1. Generate task slug, confirm with you
 2. Run researcher agent → research.md
 3. Run planner agent → plan.md
@@ -146,6 +150,7 @@ Claude will:
 5. Create branch after approval
 
 **Execute commits:**
+
 ```
 /next
 ```
@@ -154,6 +159,7 @@ Runs one commit cycle: dev → review → present → commit.
 Repeat until all commits done.
 
 **Open PR:**
+
 ```
 /pr
 ```
@@ -161,6 +167,7 @@ Repeat until all commits done.
 Generates PR description, creates PR after approval.
 
 **Resume in new session:**
+
 ```
 /resume
 ```
@@ -168,11 +175,69 @@ Generates PR description, creates PR after approval.
 Lists active plans, lets you select one to continue.
 
 **Check progress:**
+
 ```
 /status
 ```
 
 Shows current commit, remaining work.
+
+## MCP Servers
+
+Model Context Protocol servers extend Claude's capabilities.
+
+### Configured Servers
+
+| Server | Purpose                      | Requires                  |
+| ------ | ---------------------------- | ------------------------- |
+| Memory | Cross-session persistence    | Nothing (auto-configured) |
+| GitHub | Structured GitHub API access | `GITHUB_TOKEN` env var    |
+
+### Memory Server
+
+Stores knowledge in `~/.claude-memory/memory.json` (global, outside dotfiles so it's not version controlled).
+
+Uses: `@modelcontextprotocol/server-memory`
+
+No setup required - works automatically.
+
+### GitHub Server
+
+Provides structured GitHub API access (issues, PRs, repos, users).
+
+Uses: `@modelcontextprotocol/server-github`
+
+**Setup:**
+
+```bash
+# Option 1: Use gh CLI token (easiest)
+export GITHUB_TOKEN=$(gh auth token)
+
+# Option 2: Use 1Password
+export GITHUB_TOKEN=$(op read "op://Private/GitHub Token/token")
+
+# Option 3: Manual (create at github.com/settings/tokens)
+export GITHUB_TOKEN=ghp_xxxxxxxxxxxx
+```
+
+Add to `~/.zshrc` for persistence:
+
+```bash
+# GitHub token for Claude MCP
+export GITHUB_TOKEN=$(gh auth token)
+```
+
+**Required scopes:** `repo`, `read:org`, `read:user`, `read:project`
+
+### Agent Benefits
+
+| Agent            | MCP Usage                           |
+| ---------------- | ----------------------------------- |
+| researcher       | Query GitHub issues/PRs for context |
+| planner          | Read issue details for requirements |
+| security-auditor | Check security advisories           |
+| code-reviewer    | Read PR discussion history          |
+| doc-writer       | Link to issues/PRs in documentation |
 
 ## Configuration
 
@@ -199,6 +264,7 @@ Shows current commit, remaining work.
 ### CLAUDE.md
 
 Global instructions covering:
+
 - Philosophy (quality, simplicity, security)
 - Code style (TypeScript, naming, React)
 - Testing approach
@@ -232,16 +298,20 @@ Global instructions covering:
 ## Troubleshooting
 
 **Commands not appearing:**
+
 - Start new Claude Code session (commands load at startup)
 
 **Hook not triggering:**
+
 - Check `~/.claude/settings.json` symlink exists
 - Verify hook scripts are executable (`chmod +x`)
 
 **Plan not found:**
+
 - Ensure `docs/plans/` directory exists in project
 - Check plan.md has correct Status field
 
 **Context getting long:**
+
 - Use `/status` to check progress
 - Standalone commands (`/review`, `/present`) re-inject fresh instructions
