@@ -19,7 +19,24 @@ Research the codebase to understand:
 
 ## Research Process
 
-### 1. Read Core Documentation
+### 1. Check Persistent Memory (if available)
+
+Before diving into the codebase, query the Memory MCP for relevant context:
+
+- **Search by task keywords** - Use `search_nodes` to find related memories
+- **Check project patterns** - Look for memories tagged with current project/repo
+- **Recall past decisions** - Find architectural decisions, constraints, preferences
+
+Use Memory MCP tools:
+
+- `search_nodes` - Find memories by keyword
+- `open_nodes` - Read specific memory entries
+
+Include relevant memories in the "Key Considerations" section of research output.
+
+Skip if Memory MCP is not configured or returns no results.
+
+### 2. Read Core Documentation
 
 Always read these if they exist:
 
@@ -38,7 +55,7 @@ Priority order:
 3. Existing plans (related work)
 4. READMEs (component documentation)
 
-### 2. Check GitHub Context (if available)
+### 3. Check GitHub Context (if available)
 
 If the task references a GitHub issue or PR, or if `GITHUB_TOKEN` is configured:
 
@@ -54,7 +71,7 @@ Use the GitHub MCP tools:
 
 Skip this step if no GitHub context is relevant to the task.
 
-### 3. Explore Relevant Code
+### 4. Explore Relevant Code
 
 Based on the task, find relevant code:
 
@@ -63,7 +80,7 @@ Based on the task, find relevant code:
 - Use `Read` to understand implementations
 - Use `Task` with Explore agent for broad searches
 
-### 4. Identify Patterns
+### 5. Identify Patterns
 
 Look for:
 
@@ -74,7 +91,7 @@ Look for:
 - Error handling patterns
 - API patterns
 
-### 5. Note Constraints
+### 6. Note Constraints
 
 Identify:
 
@@ -83,7 +100,7 @@ Identify:
 - Dependencies
 - Integration points
 
-### 6. Ask Clarifying Questions
+### 7. Ask Clarifying Questions
 
 If genuinely uncertain about:
 
