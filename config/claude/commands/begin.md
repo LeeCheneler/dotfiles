@@ -40,7 +40,7 @@ Generate a kebab-case slug from the task description.
 Present to user:
 ```
 Creating plan directory: docs/plans/<slug>/
-Is this name ok? (press enter to confirm, or type a different name)
+Is this name ok? (press 'y' to confirm, or type a different name)
 ```
 
 Wait for user confirmation or alternative name.

@@ -19,11 +19,11 @@ Symlinked to `~/.claude/` via `apply.sh`.
 
 Git operation enforcement via `PreToolUse` hooks.
 
-| Hook | Trigger | Behavior |
-|------|---------|----------|
-| `pre-commit.py` | `git commit` | Blocks until approval; on main asks about new branch |
-| `pre-pr.py` | `gh pr create` | Blocks until PR description approved |
-| `pre-push.py` | `git push` | Blocks push to main; allows feature branches |
+| Hook            | Trigger        | Behavior                                             |
+| --------------- | -------------- | ---------------------------------------------------- |
+| `pre-commit.py` | `git commit`   | Blocks until approval; on main asks about new branch |
+| `pre-pr.py`     | `gh pr create` | Blocks until PR description approved                 |
+| `pre-push.py`   | `git push`     | Blocks push to main; allows feature branches         |
 
 All hooks exit code 2 to block, with instructions in stderr.
 
@@ -31,17 +31,17 @@ All hooks exit code 2 to block, with instructions in stderr.
 
 Specialized agents for delegated work.
 
-| Agent | Purpose |
-|-------|---------|
-| `researcher` | Deep codebase exploration for a task |
-| `planner` | Create implementation plans with commit breakdown |
-| `code-reviewer` | Review implementation, design, tests |
-| `security-auditor` | Security vulnerabilities and best practices |
-| `test-writer` | Generate tests following black-box approach |
-| `doc-writer` | READMEs, API docs, ADRs, changelogs |
-| `commit-message` | Generate conventional commit messages |
-| `pr-description` | Generate PR titles and descriptions |
-| `refactor-advisor` | Identify refactoring opportunities |
+| Agent              | Purpose                                           |
+| ------------------ | ------------------------------------------------- |
+| `researcher`       | Deep codebase exploration for a task              |
+| `planner`          | Create implementation plans with commit breakdown |
+| `code-reviewer`    | Review implementation, design, tests              |
+| `security-auditor` | Security vulnerabilities and best practices       |
+| `test-writer`      | Generate tests following black-box approach       |
+| `doc-writer`       | READMEs, API docs, ADRs, changelogs               |
+| `commit-message`   | Generate conventional commit messages             |
+| `pr-description`   | Generate PR titles and descriptions               |
+| `refactor-advisor` | Identify refactoring opportunities                |
 
 ## Workflow Framework
 
@@ -82,26 +82,26 @@ Structured development with persistent state.
 
 **Orchestration:**
 
-| Command | Purpose |
-|---------|---------|
+| Command         | Purpose                                            |
+| --------------- | -------------------------------------------------- |
 | `/begin <task>` | Start new work: research → plan → signoff → branch |
-| `/next` | Execute next commit cycle |
-| `/resume` | Resume existing plan from another session |
-| `/status` | Show current plan progress |
-| `/abort` | Abort current plan safely |
-| `/pr` | Open pull request |
+| `/next`         | Execute next commit cycle                          |
+| `/resume`       | Resume existing plan from another session          |
+| `/status`       | Show current plan progress                         |
+| `/abort`        | Abort current plan safely                          |
+| `/pr`           | Open pull request                                  |
 
 **Standalone phases:**
 
-| Command | Purpose |
-|---------|---------|
-| `/research <task>` | Run research phase only |
-| `/plan` | Run planning phase only |
-| `/signoff` | Present and get approval |
-| `/dev` | Run dev phase for current commit |
-| `/review` | Run review phase |
-| `/present` | Present changes for approval |
-| `/commit` | Commit with approval |
+| Command            | Purpose                          |
+| ------------------ | -------------------------------- |
+| `/research <task>` | Run research phase only          |
+| `/plan`            | Run planning phase only          |
+| `/signoff`         | Present and get approval         |
+| `/dev`             | Run dev phase for current commit |
+| `/review`          | Run review phase                 |
+| `/present`         | Present changes for approval     |
+| `/commit`          | Commit with approval             |
 
 ### Plan Files
 
