@@ -70,11 +70,25 @@ Structured development with persistent state.
 │    /next ─► DEV ─► REVIEW ─► PRESENT ─► COMMIT                │
 │              │        │          │                             │
 │              │        ▼          ▼                             │
-│              │    fix issues   user                            │
-│              │    & re-review  approval                        │
+│              │    code-review  user                            │
+│              │    & fix issues approval                        │
 │              ▼                                                 │
 │         test-writer                                            │
 │         doc-writer                                             │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+```
+
+### Pre-PR Security Audit
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                                                                │
+│    All commits done ─► /security-audit ─► /pr                 │
+│                              │                                 │
+│                              ▼                                 │
+│                        security-auditor                        │
+│                        (full changeset)                        │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -83,14 +97,15 @@ Structured development with persistent state.
 
 **Orchestration:**
 
-| Command         | Purpose                                            |
-| --------------- | -------------------------------------------------- |
-| `/begin <task>` | Start new work: research → plan → signoff → branch |
-| `/next`         | Execute next commit cycle                          |
-| `/resume`       | Resume existing plan from another session          |
-| `/status`       | Show current plan progress                         |
-| `/abort`        | Abort current plan safely                          |
-| `/pr`           | Open pull request                                  |
+| Command           | Purpose                                            |
+| ----------------- | -------------------------------------------------- |
+| `/begin <task>`   | Start new work: research → plan → signoff → branch |
+| `/next`           | Execute next commit cycle                          |
+| `/resume`         | Resume existing plan from another session          |
+| `/status`         | Show current plan progress                         |
+| `/abort`          | Abort current plan safely                          |
+| `/security-audit` | Run security audit on all branch changes           |
+| `/pr`             | Open pull request                                  |
 
 **Standalone phases:**
 
@@ -165,6 +180,15 @@ Claude will:
 Runs one commit cycle: dev → review → present → commit.
 Repeat until all commits done.
 
+**Security audit (recommended before PR):**
+
+```
+/security-audit
+```
+
+Runs comprehensive security audit on all branch changes.
+Catches vulnerabilities before they reach PR review.
+
 **Open PR:**
 
 ```
@@ -172,6 +196,7 @@ Repeat until all commits done.
 ```
 
 Generates PR description, creates PR after approval.
+Reminds you if security audit hasn't been run.
 
 **Resume in new session:**
 
@@ -321,6 +346,9 @@ Global instructions covering:
 
 # Abort if needed
 /abort
+
+# Security audit before PR (recommended)
+/security-audit
 
 # Open PR when done
 /pr

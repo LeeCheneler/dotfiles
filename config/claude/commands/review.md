@@ -7,6 +7,7 @@ description: Run review phase for current changes
 ## Prerequisites
 
 Requires changes to review:
+
 - Active plan with current commit Dev complete
 - Or uncommitted/unstaged changes to review
 
@@ -15,20 +16,15 @@ Requires changes to review:
 Run review cycle on current changes:
 
 ### 1. Code Review
+
 Use `code-reviewer` agent:
+
 - Reviews implementation, design, tests
 - Classifies issues by severity
 - Suggests fixes
 
-### 2. Security Audit
-Use `security-auditor` agent:
-- Checks for vulnerabilities
-- Reviews authentication/authorization
-- Checks for secrets/credentials
-
-### 3. Handle Issues
-
 **Critical (must fix):**
+
 - Security vulnerabilities
 - Data loss risks
 - Breaking changes without migration
@@ -36,6 +32,7 @@ Use `security-auditor` agent:
 → Fix immediately, re-run reviewer
 
 **High (should fix):**
+
 - Bugs causing incorrect behavior
 - Missing error handling
 - Architectural violations
@@ -43,6 +40,7 @@ Use `security-auditor` agent:
 → Fix immediately, re-run reviewer
 
 **Medium (address):**
+
 - Code smells
 - Missing edge case tests
 - Minor performance concerns
@@ -50,17 +48,21 @@ Use `security-auditor` agent:
 → Fix if straightforward, or note for Present
 
 **Low (optional):**
+
 - Style preferences
 - Minor improvements
 
 → Note for user, don't block
 
-### 4. Re-review Loop
+### 2. Re-review Loop
+
 After fixing Critical/High issues:
-- Re-run the reviewer that found the issue
+
+- Re-run code-reviewer
 - Repeat until no Critical/High issues remain
 
-### 5. Update Plan
+### 3. Update Plan
+
 Check `- [x] Review` in plan.md for this commit.
 
 ## After Review
@@ -79,8 +81,13 @@ Run /present to continue.
 
 ## Rules
 
-- ALWAYS run both code-reviewer and security-auditor
+- ALWAYS run code-reviewer
 - NEVER proceed with Critical or High issues unresolved
 - Fix and re-review until clean
 - Document remaining Medium/Low for user visibility
 - Update plan.md checkbox when complete
+
+## Note
+
+Security audit (`security-auditor` agent) runs separately before PR via `/security-audit`.
+This keeps per-commit reviews fast while ensuring comprehensive security review of all changes.

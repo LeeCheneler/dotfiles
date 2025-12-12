@@ -87,14 +87,15 @@ Delegate to specialized agents for deep work:
 
 Use slash commands for structured development:
 
-| Command          | Purpose                                        |
-| ---------------- | ---------------------------------------------- |
-| `/begin <task>`  | Start new work: research, plan, signoff        |
-| `/next`          | Execute next commit cycle                      |
-| `/resume`        | Resume existing plan from another session      |
-| `/status`        | Show current plan progress                     |
-| `/abort`         | Abort current plan safely                      |
-| `/pr`            | Open pull request                              |
+| Command           | Purpose                                    |
+| ----------------- | ------------------------------------------ |
+| `/begin <task>`   | Start new work: research, plan, signoff    |
+| `/next`           | Execute next commit cycle                  |
+| `/resume`         | Resume existing plan from another session  |
+| `/status`         | Show current plan progress                 |
+| `/abort`          | Abort current plan safely                  |
+| `/security-audit` | Run security audit before PR (recommended) |
+| `/pr`             | Open pull request                          |
 
 Standalone phase commands (for manual control or recovery):
 
@@ -111,15 +112,23 @@ Standalone phase commands (for manual control or recovery):
 ### Workflow Phases
 
 ```
-1. RESEARCH ──► 2. PLAN ──► 3. SIGNOFF ──► 4. EXECUTE ──► 5. PR
+1. RESEARCH ──► 2. PLAN ──► 3. SIGNOFF ──► 4. EXECUTE ──► 5. SECURITY ──► 6. PR
 ```
 
 **Execute loop (per commit):**
+
 ```
-DEV ──► REVIEW ──► PRESENT ──► COMMIT
+DEV ──► REVIEW (code only) ──► PRESENT ──► COMMIT
+```
+
+**Pre-PR (once, after all commits):**
+
+```
+/security-audit ──► /pr
 ```
 
 Plans are stored in `docs/plans/<task-slug>/` with:
+
 - `research.md` - Codebase research and findings
 - `plan.md` - Commit breakdown with checklists
 

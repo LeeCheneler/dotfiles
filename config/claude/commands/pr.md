@@ -4,7 +4,21 @@ description: Open pull request for current plan
 
 # Open Pull Request
 
-## Step 1: Verify Plan Complete
+## Step 1: Check Security Audit Status
+
+Check if `/security-audit` has been run for this plan:
+
+- Look for security audit results in conversation history
+- If not run, remind user:
+
+```
+Security audit not run. Consider running /security-audit first.
+Continue with PR anyway? (y/n)
+```
+
+If user declines, stop and let them run `/security-audit`.
+
+## Step 2: Verify Plan Complete
 
 Find the current active plan and verify all commits are complete:
 
@@ -13,6 +27,7 @@ Find the current active plan and verify all commits are complete:
 3. Verify all SHAs are filled in
 
 If incomplete:
+
 ```
 Plan is not complete.
 
@@ -23,7 +38,7 @@ Remaining commits:
 Run /next to continue.
 ```
 
-## Step 2: Verify Branch State
+## Step 3: Verify Branch State
 
 ```bash
 git status
@@ -31,31 +46,35 @@ git log main..HEAD --oneline
 ```
 
 Ensure:
+
 - No uncommitted changes
 - Branch has commits ahead of main
 - All planned commits are present
 
 If uncommitted changes:
+
 ```
 Warning: Uncommitted changes detected.
 Commit or stash before opening PR? (y/n)
 ```
 
-## Step 3: Push Branch
+## Step 4: Push Branch
 
 If not already pushed:
+
 ```bash
 git push -u origin <branch-name>
 ```
 
-## Step 4: Generate PR Description
+## Step 5: Generate PR Description
 
 Use `pr-description` agent with context:
+
 - Task description from plan metadata
 - All commit titles and goals
 - Summary of what was built
 
-## Step 5: Present for Approval
+## Step 6: Present for Approval
 
 ```markdown
 ## Pull Request Preview
@@ -73,23 +92,26 @@ Use `pr-description` agent with context:
 **STOP and wait for user approval.**
 
 If user provides feedback:
+
 - Adjust title/description
 - Present again
 
-## Step 6: Create PR
+## Step 7: Create PR
 
 After approval:
+
 ```bash
 gh pr create --title "<title>" --body "<description>"
 ```
 
-## Step 7: Update Plan
+## Step 8: Update Plan
 
 Update plan.md:
+
 - Set Status to `COMPLETE`
 - Add PR link if desired
 
-## Step 8: Report
+## Step 9: Report
 
 ```
 PR created: <url>

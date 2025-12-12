@@ -153,6 +153,7 @@
   // Spell Checker
   "cSpell.enableFiletypes": ["markdown", "plaintext"],
   "cSpell.userWords": [
+    "Acsenda",
     "frontmatter",
     "Shiki",
     "TABI",
@@ -171,7 +172,10 @@
   "gitlens.ai.vscode.model": "copilot:claude-opus-4.5",
   "diffEditor.ignoreTrimWhitespace": false,
   "chat.tools.terminal.autoApprove": {
-    "pnpm": true
+    "pnpm": true,
+    "git add": true,
+    "git commit": true
   },
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "workbench.secondarySideBar.defaultVisibility": "visible"
 }

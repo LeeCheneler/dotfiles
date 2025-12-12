@@ -7,6 +7,7 @@ description: Execute next commit cycle in current plan
 ## Step 1: Find Current Plan
 
 Look for an active plan:
+
 1. Check `docs/plans/*/plan.md` files
 2. Find one with Status: `IN_PROGRESS` or `READY`
 3. If multiple, show list and ask user to select
@@ -15,10 +16,12 @@ Look for an active plan:
 ## Step 2: Find Next Commit
 
 Parse the plan.md to find the next incomplete commit:
+
 - Look for first commit where `- [ ] Dev` is unchecked
 - Update plan.md Status to `IN_PROGRESS` if it was `READY`
 
 Display:
+
 ```
 Executing: Commit <N> of <total>
 Title: <commit title>
@@ -45,18 +48,20 @@ Update plan.md: check `- [x] Dev`
 Run review cycle:
 
 1. Use `code-reviewer` agent on changes
-2. Use `security-auditor` agent on changes
 
 **For Critical/High issues:**
+
 - Fix immediately
-- Re-run the reviewer that found the issue
+- Re-run code-reviewer
 - Repeat until clean
 
 **For Medium issues:**
+
 - Fix if straightforward
 - Or note for user in Present phase
 
 **For Low issues:**
+
 - Note for user, don't block
 
 Update plan.md: check `- [x] Review`
@@ -71,24 +76,29 @@ Present to user:
 ## Commit <N>: <title>
 
 ### Summary
+
 <what was implemented>
 
 ### Files Changed
-| File | Change | Lines |
-|------|--------|-------|
-| ... | created/modified | +X/-Y |
+
+| File | Change           | Lines |
+| ---- | ---------------- | ----- |
+| ...  | created/modified | +X/-Y |
 
 ### Tests
+
 - Added: <N> tests
 - Passing: Yes/No
 
 ### Review Results
+
 - Critical: 0 (must be 0)
 - High: <N>
 - Medium: <N>
 - Low: <N>
 
 ### Outstanding Items
+
 <any issues noted for user attention>
 
 ---
@@ -99,6 +109,7 @@ Present to user:
 **STOP and wait for user approval.**
 
 If user provides feedback:
+
 - Implement changes
 - Re-run review if significant changes
 - Present again
@@ -125,13 +136,17 @@ After commit:
 Commit <N> complete: <sha>
 
 <remaining> commits remaining in plan.
-Run /next to continue, or /pr when ready to open pull request.
+Run /next to continue.
 ```
 
 If this was the last commit:
+
 ```
 All commits complete!
-Run /pr to open the pull request.
+
+Next steps:
+- /security-audit - Run security audit on all changes (recommended)
+- /pr - Open pull request (skips security audit)
 ```
 
 ## Rules
