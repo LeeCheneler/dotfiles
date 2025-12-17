@@ -155,11 +155,13 @@
   "cSpell.userWords": [
     "Acsenda",
     "frontmatter",
+    "overrider",
     "Shiki",
     "TABI",
     "tabirun",
     "Unminified",
-    "unocss"
+    "unocss",
+    "Upserting"
   ],
 
   // Telemetry
@@ -177,5 +179,8 @@
     "git commit": true
   },
   "extensions.ignoreRecommendations": true,
-  "workbench.secondarySideBar.defaultVisibility": "visible"
+  "workbench.secondarySideBar.defaultVisibility": "visible",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

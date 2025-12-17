@@ -60,6 +60,7 @@ setopt HIST_SAVE_NO_DUPS     # Don't save duplicates
 setopt SHARE_HISTORY         # Share history between sessions
 setopt APPEND_HISTORY        # Append to history file
 setopt INC_APPEND_HISTORY    # Write immediately, not on exit
+setopt AUTO_CD               # Type directory path to cd into it
 
 # =============================================================================
 # Key Bindings
