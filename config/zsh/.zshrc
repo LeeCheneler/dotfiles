@@ -134,13 +134,20 @@ export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 # =============================================================================
-# Secrets (loaded from 1Password)
+# Secrets (loaded from 1Password on-demand)
 # =============================================================================
 
-if command -v op &>/dev/null; then
+load-secrets() {
+	if ! command -v op &>/dev/null; then
+		echo "1Password CLI (op) not found"
+		return 1
+	fi
+
+	echo "Loading secrets from 1Password..."
 	export GITHUB_TOKEN="$(op read 'op://Private/GitHub PAT/credential')"
 	export GITHUB_PACKAGES_TOKEN="$GITHUB_TOKEN"
-fi
+	echo "Secrets loaded"
+}
 
 # =============================================================================
 # Local Overrides (machine-specific, not in repo)

@@ -171,7 +171,13 @@ This copies the template from `config/copilot/` - edit it to add project-specifi
 
 ## 🔐 Secrets
 
-Use [1Password](https://1password.com/) for storing and retrieving secrets. Never commit API keys or tokens.
+Uses [1Password CLI](https://1password.com/) for secrets management. Tokens are loaded on-demand to avoid authentication popups at shell startup:
+
+```bash
+load-secrets  # Loads GITHUB_TOKEN and GITHUB_PACKAGES_TOKEN
+```
+
+Never commit API keys or tokens.
 
 ## 🎨 Design
 
