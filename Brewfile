@@ -14,6 +14,7 @@ brew "zoxide"     # Smarter cd
 
 # Development
 brew "mise"       # Polyglot runtime manager (Node, Deno, Python, etc.)
+brew "rust"       # Rust programming language (rustc + cargo)
 brew "gh"         # GitHub CLI
 brew "starship"   # Cross-shell prompt
 
