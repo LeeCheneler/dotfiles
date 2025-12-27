@@ -40,22 +40,122 @@
   "files.trimFinalNewlines": true,
   "files.autoSave": "onFocusChange",
   "files.exclude": {
+    // System
     "**/.git": true,
     "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+
+    // Dependencies
     "**/node_modules": true,
-    "**/.next": true,
+    "**/vendor": true,
+    "**/.pnpm": true,
+
+    // Build outputs
     "**/dist": true,
-    "**/coverage": true
+    "**/dist-electron": true,
+    "**/build": true,
+    "**/out": true,
+    "**/target": true,
+    "**/.output": true,
+
+    // Framework caches
+    "**/.next": true,
+    "**/.nuxt": true,
+    "**/.svelte-kit": true,
+    "**/.angular": true,
+    "**/.expo": true,
+    "**/.turbo": true,
+    "**/.vercel": true,
+    "**/.netlify": true,
+
+    // Test/coverage
+    "**/coverage": true,
+    "**/.nyc_output": true,
+
+    // Caches
+    "**/.cache": true,
+    "**/.parcel-cache": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
+
+    // Infrastructure
+    "**/.terraform": true,
+    "**/.gradle": true,
+
+    // Python virtual envs
+    "**/venv": true,
+    "**/.venv": true,
+
+    // Generated
+    "**/.tsbuildinfo": true
   },
 
   // Search
   "search.exclude": {
+    // Dependencies
     "**/node_modules": true,
-    "**/dist": true,
-    "**/coverage": true,
-    "**/.next": true,
+    "**/vendor": true,
+    "**/.pnpm": true,
+
+    // Lock files
     "**/pnpm-lock.yaml": true,
-    "**/package-lock.json": true
+    "**/package-lock.json": true,
+    "**/yarn.lock": true,
+    "**/bun.lockb": true,
+    "**/Cargo.lock": true,
+    "**/Gemfile.lock": true,
+    "**/poetry.lock": true,
+    "**/composer.lock": true,
+
+    // Build outputs
+    "**/dist": true,
+    "**/dist-electron": true,
+    "**/build": true,
+    "**/out": true,
+    "**/target": true,
+    "**/.output": true,
+
+    // Framework caches
+    "**/.next": true,
+    "**/.nuxt": true,
+    "**/.svelte-kit": true,
+    "**/.angular": true,
+    "**/.expo": true,
+    "**/.turbo": true,
+    "**/.vercel": true,
+    "**/.netlify": true,
+
+    // Test/coverage
+    "**/coverage": true,
+    "**/.nyc_output": true,
+    "**/__snapshots__": true,
+
+    // Caches
+    "**/.cache": true,
+    "**/.parcel-cache": true,
+    "**/__pycache__": true,
+    "**/.pytest_cache": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
+
+    // Infrastructure
+    "**/.terraform": true,
+    "**/.gradle": true,
+
+    // Python virtual envs
+    "**/venv": true,
+    "**/.venv": true,
+
+    // Generated/minified
+    "**/*.min.js": true,
+    "**/*.min.css": true,
+    "**/.tsbuildinfo": true,
+
+    // Logs
+    "**/logs": true,
+    "**/*.log": true
   },
 
   // Terminal
@@ -98,7 +198,7 @@
     "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "denoland.vscode-deno"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
@@ -155,12 +255,15 @@
   "cSpell.userWords": [
     "Acsenda",
     "frontmatter",
+    "leecheneler",
     "overrider",
     "Shiki",
+    "Startable",
     "TABI",
     "tabirun",
     "Unminified",
     "unocss",
+    "Unregisters",
     "Upserting"
   ],
 
