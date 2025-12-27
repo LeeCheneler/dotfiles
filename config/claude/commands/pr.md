@@ -4,21 +4,7 @@ description: Open pull request for current plan
 
 # Open Pull Request
 
-## Step 1: Check Security Audit Status
-
-Check if `/security-audit` has been run for this plan:
-
-- Look for security audit results in conversation history
-- If not run, remind user:
-
-```
-Security audit not run. Consider running /security-audit first.
-Continue with PR anyway? (y/n)
-```
-
-If user declines, stop and let them run `/security-audit`.
-
-## Step 2: Verify Plan Complete
+## Step 1: Verify Plan Complete
 
 Find the current active plan and verify all commits are complete:
 
@@ -38,7 +24,7 @@ Remaining commits:
 Run /next to continue.
 ```
 
-## Step 3: Verify Branch State
+## Step 2: Verify Branch State
 
 ```bash
 git status
@@ -58,7 +44,7 @@ Warning: Uncommitted changes detected.
 Commit or stash before opening PR? (y/n)
 ```
 
-## Step 4: Push Branch
+## Step 3: Push Branch
 
 If not already pushed:
 
@@ -66,7 +52,7 @@ If not already pushed:
 git push -u origin <branch-name>
 ```
 
-## Step 5: Generate PR Description
+## Step 4: Generate PR Description
 
 Use `pr-description` agent with context:
 
@@ -74,7 +60,7 @@ Use `pr-description` agent with context:
 - All commit titles and goals
 - Summary of what was built
 
-## Step 6: Present for Approval
+## Step 5: Present for Approval
 
 ```markdown
 ## Pull Request Preview
@@ -96,7 +82,7 @@ If user provides feedback:
 - Adjust title/description
 - Present again
 
-## Step 7: Create PR
+## Step 6: Create PR
 
 After approval:
 
@@ -104,12 +90,34 @@ After approval:
 gh pr create --title "<title>" --body "<description>"
 ```
 
-## Step 8: Update Plan
+## Step 7: Update High-Level Plan (if exists)
 
-Update plan.md:
+Check for a high-level project plan at `docs/plan.md` or similar:
 
-- Set Status to `COMPLETE`
-- Add PR link if desired
+```bash
+ls docs/plan.md docs/roadmap.md docs/PLAN.md 2>/dev/null
+```
+
+If found:
+
+1. Read the high-level plan
+2. Update it to reflect the completed work
+3. Mark the relevant item as done or update status
+
+## Step 8: Clean Up Ephemeral Plan Files
+
+After the PR is created, remove the task-specific plan directory:
+
+```bash
+rm -rf docs/plans/<slug>/
+```
+
+This removes:
+
+- `research.md` - No longer needed post-PR
+- `plan.md` - Work is complete, history is in git
+
+The PR description and commit history preserve all context.
 
 ## Step 9: Report
 

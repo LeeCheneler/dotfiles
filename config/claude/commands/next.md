@@ -132,10 +132,16 @@ After user approval:
 
 After commit:
 
+If more commits remain:
+
 ```
 Commit <N> complete: <sha>
 
-<remaining> commits remaining in plan.
+<remaining> commits remaining.
+
+Next up: <commit N+1 title>
+Goal: <commit N+1 goal>
+
 Run /next to continue.
 ```
 
@@ -145,8 +151,8 @@ If this was the last commit:
 All commits complete!
 
 Next steps:
-- /security-audit - Run security audit on all changes (recommended)
-- /pr - Open pull request (skips security audit)
+- /security-audit - Run security audit on all changes
+- /pr - Open pull request
 ```
 
 ## Rules

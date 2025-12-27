@@ -55,9 +55,49 @@ Plan created: docs/plans/<slug>/plan.md
 Run /signoff to review and approve, or /begin for full workflow.
 ```
 
+## ADR Suggestions
+
+After the plan is created, analyze the research and plan for decisions that warrant ADRs:
+
+**When to suggest ADRs:**
+
+- Choosing a framework, library, or tool
+- Architectural patterns (e.g., monolith vs microservices, state management approach)
+- Infrastructure decisions (e.g., database choice, hosting platform)
+- Breaking from established conventions (and why)
+- Decisions that would be hard to reverse later
+- Trade-offs that future developers should understand
+
+**When NOT to suggest ADRs:**
+
+- Implementation details that are obvious from the code
+- Decisions that follow existing project patterns
+- Minor library choices with no architectural impact
+
+If ADRs are warranted, present them:
+
+```
+## Suggested ADRs
+
+Based on the research and plan, these decisions may warrant ADRs:
+
+1. **ADR: <decision title>**
+   Context: <why this decision matters>
+
+2. **ADR: <decision title>**
+   Context: <why this decision matters>
+
+Add these to the plan? (y/n, or specify which ones)
+```
+
+If user approves, add ADR commits to the plan (typically as the first commit(s) to document decisions before implementation).
+
+If no ADRs are warranted, skip this step silently.
+
 ## Rules
 
 - Use the planner agent - don't create plan manually
 - Research must exist first
 - Each commit should be atomic and reviewable
 - Ask clarifying questions if approach is genuinely ambiguous
+- Only suggest ADRs when genuinely warranted - most tasks won't need them
