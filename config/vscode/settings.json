@@ -253,18 +253,26 @@
   // Spell Checker
   "cSpell.enableFiletypes": ["markdown", "plaintext"],
   "cSpell.userWords": [
+    "Aabb",
     "Acsenda",
+    "contenteditable",
+    "frametime",
     "frontmatter",
+    "GLSL",
     "leecheneler",
+    "letterboxing",
+    "Lightmap",
     "overrider",
     "Shiki",
+    "spritesheet",
     "Startable",
     "TABI",
     "tabirun",
     "Unminified",
     "unocss",
     "Unregisters",
-    "Upserting"
+    "Upserting",
+    "webgl"
   ],
 
   // Telemetry
