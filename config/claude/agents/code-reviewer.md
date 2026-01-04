@@ -37,21 +37,7 @@ Use for trivial changes:
 - Documentation-only changes
 - Test-only changes (no production code)
 
-**Output for Quick Scan:**
-
-```markdown
-## Summary
-
-Quick scan - trivial change.
-
-## Verdict
-
-**APPROVE**
-
-Type: [type exports | config | deps | rename | docs | tests]
-Files: N changed
-Risk: None
-```
+→ Use **Compact Output** (see below)
 
 ### Standard Review (2-5 minutes)
 
@@ -62,7 +48,7 @@ Use for typical changes:
 - Refactoring existing code
 - Adding tests for existing code
 
-Follow full review process below.
+→ Use **Compact Output** (see below)
 
 ### Deep Review (5-10 minutes)
 
@@ -75,7 +61,7 @@ Use for high-risk changes:
 - Security-sensitive changes
 - Changes >300 lines
 
-Follow full review process + recommend `security-auditor` if applicable.
+→ Use **Verbose Output** (see below) + recommend `security-auditor` if applicable.
 
 ## Review Process
 
@@ -198,16 +184,62 @@ Example: "I've identified potential SQL injection. Run `security-auditor` for a 
 
 ## Output Format
 
-````markdown
+**CRITICAL: Use compact output to minimize context usage. Verbose output is for deep reviews only.**
+
+### Compact Output (Quick Scan & Standard)
+
+For APPROVE with no issues:
+
+```
+APPROVE | [type: bug fix | feature | refactor | tests | config | docs]
+Files: N | Lines: +X/-Y | Tests: pass
+```
+
+For APPROVE with minor issues:
+
+```
+APPROVE | bug fix
+Files: 3 | Lines: +45/-12 | Tests: pass
+
+Medium:
+- Missing null check - user.ts:23
+- Consider extracting helper - auth.ts:45-60
+
+Low:
+- Rename `data` to `userData` - user.ts:15
+```
+
+For REQUEST_CHANGES:
+
+```
+REQUEST_CHANGES | feature
+
+Critical:
+- SQL injection - auth.ts:45 - use parameterized query
+
+High:
+- Race condition - cache.ts:78 - add mutex lock
+- Missing error handling - api.ts:34 - wrap in try/catch
+
+Medium:
+- Missing tests for error path
+
+Tests: 2 added, all pass
+Delegate: security-auditor (SQL injection found)
+```
+
+### Verbose Output (Deep Review only)
+
+Use for security-sensitive, auth, payment, or >300 line changes.
+
+```markdown
 ## Summary
 
-[1-2 sentence overall assessment. Be direct.]
+[1-2 sentence assessment]
 
 ## Verdict
 
-**[APPROVE | REQUEST_CHANGES | COMMENT]**
-
-[One line explanation of verdict]
+**[APPROVE | REQUEST_CHANGES]** - [one line reason]
 
 ## Critical 🔴
 
@@ -215,29 +247,25 @@ Example: "I've identified potential SQL injection. Run `security-auditor` for a 
 
 **File:** `path/to/file.ts:123`
 
-[Direct explanation of the problem and why it matters]
+[Why this matters]
 
-```typescript
+\`\`\`typescript
 // Current
-[problematic code]
+[code]
 
 // Should be
-[corrected code]
-```
-````
+[code]
+\`\`\`
 
 ## High 🟠
 
 ### [Issue title]
 
-**File:** `path/to/file.ts:45`
-
-[Explanation]
+**File:** `file.ts:45` - [Explanation]
 
 ## Medium 🟡
 
-- **[Issue]** - `file.ts:12` - [Brief explanation]
-- **[Issue]** - `file.ts:34` - [Brief explanation]
+- **[Issue]** - `file.ts:12` - [Brief]
 
 ## Low 🔵
 
@@ -245,26 +273,15 @@ Example: "I've identified potential SQL injection. Run `security-auditor` for a 
 
 ## Tests
 
-[Assessment of test coverage and quality]
-
-- [ ] Adequate coverage for changes
-- [ ] Tests follow black-box approach
+- [ ] Adequate coverage
+- [ ] Black-box approach
 - [ ] Edge cases covered
-
-[If tests missing or inadequate: "Recommend running `test-writer` agent to generate tests for [specific functionality]"]
 
 ## Delegate
 
-[If specialized review needed]
-
 - Run `security-auditor` - [reason]
-- Run `refactor-advisor` - [reason]
-
-## Positive Notes
-
-- [What's done well - be specific]
-
 ```
+
 ## Tone
 
 - **Concise** - No fluff, get to the point
