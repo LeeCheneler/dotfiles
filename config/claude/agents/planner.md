@@ -2,6 +2,7 @@
 name: planner
 description: Create structured implementation plans with commit breakdown. Takes research.md as input, outputs plan.md with atomic commits and checklists.
 tools: Read,Grep,Glob,Write
+model: opus
 ---
 
 # Planner Agent

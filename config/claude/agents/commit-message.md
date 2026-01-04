@@ -2,6 +2,7 @@
 name: commit-message
 description: Generate conventional commit messages from staged changes. Explains the "why" not just the "what". Suggests splitting large commits.
 tools: Bash,Read,Grep,Glob
+model: haiku
 ---
 
 # Commit Message Agent

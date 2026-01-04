@@ -7,6 +7,7 @@ description: Run dev phase for current commit
 ## Prerequisites
 
 Requires active plan with a commit ready for dev:
+
 - Plan exists with Status: `IN_PROGRESS`
 - Current commit has `- [ ] Dev` unchecked
 
@@ -15,41 +16,54 @@ Requires active plan with a commit ready for dev:
 Implement the current commit:
 
 ### 1. Understand the Commit
+
 Read the plan.md to understand:
+
 - Commit goal
 - Files to create/modify/delete
 - Context from previous commits
 
 ### 2. Implement
+
 Write the implementation code following:
+
 - Patterns identified in research.md
 - Existing codebase conventions
 - CLAUDE.md standards
 
 ### 3. Write Tests
+
 Use `test-writer` agent for tests if applicable:
+
 - Unit tests for new functions
 - Integration tests for new endpoints
 - Follow black-box, behavior-focused testing
 
 ### 4. Documentation
+
 Use `doc-writer` agent if needed:
+
 - Update README if public API changes
 - Add JSDoc for complex functions
 - Update ADRs if architectural decisions made
 
 ### 5. Verify
-```bash
-# Run tests
-<project test command>
 
-# Run lint/type-check
+Use `test-runner` agent to run tests:
+
+- Returns concise pass/fail summary
+- Minimizes context usage vs raw test output
+
+Run lint/type-check directly (output is typically concise):
+
+```bash
 <project lint command>
 ```
 
 Fix any failures before completing.
 
 ### 6. Update Plan
+
 Check `- [x] Dev` in plan.md for this commit.
 
 ## After Dev

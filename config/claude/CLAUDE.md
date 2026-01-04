@@ -77,11 +77,13 @@ Delegate to specialized agents for deep work:
 | Planning        | `planner`          | Creating structured implementation plans       |
 | Code review     | `code-reviewer`    | Reviewing PRs, branch changes, implementations |
 | Writing tests   | `test-writer`      | Generating tests, improving coverage           |
+| Running tests   | `test-runner`      | Run tests, return concise pass/fail summary    |
 | Documentation   | `doc-writer`       | READMEs, API docs, ADRs, changelogs            |
 | Refactoring     | `refactor-advisor` | Identifying smells, suggesting improvements    |
 | Security audit  | `security-auditor` | Vulnerability scanning, dependency audits      |
 | Commit messages | `commit-message`   | Generating conventional commits                |
 | PR descriptions | `pr-description`   | Writing PR summaries                           |
+| Git operations  | `git-summarizer`   | Summarize git output, minimize context usage   |
 
 ## Development Workflow
 

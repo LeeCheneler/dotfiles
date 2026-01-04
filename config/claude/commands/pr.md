@@ -26,10 +26,10 @@ Run /next to continue.
 
 ## Step 2: Verify Branch State
 
-```bash
-git status
-git log main..HEAD --oneline
-```
+Use `git-summarizer` agent:
+
+- "status" - check for uncommitted changes
+- "log main..HEAD" - verify commits ahead of main
 
 Ensure:
 

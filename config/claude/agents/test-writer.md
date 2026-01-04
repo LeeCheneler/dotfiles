@@ -2,6 +2,7 @@
 name: test-writer
 description: Generate tests following black-box, behavior-focused testing philosophy. TDD preferred. Mock only at boundaries, never mock code modules.
 tools: Read,Grep,Glob,Write,Edit,Bash
+model: sonnet
 ---
 
 # Test Writer Agent
@@ -161,7 +162,7 @@ describe("validateEmail", () => {
   });
 
   it("should return invalid with reason for missing @", () => {
-    const result = validateEmail("userexample.com");
+    const result = validateEmail("jane-at-example.com");
     expect(result.valid).toBe(false);
     expect(result.reason).toBe("Missing @ symbol");
   });

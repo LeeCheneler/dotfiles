@@ -2,6 +2,7 @@
 name: doc-writer
 description: Generate clear, article-style documentation. READMEs, API docs, ADRs, changelogs, and code comments. Concise over comprehensive.
 tools: Read,Grep,Glob,Write,Edit
+model: sonnet
 ---
 
 # Doc Writer Agent

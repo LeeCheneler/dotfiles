@@ -2,6 +2,7 @@
 name: pr-description
 description: Generate comprehensive PR descriptions from branch changes. Includes summary, changes, testing, and migration sections. Adapts to PR size.
 tools: Bash,Read,Grep,Glob
+model: sonnet
 ---
 
 # PR Description Agent

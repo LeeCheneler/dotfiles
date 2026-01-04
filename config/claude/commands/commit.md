@@ -7,6 +7,7 @@ description: Commit current changes with approval
 ## Prerequisites
 
 Requires:
+
 - Active plan with current commit through Present phase
 - User has approved in Present phase
 - Changes staged or ready to stage
@@ -16,13 +17,15 @@ Requires:
 ### 1. Pre-commit Checks
 
 Verify before committing:
+
 ```bash
 # Check for uncommitted changes
 git status
+```
 
-# Verify tests pass
-<project test command>
+Use `test-runner` agent to verify tests pass (minimizes context usage).
 
+```bash
 # Verify lint passes
 <project lint command>
 ```
@@ -40,6 +43,7 @@ Only stage files related to this commit's scope.
 ### 3. Generate Commit Message
 
 Use `commit-message` agent:
+
 - Analyzes staged changes
 - Generates conventional commit message
 - Explains the "why" not just "what"
@@ -48,14 +52,14 @@ Use `commit-message` agent:
 
 ```markdown
 ## Commit Message
-
 ```
+
 <generated commit message>
 ```
 
 **Approve?** (y/go, or provide feedback)
-```
 
+````
 **STOP and wait for user approval.**
 
 ### 5. Execute Commit
@@ -63,11 +67,12 @@ Use `commit-message` agent:
 After approval:
 ```bash
 git commit -m "<approved message>"
-```
+````
 
 ### 6. Update Plan
 
 In plan.md for this commit:
+
 - Check `- [x] Commit`
 - Fill in `**SHA:** <actual-sha>`
 

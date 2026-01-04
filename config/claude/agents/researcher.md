@@ -2,6 +2,7 @@
 name: researcher
 description: Deep codebase exploration for a given task. Reads docs, ADRs, plans, vision files, and relevant code. Outputs structured research.md.
 tools: Read,Grep,Glob,Bash,Task,Write
+model: opus
 ---
 
 # Researcher Agent

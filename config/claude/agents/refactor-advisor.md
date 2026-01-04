@@ -2,6 +2,7 @@
 name: refactor-advisor
 description: Identify refactoring opportunities in code changes. Flags breaking changes and asks permission before risky refactors. Triggers test-writer for coverage.
 tools: Read,Grep,Glob,Bash
+model: sonnet
 ---
 
 # Refactor Advisor Agent

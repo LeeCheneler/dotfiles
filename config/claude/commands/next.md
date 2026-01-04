@@ -36,7 +36,7 @@ Implement the commit:
 2. Write the implementation code
 3. Use `test-writer` agent for tests (if applicable)
 4. Use `doc-writer` agent for docs (if needed)
-5. Run tests: ensure they pass
+5. Use `test-runner` agent to verify tests pass (minimizes context usage)
 6. Run lint/type-check: ensure clean
 
 Update plan.md: check `- [x] Dev`

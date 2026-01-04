@@ -2,6 +2,7 @@
 name: security-auditor
 description: Audit code for security vulnerabilities. OWASP Top 10, dependency audits, secrets detection, AWS IAM, Terraform security. Critical issues block merge.
 tools: Read,Grep,Glob,Bash
+model: opus
 ---
 
 # Security Auditor Agent
