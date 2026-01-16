@@ -2,6 +2,7 @@
 brew "git"        # Version control
 brew "curl"       # HTTP requests
 brew "jq"         # JSON processor
+brew "mole"       # SSH tunnel manager
 
 # Search & navigation
 brew "ripgrep"    # Fast code search (rg)

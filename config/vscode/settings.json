@@ -250,31 +250,6 @@
   // Terraform
   "terraform.languageServer.enable": true,
 
-  // Spell Checker
-  "cSpell.enableFiletypes": ["markdown", "plaintext"],
-  "cSpell.userWords": [
-    "Aabb",
-    "Acsenda",
-    "contenteditable",
-    "frametime",
-    "frontmatter",
-    "GLSL",
-    "leecheneler",
-    "letterboxing",
-    "Lightmap",
-    "overrider",
-    "Shiki",
-    "spritesheet",
-    "Startable",
-    "TABI",
-    "tabirun",
-    "Unminified",
-    "unocss",
-    "Unregisters",
-    "Upserting",
-    "webgl"
-  ],
-
   // Telemetry
   "telemetry.telemetryLevel": "off",
   "redhat.telemetry.enabled": false,
@@ -293,5 +268,6 @@
   "workbench.secondarySideBar.defaultVisibility": "visible",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "chat.viewSessions.orientation": "stacked"
 }
