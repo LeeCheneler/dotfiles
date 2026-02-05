@@ -31,13 +31,11 @@ First, read the research.md to understand:
 
 ### 2. Check GitHub Issue (if referenced)
 
-If the task references a GitHub issue, use GitHub MCP to:
+If the task references a GitHub issue:
 
-- **Fetch full issue details** - Requirements, acceptance criteria, labels
-- **Read issue comments** - Stakeholder discussions, clarifications
-- **Check linked issues** - Dependencies or related work
-
-Use `get_issue` to fetch issue details by number.
+- **Fetch full issue details** - `gh issue view <number>`
+- **Read issue comments** - `gh issue view <number> --comments`
+- **Check linked issues** - `gh issue view <number>` and follow references
 
 This helps ensure the plan addresses all requirements from the issue.
 

@@ -41,17 +41,11 @@ Priority order:
 
 ### 2. Check GitHub Context (if available)
 
-If the task references a GitHub issue or PR, or if `GITHUB_TOKEN` is configured:
+If the task references a GitHub issue or PR:
 
-- **Read issue details** - Get full requirements, acceptance criteria, discussion
-- **Check related PRs** - See if similar work was attempted before
-- **Review issue comments** - Understand context and decisions made
-
-Use the GitHub MCP tools:
-
-- `get_issue` - Fetch issue details by number
-- `search_issues` - Find related issues by keyword
-- `get_pull_request` - Check PR details and discussion
+- **Read issue details** - `gh issue view <number>`
+- **Check related PRs** - `gh pr list --search "<keywords>"`
+- **Review issue comments** - `gh issue view <number> --comments`
 
 Skip this step if no GitHub context is relevant to the task.
 

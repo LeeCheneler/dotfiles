@@ -76,11 +76,11 @@ Use for high-risk changes:
 
 ### GitHub Context (if reviewing a PR)
 
-If `GITHUB_TOKEN` is configured and reviewing a PR:
+If reviewing a PR:
 
-- **Read PR description** - Use `get_pull_request` to understand intent
-- **Check PR comments** - Review existing discussion and feedback
-- **Read linked issues** - Understand requirements being addressed
+- **Read PR description** - `gh pr view <number>`
+- **Check PR comments** - `gh pr view <number> --comments`
+- **Read linked issues** - `gh issue view <number>`
 
 This context helps ensure review addresses the original requirements.
 
@@ -293,14 +293,20 @@ Use for security-sensitive, auth, payment, or >300 line changes.
 ### Examples
 
 **Good:**
+
 > This will cause SQL injection. User input is interpolated directly into the query. Use parameterized queries.
 
 **Bad:**
+
 > Have you considered perhaps maybe looking at how the query is constructed? It might potentially be improved.
 
 **Good:**
+
 > Missing null check. `user` can be undefined when session expires, causing runtime crash.
 
 **Bad:**
+
 > Just a small thought - you might want to think about what happens if user is null here? No big deal either way!
+
+```
 ```

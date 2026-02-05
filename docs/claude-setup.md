@@ -207,47 +207,17 @@ Lists active plans, lets you select one to continue.
 
 Shows current commit, remaining work.
 
-## MCP Servers
+## GitHub Integration
 
-Model Context Protocol servers extend Claude's capabilities.
-
-### Configured Servers
-
-| Server | Purpose                      | Requires               |
-| ------ | ---------------------------- | ---------------------- |
-| GitHub | Structured GitHub API access | `GITHUB_TOKEN` env var |
-
-### GitHub Server
-
-Provides structured GitHub API access (issues, PRs, repos, users).
-
-Uses: `@modelcontextprotocol/server-github`
-
-**Setup:**
+Agents use the `gh` CLI (installed via Brewfile) for GitHub access. Authenticate with:
 
 ```bash
-# Option 1: Use gh CLI token (easiest)
-export GITHUB_TOKEN=$(gh auth token)
-
-# Option 2: Use 1Password
-export GITHUB_TOKEN=$(op read "op://Private/GitHub Token/token")
-
-# Option 3: Manual (create at github.com/settings/tokens)
-export GITHUB_TOKEN=ghp_xxxxxxxxxxxx
+gh auth login
 ```
 
-Add to `~/.zshrc` for persistence:
+### Agent GitHub Usage
 
-```bash
-# GitHub token for Claude MCP
-export GITHUB_TOKEN=$(gh auth token)
-```
-
-**Required scopes:** `repo`, `read:org`, `read:user`, `read:project`
-
-### Agent MCP Integration
-
-| Agent            | GitHub MCP                          |
+| Agent            | Usage                               |
 | ---------------- | ----------------------------------- |
 | researcher       | Query issues/PRs for context        |
 | planner          | Read issue details for requirements |

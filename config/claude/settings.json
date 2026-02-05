@@ -2,15 +2,7 @@
   "additionalDirectories": [
     "~/projects"
   ],
-  "mcpServers": {
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
-      }
-    }
-  },
+  "mcpServers": {},
   "permissions": {
     "allow": [
       "Read",
@@ -45,7 +37,7 @@
       "Bash(git branch:*)",
       "Bash(git push:*)",
       "Bash(git rev-parse:*)",
-      "Bash(gh pr create:*)",
+      "Bash(gh:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(npm list:*)",

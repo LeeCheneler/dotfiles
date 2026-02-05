@@ -29,11 +29,11 @@ Generate comprehensive pull request descriptions that help reviewers understand 
 
 ### GitHub Issue Linking (if available)
 
-If `GITHUB_TOKEN` is configured and commits reference issues:
+If commits reference issues:
 
-- **Fetch issue details** - Use `get_issue` to get titles for "Closes #X" links
-- **Check related issues** - Use `search_issues` to find related work
-- **Verify issue status** - Ensure referenced issues are still open
+- **Fetch issue details** - `gh issue view <number>` to get titles for "Closes #X" links
+- **Check related issues** - `gh issue list --search "<keywords>"`
+- **Verify issue status** - `gh issue view <number>` to check state
 
 This enriches the PR description with proper issue context.
 

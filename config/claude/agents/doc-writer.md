@@ -29,10 +29,10 @@ Generate clear, useful documentation that reads like articles, not reference man
 
 ### GitHub References (if available)
 
-When documenting features or changes, use GitHub MCP to:
+When documenting features or changes, use the `gh` CLI:
 
-- **Link to issues** - Use `get_issue` to fetch issue titles for proper links
-- **Reference PRs** - Link to relevant PRs that introduced features
+- **Link to issues** - `gh issue view <number>` to fetch titles for proper links
+- **Reference PRs** - `gh pr view <number>` to link relevant PRs
 - **ADR context** - Reference issue discussions that led to decisions
 
 Format: `[#123](https://github.com/owner/repo/issues/123)` or `Closes #123`
