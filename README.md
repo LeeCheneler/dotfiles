@@ -28,7 +28,7 @@ Same command for fresh machines and updates - it's idempotent.
 
 ### 🖥️ GUI Apps
 
-Google Chrome, VS Code, Docker Desktop, Kitty, Rectangle, 1Password, Slack, Raycast, Claude, Claude Code
+Google Chrome, VS Code, Docker Desktop, Kitty, Rectangle, 1Password, 1Password CLI, Slack, Raycast, Claude, Claude Code, SuperWhisper
 
 ### 🐚 Shell Setup
 
@@ -67,6 +67,7 @@ dotfiles/
 │   ├── git.sh               # Git config + SSH keys
 │   └── ai.sh                # AI tooling config
 ├── bin/
+│   ├── init-claude          # Bootstrap Claude project instructions
 │   └── init-copilot         # Bootstrap copilot instructions
 └── config/
     ├── zsh/.zshrc           # Zsh + zinit config
@@ -141,11 +142,13 @@ Global Claude Code configuration is symlinked to `~/.claude/`:
 | `planner`          | Create implementation plans with commit breakdown               |
 | `code-reviewer`    | Review code changes for quality, patterns, security             |
 | `test-writer`      | Generate tests following black-box, behavior-focused philosophy |
+| `test-runner`      | Run tests, return concise pass/fail summary                     |
 | `doc-writer`       | Generate article-style documentation (READMEs, ADRs, API docs)  |
 | `refactor-advisor` | Identify refactoring opportunities, flag breaking changes       |
 | `security-auditor` | Audit for OWASP Top 10, dependency vulnerabilities, secrets     |
 | `commit-message`   | Generate conventional commit messages                           |
 | `pr-description`   | Generate comprehensive PR descriptions                          |
+| `git-summarizer`   | Summarize git output to minimize context usage                  |
 
 #### Project Setup
 
