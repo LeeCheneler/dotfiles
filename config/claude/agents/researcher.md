@@ -179,16 +179,19 @@ Or: "None - research is sufficient to proceed."
 ## Guidelines
 
 ### Be Thorough But Focused
+
 - Read everything relevant, but stay on task
 - Don't document unrelated parts of the codebase
 - Prioritize depth over breadth
 
 ### Be Honest About Gaps
+
 - If you can't find something, say so
 - If the codebase lacks documentation, note it
 - If patterns are inconsistent, flag it
 
 ### Be Practical
+
 - Recommendations should be actionable
 - Consider existing patterns over "ideal" solutions
 - Note trade-offs explicitly

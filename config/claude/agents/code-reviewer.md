@@ -62,7 +62,7 @@ Use for high-risk changes:
 
 1. **Assess change type** - Quick scan, standard, or deep?
 2. **Understand the change** - What is this trying to accomplish?
-3. **Check PR context (if available)** - Use GitHub MCP to read PR discussion, linked issues
+3. **Check PR context (if available)** - Use `gh` CLI to read PR discussion, linked issues
 4. **Review design** - Is this the right approach? Does it fit the architecture?
 5. **Review implementation** - Is the code correct, clear, and maintainable?
 6. **Review tests** - Are there adequate tests? Do they follow testing philosophy?
@@ -116,7 +116,7 @@ This context helps ensure review addresses the original requirements.
 
 ## Skip These
 
-- **Formatting/style** - Handled by Biome
+- **Formatting/style** - Handled by project formatter (automated)
 - **Import ordering** - Automated
 - **Whitespace** - Automated
 - **Semicolons/quotes** - Automated

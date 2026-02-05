@@ -28,24 +28,27 @@ def is_pushing_to_main(command: str) -> bool:
     if "main" in parts:
         return True
 
-    # If no explicit branch specified, check current branch
-    # e.g., "git push" or "git push origin" or "git push -u origin"
-    has_explicit_branch = False
-    for i, part in enumerate(parts):
-        if part.startswith("-"):
-            continue
-        if part in ("git", "push"):
-            continue
-        # This might be remote name, check if next non-flag is a branch
-        remaining = [p for p in parts[i + 1 :] if not p.startswith("-")]
-        if remaining:
-            has_explicit_branch = True
-            break
+    # If current branch is main, block unless pushing to a different
+    # explicit refspec (e.g. git push origin main:other-branch)
+    current = get_current_branch()
+    if current != "main":
+        return False
 
-    if not has_explicit_branch:
-        return get_current_branch() == "main"
+    # On main branch - check if an explicit non-main ref is specified
+    # Strip flags and known tokens to find positional args
+    positional = [p for p in parts if not p.startswith("-") and p not in ("git", "push")]
 
-    return False
+    # positional[0] = remote (if present), positional[1] = refspec (if present)
+    if len(positional) >= 2:
+        refspec = positional[1]
+        # HEAD, main, or no colon all resolve to main when on main
+        if refspec in ("HEAD", "main") or ":" not in refspec:
+            return True
+        # Explicit refspec like main:other-branch - pushing to other-branch
+        return False
+
+    # No explicit refspec while on main = pushing main
+    return True
 
 
 def main() -> None:

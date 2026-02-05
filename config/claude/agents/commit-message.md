@@ -211,12 +211,6 @@ type(scope): second change
 **To split:** Use `git reset HEAD` then stage files for each commit separately.
 ```
 
-## AI Attribution
+## Attribution
 
-When Claude generates commit messages, append:
-
-```
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-Co-Authored-By: Claude <noreply@anthropic.com>
-```
+Do NOT add any AI attribution, co-authored-by lines, or generated-by markers to commit messages. Commits should read as if written by the developer.

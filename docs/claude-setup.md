@@ -19,12 +19,12 @@ Symlinked to `~/.claude/` via `apply.sh`.
 
 Operation enforcement via `PreToolUse` hooks.
 
-| Hook               | Trigger        | Behavior                                                 |
-| ------------------ | -------------- | -------------------------------------------------------- |
-| `protect-files.py` | `Bash`         | Asks permission before deleting files outside ~/projects |
-| `pre-commit.py`    | `git commit`   | Blocks until approval; on main asks about new branch     |
-| `pre-pr.py`        | `gh pr create` | Blocks until PR description approved                     |
-| `pre-push.py`      | `git push`     | Blocks push to main; allows feature branches             |
+| Hook               | Trigger        | Behavior                                                       |
+| ------------------ | -------------- | -------------------------------------------------------------- |
+| `protect-files.py` | `Bash`         | Asks permission before deleting files outside git repositories |
+| `pre-commit.py`    | `git commit`   | Blocks commits on main; allows feature branches through        |
+| `pre-pr.py`        | `gh pr create` | Blocks until PR description approved                           |
+| `pre-push.py`      | `git push`     | Blocks push to main; allows feature branches                   |
 
 All hooks exit code 2 to block, with instructions in stderr.
 

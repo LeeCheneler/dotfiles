@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Protect files outside ~/projects from deletion.
+"""Protect files outside git-managed directories from deletion.
 
-Blocks file removal operations outside the allowed directory unless
-explicitly approved by the user.
+Blocks file removal operations unless the target path is inside a git
+repository. This allows Claude to freely manage files within projects
+while preventing accidental deletion of system or personal files.
 """
 
 import json
@@ -10,24 +11,28 @@ import os
 import re
 import sys
 
-ALLOWED_DIR = os.path.expanduser("~/projects")
 
-
-def is_path_allowed(path: str) -> bool:
-    """Check if path is within the allowed directory."""
+def is_inside_git_repo(path: str) -> bool:
+    """Check if path is within a git-managed directory."""
     if not path:
         return True
 
     resolved = os.path.realpath(os.path.expanduser(path))
-    allowed_resolved = os.path.realpath(ALLOWED_DIR)
 
-    return resolved.startswith(allowed_resolved + os.sep) or resolved == allowed_resolved
+    # Walk up from the resolved path looking for a .git directory
+    current = resolved if os.path.isdir(resolved) else os.path.dirname(resolved)
+    while current != os.path.dirname(current):  # stop at filesystem root
+        if os.path.isdir(os.path.join(current, ".git")):
+            return True
+        current = os.path.dirname(current)
+
+    return False
 
 
 def check_bash_for_rm(command: str) -> str | None:
     """Check if bash command contains rm and extract target paths.
 
-    Returns the problematic path if found outside allowed dir, None otherwise.
+    Returns the problematic path if found outside a git repo, None otherwise.
     """
     if not command:
         return None
@@ -49,7 +54,7 @@ def check_bash_for_rm(command: str) -> str | None:
     for path in matches:
         if path.startswith("-"):
             continue
-        if not is_path_allowed(path):
+        if not is_inside_git_repo(path):
             return path
 
     return None
@@ -77,8 +82,8 @@ def main() -> None:
                 "hookEventName": "PreToolUse",
                 "permissionDecision": "ask",
                 "permissionDecisionReason": (
-                    f"This command will delete files outside ~/projects: {blocked_path}\n"
-                    "Only files in ~/projects can be deleted without approval."
+                    f"This command will delete files outside any git repository: {blocked_path}\n"
+                    "Deletions are only allowed within git-managed directories."
                 ),
             }
         }
