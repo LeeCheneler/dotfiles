@@ -24,13 +24,11 @@ Research the codebase to understand:
 
 Always read these if they exist:
 
-```bash
-# Find and read documentation
-find . -maxdepth 3 -name "README*" -o -name "VISION*" -o -name "vision*"
-find . -path "*/docs/*" -name "*.md"
-find . -path "*/adr/*" -o -path "*/ADR/*" -o -path "*/adrs/*"
-find . -path "*/plans/*" -name "*.md"
-```
+- `Glob("**/README*")` - Project READMEs
+- `Glob("**/VISION*")` - Vision documents
+- `Glob("**/docs/**/*.md")` - Documentation
+- `Glob("**/adr*/**/*.md")` - Architecture decision records
+- `Glob("**/plans/**/*.md")` - Existing plans
 
 Priority order:
 
