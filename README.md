@@ -143,12 +143,9 @@ Global Claude Code configuration is symlinked to `~/.claude/`:
 | `code-reviewer`    | Review code changes for quality, patterns, security             |
 | `test-writer`      | Generate tests following black-box, behavior-focused philosophy |
 | `test-runner`      | Run tests, return concise pass/fail summary                     |
-| `doc-writer`       | Generate article-style documentation (READMEs, ADRs, API docs)  |
-| `refactor-advisor` | Identify refactoring opportunities, flag breaking changes       |
 | `security-auditor` | Audit for OWASP Top 10, dependency vulnerabilities, secrets     |
 | `commit-message`   | Generate conventional commit messages                           |
 | `pr-description`   | Generate comprehensive PR descriptions                          |
-| `git-summarizer`   | Summarize git output to minimize context usage                  |
 
 #### Project Setup
 

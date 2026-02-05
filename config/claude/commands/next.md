@@ -4,23 +4,15 @@ description: Execute next commit cycle in current plan
 
 # Execute Next Commit
 
-## Step 1: Find Current Plan
+## Find Current Plan
 
-Look for an active plan:
+1. Check `docs/plans/*/plan.md` for Status: `IN_PROGRESS` or `READY`
+2. If multiple, ask user to select
+3. If none: "No active plan. Run /begin to start new work."
 
-1. Check `docs/plans/*/plan.md` files
-2. Find one with Status: `IN_PROGRESS` or `READY`
-3. If multiple, show list and ask user to select
-4. If none, error: "No active plan found. Run /begin to start new work or /resume to resume existing."
+## Find Next Commit
 
-## Step 2: Find Next Commit
-
-Parse the plan.md to find the next incomplete commit:
-
-- Look for first commit where `- [ ] Dev` is unchecked
-- Update plan.md Status to `IN_PROGRESS` if it was `READY`
-
-Display:
+Find first commit where `- [ ] Dev` is unchecked. Display:
 
 ```
 Executing: Commit <N> of <total>
@@ -28,47 +20,22 @@ Title: <commit title>
 Goal: <commit goal>
 ```
 
-## Step 3: Dev Phase
+## Dev Phase
 
-Implement the commit:
+1. Implement the code following patterns from research.md
+2. Use `test-writer` agent for tests if applicable
+3. Use `test-runner` agent to verify tests pass
+4. Run project lint/type-check
+5. Check `- [x] Dev` in plan.md
 
-1. For complex implementations, use TodoWrite to track sub-tasks
-2. Write the implementation code
-3. Use `test-writer` agent for tests (if applicable)
-4. Use `doc-writer` agent for docs (if needed)
-5. Use `test-runner` agent to verify tests pass (minimizes context usage)
-6. Run lint/type-check: ensure clean
-
-Update plan.md: check `- [x] Dev`
-
-**Auto-proceed to Review phase.**
-
-## Step 4: Review Phase
-
-Run review cycle:
+## Review Phase
 
 1. Use `code-reviewer` agent on changes
+2. Fix Critical/High issues immediately, re-run reviewer until clean
+3. Fix Medium if straightforward, note Low for user
+4. Check `- [x] Review` in plan.md
 
-**For Critical/High issues:**
-
-- Fix immediately
-- Re-run code-reviewer
-- Repeat until clean
-
-**For Medium issues:**
-
-- Fix if straightforward
-- Or note for user in Present phase
-
-**For Low issues:**
-
-- Note for user, don't block
-
-Update plan.md: check `- [x] Review`
-
-**Auto-proceed to Present phase.**
-
-## Step 5: Present Phase
+## Present Phase
 
 Present to user:
 
@@ -81,88 +48,57 @@ Present to user:
 
 ### Files Changed
 
-| File | Change           | Lines |
-| ---- | ---------------- | ----- |
-| ...  | created/modified | +X/-Y |
+| File | Change | Lines |
+| ---- | ------ | ----- |
 
 ### Tests
 
-- Added: <N> tests
-- Passing: Yes/No
+- Added: <N> | Passing: Yes/No
 
 ### Review Results
 
-- Critical: 0 (must be 0)
-- High: <N>
-- Medium: <N>
-- Low: <N>
+- Critical: 0 | High: 0 | Medium: <N> | Low: <N>
 
 ### Outstanding Items
 
-<any issues noted for user attention>
+<any Medium/Low notes, or "None - clean review">
 
 ---
 
 **Approve?** (y/go, or provide feedback)
 ```
 
-**STOP and wait for user approval.**
+**STOP and wait for user approval.** If feedback, implement changes, re-review if significant, present again.
 
-If user provides feedback:
+Check `- [x] Present` in plan.md.
 
-- Implement changes
-- Re-run review if significant changes
-- Present again
-
-Update plan.md: check `- [x] Present`
-
-## Step 6: Commit Phase
-
-After user approval:
+## Commit Phase
 
 1. Use `commit-message` agent to generate message
-2. Present commit message to user
-3. Wait for approval
-4. Execute commit
-5. Update plan.md:
-   - Check `- [x] Commit`
-   - Fill in `**SHA:** <actual-sha>`
+2. Present commit message, wait for approval
+3. Execute commit
+4. Check `- [x] Commit` and fill in SHA in plan.md
 
-## Step 7: Next Steps
-
-After commit:
+## After Commit
 
 If more commits remain:
 
 ```
-Commit <N> complete: <sha>
-
-<remaining> commits remaining.
-
-Next up: <commit N+1 title>
-Goal: <commit N+1 goal>
-
+Commit <N> complete. <remaining> remaining.
+Next: <commit N+1 title>
 Run /next to continue.
 ```
 
-If this was the last commit:
+If last commit:
 
 ```
 All commits complete!
-
-Next steps:
-- /security-audit - Run security audit on all changes
-- /pr - Open pull request
+Next: /security-audit then /pr
 ```
 
 ## Rules
 
-- NEVER skip review phase
-- NEVER commit without user approval at Present phase
+- Never skip review phase
+- Never commit without user approval
 - Fix Critical/High issues before presenting
 - Update plan.md checkboxes as you complete each phase
-
-## Tracking
-
-- **plan.md checkboxes**: Track cross-session progress (persistent)
-- **TodoWrite**: Track in-session sub-tasks during complex Dev phases (ephemeral)

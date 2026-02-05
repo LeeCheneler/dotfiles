@@ -7,182 +7,87 @@ argument-hint: <task-description>
 
 Task: $ARGUMENTS
 
-## Step 0: Safety Checks
+## Safety Checks
 
-Before starting new work, verify git state:
+Before starting, verify git state:
 
 ```bash
 git status
 ```
 
-**If uncommitted changes:**
+- If uncommitted changes: warn and wait for user to resolve
+- If not on main: warn and ask if they want to switch
 
-```
-Warning: Uncommitted changes detected.
-Commit, stash, or discard before starting new work? (y/n)
-```
+## If Resuming Existing Work
 
-Wait for user to resolve before proceeding.
+Check `docs/plans/*/plan.md` for active plans (Status: `IN_PROGRESS` or `READY`).
 
-**If not on main:**
+If found, show the list and ask if user wants to resume one or start fresh.
 
-```
-Warning: Currently on branch '<branch-name>', not main.
-Switch to main before starting new work? (y/n)
-```
+To resume: read research.md and plan.md, switch to the plan's branch, show current progress, and prompt to run `/next`.
 
-## Step 1: Generate Task Slug
+## New Work
 
-Generate a kebab-case slug from the task description.
+### 1. Generate Task Slug
 
-- Remove common words (the, a, an, to, for, etc.)
-- Lowercase and hyphenate
-- Keep it short but descriptive (aim for 3-5 words)
-- **Validate:** only lowercase alphanumeric and hyphens, max 50 chars
-- **Reject:** any path separators (/, \, ..)
-
-Inform user of the chosen slug (no approval needed):
+Create a kebab-case slug from the task description (3-5 words, lowercase alphanumeric and hyphens only).
 
 ```
 Creating plan directory: docs/plans/<slug>/
 ```
 
-## Step 2: Create Directory
+If directory already exists, ask user to pick a different slug or resume.
 
-Check if directory already exists:
+### 2. Research
 
-```bash
-ls docs/plans/<slug> 2>/dev/null
-```
+Use the `researcher` agent:
 
-**If directory exists:**
+- Provide task description
+- Output to `docs/plans/<slug>/research.md`
 
-```
-Plan directory 'docs/plans/<slug>/' already exists.
-Options:
-1. Use a different slug
-2. Resume existing plan (/resume)
-```
+### 3. Plan
 
-Do not overwrite existing plans.
+Use the `planner` agent:
 
-**If directory doesn't exist:**
+- Provide task description and path to research.md
+- Output to `docs/plans/<slug>/plan.md`
 
-```bash
-mkdir -p docs/plans/<slug>
-```
+After planning, check if any decisions warrant ADRs (framework choices, architectural patterns, infrastructure decisions). If so, suggest them. Skip silently if not warranted.
 
-## Step 3: Research Phase
+### 4. Signoff
 
-Use the `researcher` agent to explore the codebase.
-
-Provide the agent with:
-
-- The task description
-- Output path: `docs/plans/<slug>/research.md`
-
-The researcher will:
-
-- Read docs, ADRs, plans, vision files
-- Find relevant code
-- Identify patterns to follow
-- Document findings in research.md
-
-## Step 4: Planning Phase
-
-Use the `planner` agent to create the implementation plan.
-
-Provide the agent with:
-
-- The task description
-- Path to research.md
-- Output path: `docs/plans/<slug>/plan.md`
-
-The planner will:
-
-- Break work into atomic commits
-- Define goals and files for each commit
-- Create trackable checklists
-
-## Step 5: ADR Suggestions
-
-After planning, analyze the research and plan for decisions that warrant ADRs.
-
-**Suggest ADRs when:**
-
-- Choosing a framework, library, or significant tool
-- Making architectural decisions (patterns, state management, etc.)
-- Infrastructure choices (database, hosting, etc.)
-- Breaking from established project conventions
-- Making decisions that would be hard to reverse
-
-**Skip silently when:**
-
-- No significant architectural decisions
-- Following existing patterns
-- Routine implementation work
-
-If ADRs are warranted:
-
-```
-## Suggested ADRs
-
-Based on the research and plan, these decisions may warrant ADRs:
-
-1. **ADR: <decision title>**
-   Context: <why this decision matters>
-
-Add these to the plan? (y/n, or specify which ones)
-```
-
-If approved, add ADR commits to the beginning of the plan.
-
-## Step 6: Signoff
-
-Present a summary to the user:
+Present summary to user:
 
 ```markdown
-## Research Complete
+## Research Summary
 
-<key findings from research.md>
+<key findings>
 
 ## Plan Summary
 
-<number> commits planned:
+<N> commits planned:
 
-1. <commit 1 title>
-2. <commit 2 title>
-3. ...
+1. <commit title>
+2. <commit title>
 
 **Approve?** (y/go, or provide feedback)
 ```
 
-**STOP and wait for explicit user approval.**
+**STOP and wait for explicit approval.**
 
-Do NOT proceed without signoff.
+### 5. Create Branch
 
-## Step 7: Create Branch
-
-After signoff:
+After approval:
 
 ```bash
 git checkout -b feat/<slug>
 ```
 
-Inform user:
-
 ```
-Created branch: feat/<slug>
 Plan is ready. Run /next to start the first commit.
 ```
 
 ## Rules
 
-- NEVER skip research or planning phases
-- NEVER proceed past signoff without explicit approval
-- If research or planning raises questions, ask them before signoff
-
-## Tracking
-
-- **plan.md checkboxes**: Track cross-session progress (persistent)
-- **TodoWrite**: Track in-session sub-tasks (ephemeral, for complex phases)
+- Never skip research or planning
+- Never proceed past signoff without explicit approval

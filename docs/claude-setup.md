@@ -39,85 +39,43 @@ Specialized agents for delegated work.
 | `code-reviewer`    | Review implementation, design, tests              |
 | `security-auditor` | Security vulnerabilities and best practices       |
 | `test-writer`      | Generate tests following black-box approach       |
-| `doc-writer`       | READMEs, API docs, ADRs, changelogs               |
+| `test-runner`      | Run tests, return concise pass/fail summary       |
 | `commit-message`   | Generate conventional commit messages             |
 | `pr-description`   | Generate PR titles and descriptions               |
-| `refactor-advisor` | Identify refactoring opportunities                |
 
-## Workflow Framework
-
-Structured development with persistent state.
+## Workflow
 
 ### Overview
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                         WORKFLOW                                │
-│                                                                 │
-│  /begin ─► RESEARCH ─► PLAN ─► SIGNOFF ─► EXECUTE ─► /pr       │
-│                │          │        │          │                 │
-│                ▼          ▼        ▼          ▼                 │
-│           research.md  plan.md  branch    per-commit            │
-│                                 created      loop               │
-└─────────────────────────────────────────────────────────────────┘
+/begin ─► RESEARCH ─► PLAN ─► SIGNOFF ─► EXECUTE ─► /pr
+              │          │        │          │
+              ▼          ▼        ▼          ▼
+         research.md  plan.md  branch    per-commit
+                                created      loop
 ```
 
-### Execute Loop (per commit)
+### Execute Loop (per commit via /next)
 
 ```
-┌────────────────────────────────────────────────────────────────┐
-│                                                                │
-│    /next ─► DEV ─► REVIEW ─► PRESENT ─► COMMIT                │
-│              │        │          │                             │
-│              │        ▼          ▼                             │
-│              │    code-review  user                            │
-│              │    & fix issues approval                        │
-│              ▼                                                 │
-│         test-writer                                            │
-│         doc-writer                                             │
-│                                                                │
-└────────────────────────────────────────────────────────────────┘
-```
-
-### Pre-PR Security Audit
-
-```
-┌────────────────────────────────────────────────────────────────┐
-│                                                                │
-│    All commits done ─► /security-audit ─► /pr                 │
-│                              │                                 │
-│                              ▼                                 │
-│                        security-auditor                        │
-│                        (full changeset)                        │
-│                                                                │
-└────────────────────────────────────────────────────────────────┘
+DEV ─► REVIEW ─► PRESENT ─► COMMIT
+ │        │          │
+ ▼        ▼          ▼
+tests  code-review  user
+       & fix issues approval
 ```
 
 ### Commands
 
-**Orchestration:**
-
-| Command           | Purpose                                            |
-| ----------------- | -------------------------------------------------- |
-| `/begin <task>`   | Start new work: research → plan → signoff → branch |
-| `/next`           | Execute next commit cycle                          |
-| `/resume`         | Resume existing plan from another session          |
-| `/status`         | Show current plan progress                         |
-| `/abort`          | Abort current plan safely                          |
-| `/security-audit` | Run security audit on all branch changes           |
-| `/pr`             | Open pull request                                  |
-
-**Standalone phases:**
-
-| Command            | Purpose                          |
-| ------------------ | -------------------------------- |
-| `/research <task>` | Run research phase only          |
-| `/plan`            | Run planning phase only          |
-| `/signoff`         | Present and get approval         |
-| `/dev`             | Run dev phase for current commit |
-| `/review`          | Run review phase                 |
-| `/present`         | Present changes for approval     |
-| `/commit`          | Commit with approval             |
+| Command           | Purpose                                         |
+| ----------------- | ----------------------------------------------- |
+| `/begin <task>`   | Start new work: research, plan, signoff, branch |
+| `/next`           | Execute next commit cycle                       |
+| `/status`         | Show current plan progress                      |
+| `/review`         | Run code review on current changes              |
+| `/abort`          | Abort current plan safely                       |
+| `/security-audit` | Run security audit on all branch changes        |
+| `/pr`             | Open pull request                               |
 
 ### Plan Files
 
@@ -129,83 +87,24 @@ docs/plans/user-authentication/
 └── plan.md        # Commit breakdown with checklists
 ```
 
-**research.md** contains:
-
-- Task description
-- Codebase overview
-- Relevant files
-- Existing patterns
-- Documentation found (ADRs, READMEs, vision)
-- Recommended approach
-
-**plan.md** contains:
-
-- Metadata (task, branch, status)
-- Summary
-- Commits with:
-  - Goal
-  - Files to create/modify
-  - Checklist (Dev, Review, Present, Commit)
-  - SHA after completion
-
 ### Typical Usage
 
-**Start new work:**
-
-```
+```bash
+# Start new work
 /begin add user authentication to the API
-```
 
-Claude will:
-
-1. Generate task slug, confirm with you
-2. Run researcher agent → research.md
-3. Run planner agent → plan.md
-4. Present summary, wait for signoff
-5. Create branch after approval
-
-**Execute commits:**
-
-```
+# Execute commits one at a time
 /next
-```
 
-Runs one commit cycle: dev → review → present → commit.
-Repeat until all commits done.
+# Check progress
+/status
 
-**Security audit (recommended before PR):**
-
-```
+# Security audit before PR
 /security-audit
-```
 
-Runs comprehensive security audit on all branch changes.
-Catches vulnerabilities before they reach PR review.
-
-**Open PR:**
-
-```
+# Open PR
 /pr
 ```
-
-Generates PR description, creates PR after approval.
-Reminds you if security audit hasn't been run.
-
-**Resume in new session:**
-
-```
-/resume
-```
-
-Lists active plans, lets you select one to continue.
-
-**Check progress:**
-
-```
-/status
-```
-
-Shows current commit, remaining work.
 
 ## GitHub Integration
 
@@ -215,17 +114,6 @@ Agents use the `gh` CLI (installed via Brewfile) for GitHub access. Authenticate
 gh auth login
 ```
 
-### Agent GitHub Usage
-
-| Agent            | Usage                               |
-| ---------------- | ----------------------------------- |
-| researcher       | Query issues/PRs for context        |
-| planner          | Read issue details for requirements |
-| security-auditor | Check security advisories           |
-| code-reviewer    | Read PR discussion history          |
-| doc-writer       | Link to issues/PRs in documentation |
-| pr-description   | Fetch related issues for linking    |
-
 ## Configuration
 
 ### settings.json
@@ -233,7 +121,7 @@ gh auth login
 ```json
 {
   "permissions": {
-    "allow": ["Read", "Glob", "Grep", "Bash(git:*)", ...],
+    "allow": ["Read", "Glob", "Grep", "Bash(git:*)", "Bash(gh:*)", ...],
     "deny": [],
     "defaultMode": "default"
   },
@@ -253,43 +141,12 @@ gh auth login
 Global instructions covering:
 
 - Philosophy (quality, simplicity, security)
-- Code style (TypeScript, naming, React)
+- Tech stack (TypeScript, Next.js, AWS, Terraform)
+- Code style (TypeScript, naming, React, formatting)
 - Testing approach
 - Git conventions
-- Agent delegation table
-- Workflow reference
+- Workflow guidance
 - What not to do
-
-## Quick Reference
-
-```
-# Start new structured work
-/begin <task description>
-
-# Continue executing plan
-/next
-
-# Check where you are
-/status
-
-# Resume after session break
-/resume
-
-# Abort if needed
-/abort
-
-# Security audit before PR (recommended)
-/security-audit
-
-# Open PR when done
-/pr
-
-# Store knowledge for future sessions
-/remember <optional topic>
-
-# Recall memories into session
-/recollect <topic>
-```
 
 ## Troubleshooting
 
@@ -306,8 +163,3 @@ Global instructions covering:
 
 - Ensure `docs/plans/` directory exists in project
 - Check plan.md has correct Status field
-
-**Context getting long:**
-
-- Use `/status` to check progress
-- Standalone commands (`/review`, `/present`) re-inject fresh instructions

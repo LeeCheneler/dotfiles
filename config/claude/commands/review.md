@@ -1,93 +1,34 @@
 ---
-description: Run review phase for current changes
+description: Run code review on current changes
 ---
 
-# Review Phase
+# Review Changes
 
-## Prerequisites
-
-Requires changes to review:
-
-- Active plan with current commit Dev complete
-- Or uncommitted/unstaged changes to review
+Run a code review on current uncommitted or branch changes.
 
 ## Instructions
 
-Run review cycle on current changes:
+Use `code-reviewer` agent to review changes:
 
-### 1. Code Review
+- If on a feature branch: review changes vs main (`git diff main...HEAD`)
+- If uncommitted changes: review those
 
-Use `code-reviewer` agent:
+### Handle Results
 
-- Reviews implementation, design, tests
-- Classifies issues by severity
-- Suggests fixes
+**Critical/High**: Fix immediately, re-run reviewer until clean.
+**Medium**: Fix if straightforward, or note for user.
+**Low**: Note for user, don't block.
 
-**Critical (must fix):**
-
-- Security vulnerabilities
-- Data loss risks
-- Breaking changes without migration
-
-→ Fix immediately, re-run reviewer
-
-**High (should fix):**
-
-- Bugs causing incorrect behavior
-- Missing error handling
-- Architectural violations
-
-→ Fix immediately, re-run reviewer
-
-**Medium (address):**
-
-- Code smells
-- Missing edge case tests
-- Minor performance concerns
-
-→ Fix if straightforward, or note for Present
-
-**Low (optional):**
-
-- Style preferences
-- Minor improvements
-
-→ Note for user, don't block
-
-### 2. Re-review Loop
-
-After fixing Critical/High issues:
-
-- Re-run code-reviewer
-- Repeat until no Critical/High issues remain
-
-### 3. Update Plan
-
-Check `- [x] Review` in plan.md for this commit.
-
-## After Review
+### Report
 
 ```
-Review complete for Commit <N>: <title>
-
-Results:
-- Critical: 0
-- High: 0
-- Medium: <N> (noted for Present)
-- Low: <N> (noted for Present)
-
-Run /present to continue.
+Review complete.
+- Critical: 0 | High: 0 | Medium: <N> | Low: <N>
 ```
+
+If in an active plan, update plan.md checkbox.
 
 ## Rules
 
-- ALWAYS run code-reviewer
-- NEVER proceed with Critical or High issues unresolved
-- Fix and re-review until clean
-- Document remaining Medium/Low for user visibility
-- Update plan.md checkbox when complete
-
-## Note
-
-Security audit (`security-auditor` agent) runs separately before PR via `/security-audit`.
-This keeps per-commit reviews fast while ensuring comprehensive security review of all changes.
+- Always run code-reviewer agent
+- Never proceed with Critical or High issues unresolved

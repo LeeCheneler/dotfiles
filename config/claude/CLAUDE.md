@@ -9,6 +9,17 @@ Global instructions for Claude Code.
 - Security is non-negotiable
 - DX matters
 
+## Tech Stack
+
+Primary: Full-stack TypeScript
+
+- **Frontend**: React, Next.js (App Router, server components by default)
+- **Backend**: Node.js, Next.js API routes
+- **Infrastructure**: AWS (Lambda, ECS, SQS/EventBridge for EDA), Terraform
+- **CI/CD**: GitHub Actions, Docker
+- **Testing**: Vitest (preferred), Jest (existing projects), Playwright (E2E)
+- **Side projects**: Deno
+
 ## Code Style
 
 ### TypeScript
@@ -45,6 +56,7 @@ Global instructions for Claude Code.
 - Mock only at boundaries (network, filesystem, external services)
 - Never mock code modules
 - Realistic test data (no "foo", "bar", "test123")
+- TDD when feasible - write the test first
 - 90% coverage minimum
 
 ## Security
@@ -59,81 +71,13 @@ Global instructions for Claude Code.
 - Conventional commits: `type(scope): description`
 - Only commit when explicitly asked
 
-## Agent Delegation
+## Workflow
 
-Delegate to specialized agents for deep work:
+For quick fixes and small tasks, just do the work directly.
 
-| Task            | Agent              | When                                           |
-| --------------- | ------------------ | ---------------------------------------------- |
-| Research        | `researcher`       | Deep codebase exploration for a task           |
-| Planning        | `planner`          | Creating structured implementation plans       |
-| Code review     | `code-reviewer`    | Reviewing PRs, branch changes, implementations |
-| Writing tests   | `test-writer`      | Generating tests, improving coverage           |
-| Running tests   | `test-runner`      | Run tests, return concise pass/fail summary    |
-| Documentation   | `doc-writer`       | READMEs, API docs, ADRs, changelogs            |
-| Refactoring     | `refactor-advisor` | Identifying smells, suggesting improvements    |
-| Security audit  | `security-auditor` | Vulnerability scanning, dependency audits      |
-| Commit messages | `commit-message`   | Generating conventional commits                |
-| PR descriptions | `pr-description`   | Writing PR summaries                           |
-| Git operations  | `git-summarizer`   | Summarize git output, minimize context usage   |
+For non-trivial work (new features, multi-file changes, architectural decisions), use `/begin <task>` to enter a structured workflow: research the codebase, create a plan with atomic commits, get signoff, then execute commit-by-commit with `/next`.
 
-## Development Workflow
-
-Use slash commands for structured development:
-
-| Command           | Purpose                                    |
-| ----------------- | ------------------------------------------ |
-| `/begin <task>`   | Start new work: research, plan, signoff    |
-| `/next`           | Execute next commit cycle                  |
-| `/resume`         | Resume existing plan from another session  |
-| `/status`         | Show current plan progress                 |
-| `/abort`          | Abort current plan safely                  |
-| `/security-audit` | Run security audit before PR (recommended) |
-| `/pr`             | Open pull request                          |
-
-Standalone phase commands (for manual control or recovery):
-
-| Command     | Purpose                              |
-| ----------- | ------------------------------------ |
-| `/research` | Run research phase only              |
-| `/plan`     | Run planning phase only              |
-| `/signoff`  | Present and get approval             |
-| `/dev`      | Run dev phase for current commit     |
-| `/review`   | Run review phase for current changes |
-| `/present`  | Present changes for user approval    |
-| `/commit`   | Commit with approval                 |
-
-Memory persists automatically via CLAUDE.md and auto-memory files across sessions.
-
-### Workflow Phases
-
-```
-1. RESEARCH ──► 2. PLAN ──► 3. SIGNOFF ──► 4. EXECUTE ──► 5. SECURITY ──► 6. PR
-```
-
-**Execute loop (per commit):**
-
-```
-DEV ──► REVIEW (code only) ──► PRESENT ──► COMMIT
-```
-
-**Pre-PR (once, after all commits):**
-
-```
-/security-audit ──► /pr
-```
-
-Plans are stored in `docs/plans/<task-slug>/` with:
-
-- `research.md` - Codebase research and findings
-- `plan.md` - Commit breakdown with checklists
-
-### Key Rules
-
-- Never commit without explicit user approval
-- Never skip research or planning for non-trivial work
-- Fix Critical/High review issues before presenting
-- Update plan.md checklists as work progresses
+Use judgement - if a task needs planning, plan it. If it doesn't, skip the ceremony.
 
 ## What NOT to Do
 

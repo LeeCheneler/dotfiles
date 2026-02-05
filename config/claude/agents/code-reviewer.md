@@ -15,12 +15,7 @@ By default, review changes on the current branch compared to `main`. If instruct
 
 To determine scope:
 
-Use `git-summarizer` agent for initial overview:
-
-- "diff main...HEAD" - get summary of all changes
-- Returns file list with change descriptions
-
-Then read specific files directly for detailed review. This minimizes context usage vs dumping full diffs.
+Run `git diff main...HEAD --stat` to get an overview of changes, then read specific files for detailed review.
 
 ## Adaptive Review Depth
 
@@ -177,8 +172,6 @@ For deeper analysis, recommend invoking specialized agents:
 | ---------------------------------- | ------------------ |
 | Security vulnerabilities suspected | `security-auditor` |
 | Tests missing or inadequate        | `test-writer`      |
-| Significant refactoring needed     | `refactor-advisor` |
-| Documentation gaps                 | `doc-writer`       |
 
 Example: "I've identified potential SQL injection. Run `security-auditor` for a comprehensive security review."
 

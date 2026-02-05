@@ -379,11 +379,9 @@ resource "aws_security_group_rule" "example" {
 
 ## Agent Delegation
 
-| Concern                         | Delegate To        |
-| ------------------------------- | ------------------ |
-| Tests needed for security fixes | `test-writer`      |
-| Refactoring auth code           | `refactor-advisor` |
-| Documenting security practices  | `doc-writer`       |
+| Concern                         | Delegate To   |
+| ------------------------------- | ------------- |
+| Tests needed for security fixes | `test-writer` |
 
 ## Output Format
 
