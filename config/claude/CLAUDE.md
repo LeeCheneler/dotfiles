@@ -33,10 +33,11 @@ Global instructions for Claude Code.
 - Colocate components, hooks, and tests
 - Server components by default (Next.js)
 
-### Formatting
+### Formatting & Linting
 
-- Biome for formatting and linting
-- No Prettier, no ESLint
+- Always check what the project already uses first (scan package.json scripts, config files)
+- If a project has a lint/format script, use that
+- When bootstrapping a new project, default to Biome
 
 ## Testing
 
