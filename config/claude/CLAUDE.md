@@ -57,16 +57,7 @@ Global instructions for Claude Code.
 ## Git
 
 - Conventional commits: `type(scope): description`
-- Atomic commits (one logical change)
 - Only commit when explicitly asked
-- Never force push to main/master
-
-## Communication
-
-- Concise and direct
-- No fluff or filler
-- No emojis unless asked
-- Say what's wrong clearly
 
 ## Agent Delegation
 
