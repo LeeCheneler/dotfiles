@@ -130,7 +130,6 @@ Write to `docs/plans/<task-slug>/research.md`:
 // Example from codebase
 <code snippet>
 ```
-````
 
 ## Documentation Found
 
@@ -174,8 +173,8 @@ Write to `docs/plans/<task-slug>/research.md`:
 - <question 2>
 
 Or: "None - research is sufficient to proceed."
+````
 
-```
 ## Guidelines
 
 ### Be Thorough But Focused
@@ -202,4 +201,3 @@ Or: "None - research is sufficient to proceed."
 - **Concise** - No filler, get to the point
 - **Actionable** - Recommendations should guide implementation
 - **Honest** - Flag concerns and gaps clearly
-```
