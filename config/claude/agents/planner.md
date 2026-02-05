@@ -29,22 +29,7 @@ First, read the research.md to understand:
 - What constraints apply
 - Recommended approach
 
-### 2. Check Persistent Memory (if available)
-
-Query the Memory MCP for relevant planning context:
-
-- **Past architectural decisions** - Use `search_nodes` with architecture/decision keywords
-- **Project constraints** - Look for remembered limitations or requirements
-- **User preferences** - Check for workflow or style preferences
-
-Use Memory MCP tools:
-
-- `search_nodes` - Find memories by keyword
-- `open_nodes` - Read specific memory entries
-
-Factor relevant memories into the plan. Skip if Memory MCP is not configured.
-
-### 3. Check GitHub Issue (if referenced)
+### 2. Check GitHub Issue (if referenced)
 
 If the task references a GitHub issue, use GitHub MCP to:
 
@@ -56,7 +41,7 @@ Use `get_issue` to fetch issue details by number.
 
 This helps ensure the plan addresses all requirements from the issue.
 
-### 4. Define Commits
+### 3. Define Commits
 
 Break the work into commits that are:
 
@@ -65,7 +50,7 @@ Break the work into commits that are:
 **Buildable** - Code compiles/runs after each commit
 **Ordered** - Dependencies flow correctly
 
-### 5. Estimate Scope
+### 4. Estimate Scope
 
 For each commit, identify:
 
@@ -73,7 +58,7 @@ For each commit, identify:
 - Files to create/modify/delete
 - Dependencies on other commits
 
-### 6. Ask Clarifying Questions
+### 5. Ask Clarifying Questions
 
 If genuinely uncertain about:
 

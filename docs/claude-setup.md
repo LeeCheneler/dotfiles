@@ -119,13 +119,6 @@ Structured development with persistent state.
 | `/present`         | Present changes for approval     |
 | `/commit`          | Commit with approval             |
 
-**Memory management:**
-
-| Command              | Purpose                              |
-| -------------------- | ------------------------------------ |
-| `/remember [topic]`  | Store knowledge for future sessions  |
-| `/recollect <topic>` | Recall memories into current session |
-
 ### Plan Files
 
 Plans persist in `docs/plans/<task-slug>/`:
@@ -220,41 +213,9 @@ Model Context Protocol servers extend Claude's capabilities.
 
 ### Configured Servers
 
-| Server | Purpose                      | Requires                  |
-| ------ | ---------------------------- | ------------------------- |
-| Memory | Cross-session persistence    | Nothing (auto-configured) |
-| GitHub | Structured GitHub API access | `GITHUB_TOKEN` env var    |
-
-### Memory Server
-
-Stores knowledge in `~/.claude-memory/memory.json` (global, outside dotfiles so it's not version controlled).
-
-Uses: `@modelcontextprotocol/server-memory`
-
-No setup required - works automatically.
-
-**Commands:**
-
-| Command              | Purpose                                       |
-| -------------------- | --------------------------------------------- |
-| `/remember [topic]`  | Store knowledge (infers from conversation)    |
-| `/recollect <topic>` | Recall specific memories into current session |
-
-**Automatic integration:**
-
-- `/research` checks memory for task-relevant context
-- `/plan` checks memory for past decisions/constraints
-
-**Examples:**
-
-```bash
-# Store a decision
-/remember we use Zod for all API validation
-
-# Recall context
-/recollect authentication
-/recollect api patterns
-```
+| Server | Purpose                      | Requires               |
+| ------ | ---------------------------- | ---------------------- |
+| GitHub | Structured GitHub API access | `GITHUB_TOKEN` env var |
 
 ### GitHub Server
 
@@ -286,14 +247,14 @@ export GITHUB_TOKEN=$(gh auth token)
 
 ### Agent MCP Integration
 
-| Agent            | Memory MCP                  | GitHub MCP                          |
-| ---------------- | --------------------------- | ----------------------------------- |
-| researcher       | Checks for relevant context | Query issues/PRs for context        |
-| planner          | Checks for past decisions   | Read issue details for requirements |
-| security-auditor | -                           | Check security advisories           |
-| code-reviewer    | -                           | Read PR discussion history          |
-| doc-writer       | -                           | Link to issues/PRs in documentation |
-| pr-description   | -                           | Fetch related issues for linking    |
+| Agent            | GitHub MCP                          |
+| ---------------- | ----------------------------------- |
+| researcher       | Query issues/PRs for context        |
+| planner          | Read issue details for requirements |
+| security-auditor | Check security advisories           |
+| code-reviewer    | Read PR discussion history          |
+| doc-writer       | Link to issues/PRs in documentation |
+| pr-description   | Fetch related issues for linking    |
 
 ## Configuration
 

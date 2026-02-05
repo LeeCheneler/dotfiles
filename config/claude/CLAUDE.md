@@ -111,6 +111,8 @@ Standalone phase commands (for manual control or recovery):
 | `/present`  | Present changes for user approval    |
 | `/commit`   | Commit with approval                 |
 
+Memory persists automatically via CLAUDE.md and auto-memory files across sessions.
+
 ### Workflow Phases
 
 ```

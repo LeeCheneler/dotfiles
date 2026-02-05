@@ -25,22 +25,10 @@ Run the `planner` agent to create the implementation plan:
 ## What the Planner Does
 
 1. Reads research.md to understand context
-2. Checks Memory MCP for past decisions/constraints (if configured)
-3. Checks GitHub issue details (if referenced)
-4. Breaks work into atomic commits
-5. Defines goals and files for each commit
-6. Creates trackable checklists
-
-## Memory Integration
-
-Before spawning the planner agent, briefly check Memory MCP for planning-relevant context:
-
-```
-Use `search_nodes` with: architecture, decision, constraint, preference
-Pass any relevant memories to the planner agent in the prompt.
-```
-
-This ensures past decisions inform the plan without requiring the planner to search.
+2. Checks GitHub issue details (if referenced)
+3. Breaks work into atomic commits
+4. Defines goals and files for each commit
+5. Creates trackable checklists
 
 ## After Planning
 

@@ -27,24 +27,12 @@ Output to `docs/plans/<slug>/research.md`.
 
 ## What the Researcher Does
 
-1. Checks Memory MCP for relevant context (if configured)
-2. Reads docs, READMEs, ADRs, plans, vision files
-3. Checks GitHub for issue/PR context (if referenced)
-4. Finds relevant code for the task
-5. Identifies patterns to follow
-6. Documents constraints and considerations
-7. Suggests an approach
-
-## Memory Integration
-
-Before spawning the researcher agent, briefly check Memory MCP for task-relevant context:
-
-```
-Use `search_nodes` with keywords from the task description.
-Pass any relevant memories to the researcher agent in the prompt.
-```
-
-This primes the researcher with prior knowledge without requiring a full memory scan.
+1. Reads docs, READMEs, ADRs, plans, vision files
+2. Checks GitHub for issue/PR context (if referenced)
+3. Finds relevant code for the task
+4. Identifies patterns to follow
+5. Documents constraints and considerations
+6. Suggests an approach
 
 ## After Research
 
