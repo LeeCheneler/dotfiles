@@ -38,6 +38,7 @@ cask "docker-desktop"      # Containers
 cask "kitty"               # Terminal emulator
 cask "rectangle"           # Window management
 cask "1password"           # Password manager
+cask "1password-cli"       # 1Password CLI (op)
 cask "slack"               # Team communication
 cask "raycast"             # Launcher/productivity
 cask "claude"              # Claude desktop app
