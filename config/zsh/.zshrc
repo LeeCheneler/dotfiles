@@ -150,6 +150,34 @@ load-secrets() {
 }
 
 # =============================================================================
+# App Management
+# =============================================================================
+
+update-apps() {
+	if ! command -v brew &>/dev/null; then
+		echo "Homebrew not found"
+		return 1
+	fi
+
+	echo "Updating Homebrew..."
+	brew update
+
+	echo "Installing any new Brewfile entries..."
+	brew bundle --file="$HOME/.dotfiles/Brewfile"
+
+	echo "Upgrading formulae..."
+	brew upgrade
+
+	echo "Upgrading casks..."
+	brew upgrade --cask
+
+	echo "Cleaning up old versions..."
+	brew cleanup
+
+	echo "Apps updated"
+}
+
+# =============================================================================
 # Local Overrides (machine-specific, not in repo)
 # =============================================================================
 

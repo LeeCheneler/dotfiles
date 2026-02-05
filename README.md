@@ -179,6 +179,16 @@ load-secrets  # Loads GITHUB_TOKEN and GITHUB_PACKAGES_TOKEN
 
 Never commit API keys or tokens.
 
+## 🔄 Updating Apps
+
+Update all Homebrew packages, casks, and Brewfile entries in one command:
+
+```bash
+update-apps
+```
+
+This runs `brew update`, installs any new Brewfile entries, upgrades all formulae and casks, and cleans up old versions.
+
 ## 🎨 Design
 
 **Stateless and idempotent.** Removing something from config doesn't uninstall it - just stops managing it. Manual cleanup when needed (`brew uninstall X`).
