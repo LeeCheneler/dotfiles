@@ -1,8 +1,7 @@
 {
-  "additionalDirectories": [
-    "~/projects"
-  ],
-  "mcpServers": {},
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "70"
+  },
   "permissions": {
     "allow": [
       "Read",
@@ -48,8 +47,6 @@
     "ask": [],
     "defaultMode": "default"
   },
-  "alwaysThinkingEnabled": true,
-  "autoApprove": [],
   "hooks": {
     "PreToolUse": [
       {
@@ -88,6 +85,49 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.dotfiles/config/claude/hooks/auto-format.py"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
+          }
+        ]
+      }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.dotfiles/config/claude/statusline.sh"
+  },
+  "alwaysThinkingEnabled": true,
+  "additionalDirectories": [
+    "~/projects"
+  ],
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
+    }
+  },
+  "autoApprove": [],
+  "enabledPlugins": {
+    "vtsls@claude-code-lsps": true
   }
 }

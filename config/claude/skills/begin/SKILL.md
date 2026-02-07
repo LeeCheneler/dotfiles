@@ -1,6 +1,5 @@
 ---
 description: Start new work - research, plan, and signoff
-argument-hint: <task-description>
 ---
 
 # Begin New Work

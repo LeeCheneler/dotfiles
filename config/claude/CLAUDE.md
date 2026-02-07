@@ -79,6 +79,15 @@ For non-trivial work (new features, multi-file changes, architectural decisions)
 
 Use judgement - if a task needs planning, plan it. If it doesn't, skip the ceremony.
 
+## Context Compaction
+
+When compacting, always preserve:
+
+- The full list of modified files and their purposes
+- Any test commands that have been run and their results
+- The current plan state if following /begin workflow
+- Active branch name and commit history summary
+
 ## What NOT to Do
 
 - Don't add features beyond what's asked
