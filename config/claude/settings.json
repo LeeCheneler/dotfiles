@@ -109,10 +109,6 @@
       }
     ]
   },
-  "statusLine": {
-    "type": "command",
-    "command": "~/.dotfiles/config/claude/statusline.sh"
-  },
   "alwaysThinkingEnabled": true,
   "additionalDirectories": [
     "~/projects"
