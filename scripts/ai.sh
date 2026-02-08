@@ -19,13 +19,9 @@ mkdir -p "$HOME/.claude"
 
 backup_and_link "$DOTFILES_DIR/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 backup_and_link "$DOTFILES_DIR/config/claude/settings.json" "$HOME/.claude/settings.json"
-backup_and_link "$DOTFILES_DIR/config/claude/statusline.sh" "$HOME/.claude/statusline.sh"
 backup_and_link_dir "$DOTFILES_DIR/config/claude/skills" "$HOME/.claude/skills"
 backup_and_link_dir "$DOTFILES_DIR/config/claude/hooks" "$HOME/.claude/hooks"
 backup_and_link_dir "$DOTFILES_DIR/config/claude/agents" "$HOME/.claude/agents"
-
-# Make statusline script executable
-chmod +x "$DOTFILES_DIR/config/claude/statusline.sh"
 
 # =============================================================================
 # TypeScript LSP for Claude Code
