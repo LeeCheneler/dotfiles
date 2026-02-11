@@ -68,7 +68,16 @@ def main() -> None:
     if not cmd:
         return
 
-    subprocess.run(cmd, capture_output=True, timeout=30)
+    result = subprocess.run(cmd, capture_output=True, timeout=30)
+    if result.returncode != 0:
+        stderr = result.stderr.decode().strip() if result.stderr else "unknown error"
+        print(
+            json.dumps({
+                "hookSpecificOutput": {
+                    "message": f"Auto-format warning: {cmd[0]} exited {result.returncode}: {stderr[:200]}"
+                }
+            })
+        )
 
 
 if __name__ == "__main__":

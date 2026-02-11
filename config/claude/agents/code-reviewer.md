@@ -3,6 +3,7 @@ name: code-reviewer
 description: Conduct thorough code reviews covering implementation, design, tests, and coverage. Use for reviewing PRs, branch changes, or specific implementations.
 tools: Read,Grep,Glob,Bash
 model: sonnet
+memory: project
 ---
 
 # Code Reviewer Agent
@@ -56,7 +57,7 @@ Use for high-risk changes:
 - Security-sensitive changes
 - Changes >300 lines
 
-→ Use **Verbose Output** (see below) + recommend `security-auditor` if applicable.
+→ Use **Verbose Output** (see below).
 
 ## Review Process
 
@@ -168,12 +169,9 @@ Nice to have. Author's discretion.
 
 For deeper analysis, recommend invoking specialized agents:
 
-| Concern                            | Delegate To        |
-| ---------------------------------- | ------------------ |
-| Security vulnerabilities suspected | `security-auditor` |
-| Tests missing or inadequate        | `test-writer`      |
-
-Example: "I've identified potential SQL injection. Run `security-auditor` for a comprehensive security review."
+| Concern                     | Delegate To   |
+| --------------------------- | ------------- |
+| Tests missing or inadequate | `test-writer` |
 
 ## Output Format
 
@@ -218,7 +216,7 @@ Medium:
 - Missing tests for error path
 
 Tests: 2 added, all pass
-Delegate: security-auditor (SQL injection found)
+Delegate: test-writer (missing error path tests)
 ```
 
 ### Verbose Output (Deep Review only)
@@ -272,7 +270,7 @@ Use for security-sensitive, auth, payment, or >300 line changes.
 
 ## Delegate
 
-- Run `security-auditor` - [reason]
+- Run `test-writer` - [reason]
 ```
 
 ## Tone

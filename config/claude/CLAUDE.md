@@ -39,8 +39,6 @@ Primary: Full-stack TypeScript
 
 ### React
 
-- Functional components only
-- Props interface: `{ComponentName}Props`
 - Colocate components, hooks, and tests
 - Server components by default (Next.js)
 
@@ -75,7 +73,7 @@ Primary: Full-stack TypeScript
 
 For quick fixes and small tasks, just do the work directly.
 
-For non-trivial work (new features, multi-file changes, architectural decisions), use `/begin <task>` to enter a structured workflow: research the codebase, create a plan with atomic commits, get signoff, then execute commit-by-commit with `/next`.
+For non-trivial work, use plan mode to research the codebase and design the approach. Once approved, implement with atomic conventional commits. Run tests and lint as you go.
 
 Use judgement - if a task needs planning, plan it. If it doesn't, skip the ceremony.
 
@@ -83,18 +81,15 @@ Use judgement - if a task needs planning, plan it. If it doesn't, skip the cerem
 
 When compacting, always preserve:
 
+- Current task objective and progress
 - The full list of modified files and their purposes
 - Any test commands that have been run and their results
-- The current plan state if following /begin workflow
 - Active branch name and commit history summary
 
 ## What NOT to Do
 
 - Don't add features beyond what's asked
 - Don't refactor unrelated code
-- Don't add comments to code you didn't change
 - Don't create abstractions for single use cases
 - Don't design for hypothetical future requirements
-- Don't add error handling for impossible scenarios
 - Don't use `// TODO` without a linked issue
-- Don't over-engineer
