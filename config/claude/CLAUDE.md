@@ -43,14 +43,17 @@ Before running any build, test, lint, typecheck, or format command:
 2. Check for monorepo tooling (`turbo.json`, `nx.json`) — use the orchestrator, not raw tools
 3. Check lockfiles to determine the right package manager
 
-| Don't run directly | Check for script first                  |
-| ------------------ | --------------------------------------- |
-| `tsc`              | `npm run typecheck` or `npm run build`  |
-| `eslint .`         | `npm run lint`                          |
-| `prettier --write` | `npm run format`                        |
-| `vitest run`       | `npm test`                              |
-| `next build`       | `npm run build`                         |
-| `terraform plan`   | Check for wrapper scripts or `Makefile` |
+| Don't run directly | Check for script first                   |
+| ------------------ | ---------------------------------------- |
+| `tsc`              | `<pm> run typecheck` or `<pm> run build` |
+| `eslint .`         | `<pm> run lint`                          |
+| `prettier --write` | `<pm> run format`                        |
+| `vitest run`       | `<pm> test`                              |
+| `next build`       | `<pm> run build`                         |
+| `cargo build`      | Check for `Makefile` or `just` tasks     |
+| `terraform plan`   | Check for wrapper scripts or `Makefile`  |
+
+`<pm>` = detected package manager (`npm`, `pnpm`, `yarn`, `bun`, `deno task`).
 
 Projects configure flags, paths, and environment in their scripts. Running tools directly bypasses that.
 

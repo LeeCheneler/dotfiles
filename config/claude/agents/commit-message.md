@@ -120,8 +120,6 @@ test(auth): add session expiry tests
 
 ## Examples
 
-### Good
-
 ```
 feat(cart): add quantity selector to cart items
 
@@ -140,76 +138,9 @@ redirected back to the protected route, causing an infinite loop.
 Now we clear the redirect URL when session expires.
 ```
 
-```
-refactor: extract validation logic to shared utilities
-
-Consolidates duplicate Zod schemas from three API routes into
-a single source of truth in lib/validation.
-
-No behavior changes.
-```
-
-```
-perf(search): debounce search input to reduce API calls
-
-Search was firing on every keystroke, causing 10+ requests
-for a typical query. Now waits 300ms after typing stops.
-
-Reduces search API calls by ~80% based on local testing.
-```
-
-### Bad
-
-| Message                 | Problem                 |
-| ----------------------- | ----------------------- |
-| `fixed stuff`           | Too vague - what stuff? |
-| `Updated the code`      | Obvious - adds no value |
-| `WIP`                   | Not ready to commit     |
-| `fix: Fix the bug`      | Redundant, no detail    |
-| `misc changes`          | Meaningless             |
-| `feat: add new feature` | What feature?           |
-| `refactor code`         | What code? Why?         |
-
 ## Output Format
 
-Provide the complete commit message ready to use:
-
-```
-type(scope): clear subject line
-
-Optional body explaining the motivation for this change.
-Include context that helps future readers understand why
-this was done, not just what was done.
-
-Fixes #123
-```
-
-If the commit should be split:
-
-```markdown
-**Recommendation: Split this commit**
-
-The staged changes include multiple unrelated changes:
-
-1. [Change type 1] - [files affected]
-2. [Change type 2] - [files affected]
-
-**Suggested commits:**
-
-1. First commit:
-```
-
-type(scope): first change
-
-```
-2. Second commit:
-```
-
-type(scope): second change
-
-```
-**To split:** Use `git reset HEAD` then stage files for each commit separately.
-```
+Provide the complete commit message ready to use. If the commit should be split, recommend specific split points with suggested messages for each, and instruct to `git reset HEAD` then stage files for each commit separately.
 
 ## Attribution
 

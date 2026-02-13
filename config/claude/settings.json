@@ -92,6 +92,15 @@
             "command": "python3 ~/.dotfiles/config/claude/hooks/pre-terraform.py"
           }
         ]
+      },
+      {
+        "matcher": "Bash(npm install:*)|Bash(npm i:*)|Bash(npm add:*)|Bash(pnpm add:*)|Bash(yarn add:*)|Bash(bun add:*)|Bash(pip install:*)|Bash(pip3 install:*)|Bash(cargo add:*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-install.py"
+          }
+        ]
       }
     ],
     "PostToolUse": [

@@ -4,24 +4,7 @@ set -euo pipefail
 # Create .claude directory if it doesn't exist
 mkdir -p .claude
 
-cat << 'BANNER'
-╔═════════════════════════════════════════════════════════════════╗
-║                     Claude Project Setup                        ║
-╠═════════════════════════════════════════════════════════════════╣
-║                                                                 ║
-║  1. Run: claude                                                 ║
-║  2. Paste the prompt below                                      ║
-║                                                                 ║
-╚═════════════════════════════════════════════════════════════════╝
-
-BANNER
-
-cat << 'PROMPT'
-────────────────────────────────────────────────────────────────────
-PROMPT TO PASTE:
-────────────────────────────────────────────────────────────────────
-
-Explore this codebase thoroughly with extended thinking. Analyze:
+PROMPT='Explore this codebase thoroughly with extended thinking. Analyze:
 
 - Tech stack and frameworks used
 - Project structure and architecture patterns
@@ -33,12 +16,20 @@ Explore this codebase thoroughly with extended thinking. Analyze:
 Then create .claude/CLAUDE.md with project-specific instructions that:
 
 1. Complement (don't duplicate) my global ~/.claude/CLAUDE.md
-2. Document this project's unique patterns and conventions
+2. Document this project'\''s unique patterns and conventions
 3. Note key files/directories and their purposes
 4. Include common commands (dev, build, test, lint, deploy)
 5. List any project-specific rules or gotchas
 
-Focus only on what's specific to THIS project. Keep it concise.
+Focus only on what'\''s specific to THIS project. Keep it concise.'
 
-────────────────────────────────────────────────────────────────────
-PROMPT
+# Copy to clipboard
+echo "$PROMPT" | pbcopy
+
+cat << 'BANNER'
+Prompt copied to clipboard.
+
+  1. Run: claude
+  2. Paste with Cmd+V
+
+BANNER

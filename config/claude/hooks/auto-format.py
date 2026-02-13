@@ -3,6 +3,7 @@
 
 import json
 import os
+import shutil
 import subprocess
 import sys
 
@@ -23,6 +24,22 @@ def find_config_upward(start_dir: str, names: list[str]) -> str | None:
 def detect_formatter(file_path: str) -> list[str] | None:
     """Detect project formatter and return command to format the file."""
     start_dir = os.path.dirname(os.path.abspath(file_path))
+    ext = os.path.splitext(file_path)[1]
+
+    # Go files — gofmt is always available with Go
+    if ext == ".go" and shutil.which("gofmt"):
+        return ["gofmt", "-w", file_path]
+
+    # Rust files — rustfmt is always available with Rust
+    if ext == ".rs" and shutil.which("rustfmt"):
+        return ["rustfmt", file_path]
+
+    # Python files — check for ruff first (faster), then black
+    if ext in (".py", ".pyw"):
+        if shutil.which("ruff"):
+            return ["ruff", "format", file_path]
+        if shutil.which("black"):
+            return ["black", "--quiet", file_path]
 
     # Biome
     if find_config_upward(start_dir, ["biome.json", "biome.jsonc"]):
