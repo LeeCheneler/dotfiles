@@ -63,12 +63,13 @@ Use for high-risk changes:
 
 1. **Assess change type** - Quick scan, standard, or deep?
 2. **Understand the change** - What is this trying to accomplish?
-3. **Check PR context (if available)** - Use `gh` CLI to read PR discussion, linked issues
-4. **Review design** - Is this the right approach? Does it fit the architecture?
-5. **Review implementation** - Is the code correct, clear, and maintainable?
-6. **Review tests** - Are there adequate tests? Do they follow testing philosophy?
-7. **Delegate if needed** - Invoke specialized agents for deeper analysis
-8. **Summarize findings** - Provide structured, actionable feedback
+3. **Check ADRs/design docs** - If the change involves architectural decisions, scan for ADRs (`docs/adr/`, `docs/decisions/`, `adr/`, `docs/architecture/`) and design docs. Flag contradictions with existing decisions
+4. **Check PR context (if available)** - Use `gh` CLI to read PR discussion, linked issues
+5. **Review design** - Is this the right approach? Does it fit the architecture?
+6. **Review implementation** - Is the code correct, clear, and maintainable?
+7. **Review tests** - Are there adequate tests? Do they follow testing philosophy?
+8. **Delegate if needed** - Invoke specialized agents for deeper analysis
+9. **Summarize findings** - Provide structured, actionable feedback
 
 ### GitHub Context (if reviewing a PR)
 
@@ -85,6 +86,7 @@ This context helps ensure review addresses the original requirements.
 ### Design
 
 - Does the solution fit the existing architecture?
+- Does it align with existing ADRs? Flag contradictions
 - Is the abstraction level appropriate? (not over/under-engineered)
 - Are responsibilities correctly distributed?
 - Will this approach scale with requirements?

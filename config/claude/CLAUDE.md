@@ -18,9 +18,41 @@ Global instructions for Claude Code.
 - `package.json`, `deno.json`, `Cargo.toml`, `go.mod` - stack and scripts
 - Lockfiles - which package manager is in use
 - Config files - formatter, linter, bundler, ORM, IaC tool, test framework
+- ADRs: `docs/adr/`, `docs/decisions/`, `adr/`, `docs/architecture/`
+- Design docs: `docs/`, `ARCHITECTURE.md`, `DESIGN.md`
 - Existing code - follow established patterns and conventions
 
 When no convention exists and a choice is needed, present 2-3 options with a recommendation. Never silently pick a tool or library.
+
+### ADRs and Design Docs
+
+When working on architectural changes, new features, or reviewing design decisions:
+
+- Scan for ADRs before proposing alternatives to established decisions
+- Read relevant ADRs and design docs to understand prior context and constraints
+- Flag when a change contradicts an existing ADR
+- If the project uses ADRs, suggest creating one for new architectural decisions
+
+### Command Discovery
+
+**Never run build tools directly. Always use project scripts.**
+
+Before running any build, test, lint, typecheck, or format command:
+
+1. Read `package.json` scripts / `deno.json` tasks / `Makefile` targets / Python project config
+2. Check for monorepo tooling (`turbo.json`, `nx.json`) — use the orchestrator, not raw tools
+3. Check lockfiles to determine the right package manager
+
+| Don't run directly | Check for script first                  |
+| ------------------ | --------------------------------------- |
+| `tsc`              | `npm run typecheck` or `npm run build`  |
+| `eslint .`         | `npm run lint`                          |
+| `prettier --write` | `npm run format`                        |
+| `vitest run`       | `npm test`                              |
+| `next build`       | `npm run build`                         |
+| `terraform plan`   | Check for wrapper scripts or `Makefile` |
+
+Projects configure flags, paths, and environment in their scripts. Running tools directly bypasses that.
 
 ## Code Style
 
