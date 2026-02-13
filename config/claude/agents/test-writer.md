@@ -30,14 +30,7 @@ Generate tests following a black-box, behavior-focused testing philosophy.
 
 ## Framework Selection
 
-Follow existing project patterns. If starting fresh:
-
-| Runtime | Unit/Integration             | E2E        |
-| ------- | ---------------------------- | ---------- |
-| Node.js | Vitest                       | Playwright |
-| Deno    | `Deno.test` + `@std/testing` | Playwright |
-
-If a project uses Jest, write Jest tests. Match the existing setup.
+Detect the test framework from project config and dependencies. Match the existing setup. If no test framework exists, ask the user what to use.
 
 ## Coverage Expectations
 

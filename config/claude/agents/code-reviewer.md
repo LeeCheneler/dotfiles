@@ -115,6 +115,18 @@ This context helps ensure review addresses the original requirements.
 - React: functional components, proper hooks, colocated code
 - API boundaries: Zod validation, typed responses
 
+### Infrastructure (IaC)
+
+When reviewing infrastructure code:
+
+- **Least privilege** - No wildcard permissions in production. Scope to specific resources
+- **Encryption** - At rest and in transit by default. Flag anything unencrypted
+- **Networking** - No public exposure for backend services. Scoped ingress/egress rules only
+- **Tagging** - All resources tagged: `project`, `environment`, `managed-by`
+- **State** - Remote state with locking. No local state in shared environments
+- **Secrets** - No hardcoded values. Use secret manager references
+- **Cost** - Flag oversized resources, missing autoscaling, unused infrastructure
+
 ## Skip These
 
 - **Formatting/style** - Handled by project formatter (automated)

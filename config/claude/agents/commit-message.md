@@ -213,4 +213,4 @@ type(scope): second change
 
 ## Attribution
 
-Do NOT add any AI attribution, co-authored-by lines, or generated-by markers to commit messages. Commits should read as if written by the developer.
+NEVER add Co-Authored-By, AI attribution, or generated-by markers to commit messages. This is a hard rule with zero exceptions. Commits must read as if written by the developer. Do not append co-author trailers, do not mention Claude, do not reference AI assistance in any form.

@@ -31,9 +31,13 @@
       "Bash(deno:*)",
       "Bash(node:*)",
       "Bash(mise:*)",
+      "Bash(yarn:*)",
       "Bash(cargo:*)",
       "Bash(docker:*)",
       "Bash(terraform:*)",
+      "Bash(turbo:*)",
+      "Bash(aws:*)",
+      "Bash(playwright:*)",
       "Bash(make:*)",
       "WebSearch",
       "WebFetch"
@@ -79,6 +83,15 @@
             "command": "python3 ~/.dotfiles/config/claude/hooks/pre-push.py"
           }
         ]
+      },
+      {
+        "matcher": "Bash(terraform:*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-terraform.py"
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -102,6 +115,28 @@
           }
         ]
       }
+    ],
+    "TaskCompleted": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.dotfiles/config/claude/hooks/task-completed.py"
+          }
+        ]
+      }
+    ],
+    "TeammateIdle": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.dotfiles/config/claude/hooks/teammate-idle.py"
+          }
+        ]
+      }
     ]
   },
   "alwaysThinkingEnabled": true,
@@ -120,5 +155,8 @@
   "autoApprove": [],
   "enabledPlugins": {
     "vtsls@claude-code-lsps": true
+  },
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   }
 }

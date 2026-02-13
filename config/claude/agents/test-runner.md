@@ -35,22 +35,28 @@ ls vitest.config.* jest.config.* pytest.ini setup.py Cargo.toml go.mod 2>/dev/nu
 
 ### 2. Determine Test Command
 
-| Detection                     | Command                               |
-| ----------------------------- | ------------------------------------- |
-| package.json with test script | `npm test` / `pnpm test` / `bun test` |
-| deno.json with test task      | `deno task test`                      |
-| vitest.config.*               | `npx vitest run`                      |
-| jest.config.*                 | `npx jest`                            |
-| pytest.ini or tests/*.py      | `pytest`                              |
-| Cargo.toml                    | `cargo test`                          |
-| go.mod                        | `go test ./...`                       |
-| Makefile with test target     | `make test`                           |
+| Detection                     | Command                                             |
+| ----------------------------- | --------------------------------------------------- |
+| turbo.json with test task     | `turbo run test`                                    |
+| package.json with test script | `npm test` / `pnpm test` / `yarn test` / `bun test` |
+| deno.json with test task      | `deno task test`                                    |
+| vitest.config.*               | `npx vitest run`                                    |
+| jest.config.*                 | `npx jest`                                          |
+| pytest.ini or tests/*.py      | `pytest`                                            |
+| Cargo.toml                    | `cargo test`                                        |
+| go.mod                        | `go test ./...`                                     |
+| Makefile with test target     | `make test`                                         |
 
 Check for lockfiles to determine package manager:
 
 - `pnpm-lock.yaml` → pnpm
 - `bun.lockb` → bun
+- `yarn.lock` → yarn
 - `package-lock.json` → npm
+
+Check for monorepo tooling:
+
+- `turbo.json` → use `turbo run test` (respects workspace task graph)
 
 ### 3. Run Tests
 
