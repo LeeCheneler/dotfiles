@@ -67,7 +67,6 @@ dotfiles/
 │   ├── git.sh               # Git config + SSH keys
 │   └── ai.sh                # AI tooling config
 ├── bin/
-│   ├── init-claude          # Bootstrap Claude project instructions
 │   └── init-copilot         # Bootstrap copilot instructions
 └── config/
     ├── zsh/.zshrc           # Zsh + zinit config
@@ -128,35 +127,50 @@ export PATH="/work/tools:$PATH"
 
 Global Claude Code configuration is symlinked to `~/.claude/`:
 
-- `CLAUDE.md` - Global instructions
-- `settings.json` - Auto-approve rules and preferences
-- `commands/` - Slash commands for structured workflows
-- `hooks/` - Custom hooks (file protection, git operations)
-- `agents/` - Specialized agents for development tasks
+- `CLAUDE.md` - Global instructions (principles, security rules, workflow docs)
+- `settings.json` - Permissions (deny/ask/allow), hooks, notifications
+- `commands/` - Slash commands invoked explicitly by the user
+- `skills/` - Auto-discovered conventions applied based on context
+- `agents/` - Sub-agent definitions for pipeline workflow delegation
+
+#### Commands
+
+| Command            | Purpose                                   |
+| ------------------ | ----------------------------------------- |
+| `/workflow <task>` | Auto-route to Simple or Pipeline workflow |
+| `/commit`          | Conventional commit with guards           |
+| `/pr`              | Create pull request                       |
+| `/review [target]` | Code review                               |
+| `/test [scope]`    | Run tests                                 |
+| `/write-tests`     | Generate tests                            |
+| `/plan <task>`     | Research + plan only (no execution)       |
+| `/init-project`    | Generate project CLAUDE.md from codebase  |
+| `/refresh-project` | Update existing project CLAUDE.md         |
 
 #### Agents
 
-| Agent              | Purpose                                                         |
-| ------------------ | --------------------------------------------------------------- |
-| `researcher`       | Deep codebase exploration, outputs research.md                  |
-| `planner`          | Create implementation plans with commit breakdown               |
-| `code-reviewer`    | Review code changes for quality, patterns, security             |
-| `test-writer`      | Generate tests following black-box, behavior-focused philosophy |
-| `test-runner`      | Run tests, return concise pass/fail summary                     |
-| `security-auditor` | Audit for OWASP Top 10, dependency vulnerabilities, secrets     |
-| `commit-message`   | Generate conventional commit messages                           |
-| `pr-description`   | Generate comprehensive PR descriptions                          |
+| Agent         | Purpose                                           |
+| ------------- | ------------------------------------------------- |
+| `researcher`  | Deep codebase exploration for pipeline research   |
+| `planner`     | Milestone-based implementation planning           |
+| `coder`       | Focused code changes during pipeline execution    |
+| `reviewer`    | Code review for correctness, security, simplicity |
+| `test-writer` | Generate behavior-focused tests                   |
+| `test-runner` | Run tests, return concise pass/fail summary       |
+
+#### Skills
+
+| Skill                | Auto-applied when...                       |
+| -------------------- | ------------------------------------------ |
+| `coding-standards`   | Writing, editing, or reviewing code        |
+| `test-conventions`   | Writing, generating, or reviewing tests    |
+| `commit-conventions` | Creating commits or planning commit splits |
 
 #### Project Setup
 
-Bootstrap project-specific Claude instructions:
+Generate a project-specific CLAUDE.md by running `/init-project` inside a Claude Code session. This deeply analyzes the repo and creates a `CLAUDE.md` at the project root with stack, conventions, architecture, and gotchas. Use `/refresh-project` to update it later without losing manual additions.
 
-```bash
-cd your-project
-init-claude
-```
-
-This prints a prompt to paste into Claude, which will analyze your codebase and generate a `.claude/CLAUDE.md` tailored to the project.
+See `config/claude/docs/` for full architecture, workflow, and convention documentation.
 
 ### Copilot Instructions
 
