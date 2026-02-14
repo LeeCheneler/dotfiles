@@ -1,3 +1,15 @@
+---
+model: sonnet
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Write
+  - Bash(ls:*)
+  - Bash(tree:*)
+  - Bash(git log:*)
+---
+
 Generate a world-class project-specific CLAUDE.md by deeply analyzing this
 repository. The goal is to capture derived knowledge that saves Claude from
 re-reading the entire project at the start of every session.

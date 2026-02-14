@@ -1,3 +1,15 @@
+---
+model: sonnet
+allowed-tools:
+  - Bash(git diff:*)
+  - Bash(git add:*)
+  - Bash(git commit:*)
+  - Bash(git status)
+  - Bash(git log:*)
+  - Bash(git stash:*)
+  - Read
+---
+
 Create a clean, conventional commit for the current changes.
 
 ## Process

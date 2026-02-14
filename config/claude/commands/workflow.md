@@ -1,3 +1,24 @@
+---
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Write
+  - Edit
+  - Bash(git:*)
+  - Bash(gh:*)
+  - Bash(npm:*)
+  - Bash(npx:*)
+  - Bash(yarn:*)
+  - Bash(pnpm:*)
+  - Bash(make:*)
+  - Bash(ls:*)
+  - Bash(tree:*)
+  - Bash(cargo:*)
+  - Bash(go:*)
+  - Bash(pytest:*)
+---
+
 Evaluate the task and route it to the most appropriate workflow.
 
 ## Routing Criteria

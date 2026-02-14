@@ -1,3 +1,13 @@
+---
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Bash(git diff:*)
+  - Bash(gh pr diff:*)
+  - Bash(gh pr view:*)
+---
+
 Review code changes for quality, patterns, and potential issues.
 
 ## Input
