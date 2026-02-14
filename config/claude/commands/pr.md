@@ -39,7 +39,11 @@ Create a pull request for the current branch.
 
 4. NEVER mention Claude, AI, or any AI tool in the PR description.
 
-5. Create PR: `gh pr create --title "..." --body "..." --base <target>`
+5. Create the PR immediately — do not ask for confirmation on the title or
+   description. The user invoked this command because they want a PR, not a
+   review of the description.
+
+   `gh pr create --title "..." --body "..." --base <target>`
 
 6. Present the PR URL.
 
