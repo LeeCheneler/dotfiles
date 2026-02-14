@@ -6,63 +6,118 @@ Configuration for Claude Code CLI tool.
 
 ```
 ~/.dotfiles/config/claude/
-├── agents/           # Specialized task agents
-├── hooks/            # Operation enforcement hooks
-├── skills/           # Slash commands
-├── CLAUDE.md         # Global instructions
-└── settings.json     # Permissions, hooks, MCP servers
+├── CLAUDE.md             # Global instructions
+├── settings.json         # Permissions, hooks
+├── commands/             # Slash commands (explicit invocation)
+│   ├── workflow.md       # Auto-route to Simple or Pipeline
+│   ├── commit.md         # Conventional commit with guards
+│   ├── pr.md             # Create pull request
+│   ├── review.md         # Code review
+│   ├── test.md           # Run tests
+│   ├── write-tests.md    # Generate tests
+│   ├── plan.md           # Research + plan (no execution)
+│   ├── init-project.md   # Generate project CLAUDE.md
+│   └── refresh-project.md # Update project CLAUDE.md
+├── skills/               # Auto-discovered conventions
+│   ├── coding-standards/
+│   ├── test-conventions/
+│   └── commit-conventions/
+├── agents/               # Sub-agents for pipeline delegation
+│   ├── researcher.md
+│   ├── planner.md
+│   ├── coder.md
+│   ├── reviewer.md
+│   ├── test-writer.md
+│   └── test-runner.md
+└── docs/                 # Architecture and workflow documentation
+    ├── ARCHITECTURE.md
+    ├── WORKFLOWS.md
+    └── CONVENTIONS.md
 ```
 
-Symlinked to `~/.claude/` via `apply.sh`.
+Symlinked to `~/.claude/` via `scripts/ai.sh`.
 
-## Hooks
+## Commands
 
-### PreToolUse (block before execution)
-
-| Hook               | Trigger        | Behavior                                                |
-| ------------------ | -------------- | ------------------------------------------------------- |
-| `protect-files.py` | `Bash`         | Asks permission before deleting files outside git repos |
-| `pre-commit.py`    | `git commit`   | Blocks commits on main; allows feature branches through |
-| `pre-pr.py`        | `gh pr create` | Blocks until PR description approved by user            |
-| `pre-push.py`      | `git push`     | Blocks push to main; allows feature branches            |
-
-### PostToolUse (run after execution)
-
-| Hook             | Trigger       | Behavior                                                    |
-| ---------------- | ------------- | ----------------------------------------------------------- |
-| `auto-format.py` | `Edit\|Write` | Auto-formats files with Biome/Prettier/dprint after editing |
-
-### Notification
-
-macOS notification when Claude needs attention.
-
-All blocking hooks exit code 2, with instructions in stderr.
+| Command            | Purpose                                   |
+| ------------------ | ----------------------------------------- |
+| `/workflow <task>` | Auto-route to Simple or Pipeline workflow |
+| `/commit`          | Conventional commit with guards           |
+| `/pr`              | Create pull request                       |
+| `/review [target]` | Code review                               |
+| `/test [scope]`    | Run tests                                 |
+| `/write-tests`     | Generate tests                            |
+| `/plan <task>`     | Research + plan only (no execution)       |
+| `/init-project`    | Generate project CLAUDE.md from codebase  |
+| `/refresh-project` | Update existing project CLAUDE.md         |
 
 ## Agents
 
-| Agent            | Model  | Purpose                                     |
-| ---------------- | ------ | ------------------------------------------- |
-| `code-reviewer`  | sonnet | Review implementation, design, tests        |
-| `test-writer`    | sonnet | Generate tests following black-box approach |
-| `test-runner`    | haiku  | Run tests, return concise pass/fail summary |
-| `commit-message` | haiku  | Generate conventional commit messages       |
-| `pr-description` | sonnet | Generate PR titles and descriptions         |
-
-`code-reviewer` has project-scoped memory enabled to learn codebase patterns over time.
+| Agent         | Purpose                                           |
+| ------------- | ------------------------------------------------- |
+| `researcher`  | Deep codebase exploration for pipeline research   |
+| `planner`     | Milestone-based implementation planning           |
+| `coder`       | Focused code changes during pipeline execution    |
+| `reviewer`    | Code review for correctness, security, simplicity |
+| `test-writer` | Generate behavior-focused tests                   |
+| `test-runner` | Run tests, return concise pass/fail summary       |
 
 ## Skills
 
-| Command   | Purpose                              |
-| --------- | ------------------------------------ |
-| `/commit` | Generate commit from staged changes  |
-| `/review` | Run code review on current changes   |
-| `/pr`     | Open pull request for current branch |
+Auto-applied based on context — no explicit invocation needed.
 
-## MCP Servers
+| Skill                | Applied when...                            |
+| -------------------- | ------------------------------------------ |
+| `coding-standards`   | Writing, editing, or reviewing code        |
+| `test-conventions`   | Writing, generating, or reviewing tests    |
+| `commit-conventions` | Creating commits or planning commit splits |
 
-| Server     | Purpose                                   |
-| ---------- | ----------------------------------------- |
-| `context7` | Up-to-date library documentation for LLMs |
+## Hooks
+
+### PreToolUse
+
+| Matcher | Type   | Behavior                                                                |
+| ------- | ------ | ----------------------------------------------------------------------- |
+| `Bash`  | prompt | Evaluates commands for dangerous operations (rm outside project, force  |
+|         |        | push to protected branches, terraform destroy, dropping tables). Blocks |
+|         |        | if dangerous, approves if safe.                                         |
+
+### Stop
+
+| Matcher | Type    | Behavior                               |
+| ------- | ------- | -------------------------------------- |
+| (all)   | command | macOS notification when task completes |
+
+## Security Model
+
+Three independent layers — if one fails, the others still protect:
+
+1. **Permissions** (`settings.json`) — declarative deny/ask/allow rules
+2. **Hooks** (`settings.json`) — prompt-based PreToolUse evaluation
+3. **CLAUDE.md directives** — behavioral rules (deletion safety, git safety, secrets)
+
+### Permissions Summary
+
+- **Denied:** Reading .env/secrets/credentials files, `rm -rf /`, `rm -rf ~`
+- **Ask:** Force push, rebase, hard reset, `rm -rf`, terraform apply/destroy, AWS CLI
+- **Allowed:** Git operations, package managers, common CLI tools, `gh`
+
+## Workflows
+
+Two workflows, routed by `/workflow`:
+
+- **Simple** — single-concern changes. Read → edit → test → commit.
+- **Pipeline** — multi-step work. Research → plan → gate → execute → finalize.
+
+Pipeline uses gate modes (continuous or gated) and working docs in `docs/work/<slug>/`.
+
+See `config/claude/docs/WORKFLOWS.md` for full documentation.
+
+## Project Setup
+
+Run `/init-project` inside a Claude Code session to generate a project-specific `CLAUDE.md` at the project root. This analyzes the repo deeply — stack, conventions, architecture, testing patterns, gotchas.
+
+Run `/refresh-project` to update it later without losing manual additions.
 
 ## Plugins
 
@@ -70,18 +125,9 @@ All blocking hooks exit code 2, with instructions in stderr.
 | ------------------------ | -------------------------- |
 | `vtsls@claude-code-lsps` | TypeScript LSP integration |
 
-## Settings Overview
-
-Key configuration in `settings.json`:
-
-- **Permissions**: Auto-allow Read, Edit, Write, Glob, Grep, common CLI tools, git, gh, npm/pnpm/bun/deno, docker, terraform
-- **Denied Bash**: `cat`, `head`, `tail`, `find` removed to enforce use of dedicated Read/Glob tools
-- **Extended thinking**: Always enabled
-- **Additional directories**: `~/projects`
-
 ## GitHub Integration
 
-Agents use the `gh` CLI (installed via Brewfile) for GitHub access. Authenticate with:
+Uses the `gh` CLI (installed via Brewfile) for GitHub access. Authenticate with:
 
 ```bash
 gh auth login
@@ -91,14 +137,13 @@ gh auth login
 
 **Commands not appearing:**
 
-- Start new Claude Code session (skills load at startup)
+- Start a new Claude Code session (commands/skills load at startup)
 
 **Hook not triggering:**
 
-- Check `~/.claude/settings.json` symlink exists
-- Verify hook scripts are executable (`chmod +x`)
+- Check `~/.claude/settings.json` symlink exists and points to `~/.dotfiles/config/claude/settings.json`
 
-**Auto-format not working:**
+**Skills not applying:**
 
-- Ensure project has a formatter config (biome.json, .prettierrc, dprint.json)
-- Check hook output for warnings (formatter exit code is now logged)
+- Verify `~/.claude/skills` symlink exists
+- Skills are auto-discovered from SKILL.md frontmatter `description` field

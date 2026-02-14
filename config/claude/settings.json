@@ -1,50 +1,76 @@
 {
   "permissions": {
     "allow": [
-      "Read",
-      "Edit",
-      "Write",
-      "Glob",
-      "Grep",
-      "Bash(basename:*)",
-      "Bash(diff:*)",
-      "Bash(dirname:*)",
-      "Bash(du:*)",
-      "Bash(env:*)",
-      "Bash(file:*)",
-      "Bash(ls:*)",
-      "Bash(pwd:*)",
-      "Bash(realpath:*)",
-      "Bash(stat:*)",
-      "Bash(tree:*)",
-      "Bash(uname:*)",
-      "Bash(wc:*)",
-      "Bash(which:*)",
-      "Bash(xargs:*)",
-      "Bash(git:*)",
-      "Bash(gh:*)",
-      "Bash(npm:*)",
-      "Bash(npx:*)",
-      "Bash(pnpm:*)",
-      "Bash(bun:*)",
-      "Bash(bunx:*)",
-      "Bash(deno:*)",
-      "Bash(node:*)",
-      "Bash(mise:*)",
-      "Bash(yarn:*)",
-      "Bash(cargo:*)",
-      "Bash(docker:*)",
-      "Bash(terraform:*)",
-      "Bash(turbo:*)",
-      "Bash(aws:*)",
-      "Bash(playwright:*)",
-      "Bash(make:*)",
-      "WebSearch",
-      "WebFetch"
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git checkout*)",
+      "Bash(git switch*)",
+      "Bash(git stash*)",
+      "Bash(git fetch*)",
+      "Bash(git pull*)",
+      "Bash(git push)",
+      "Bash(git push origin*)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(pnpm *)",
+      "Bash(yarn *)",
+      "Bash(pip *)",
+      "Bash(cargo *)",
+      "Bash(make *)",
+      "Bash(node *)",
+      "Bash(deno *)",
+      "Bash(python *)",
+      "Bash(tsc *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(fd *)",
+      "Bash(find *)",
+      "Bash(ls *)",
+      "Bash(tree *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(touch *)",
+      "Bash(chmod *)",
+      "Bash(echo *)",
+      "Bash(curl *)",
+      "Bash(jq *)",
+      "Bash(sed *)",
+      "Bash(awk *)",
+      "Bash(sort *)",
+      "Bash(uniq *)",
+      "Bash(diff *)",
+      "Bash(gh *)"
     ],
-    "deny": [],
-    "ask": [],
-    "defaultMode": "default"
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Read(./**/*credentials*)",
+      "Read(./**/*secret*)",
+      "Bash(rm -rf /)",
+      "Bash(rm -rf ~)",
+      "Bash(rm -rf $HOME)"
+    ],
+    "ask": [
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git rebase*)",
+      "Bash(git reset --hard*)",
+      "Bash(rm -rf *)",
+      "Bash(rm -r *)",
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(aws *)"
+    ]
   },
   "hooks": {
     "PreToolUse": [
@@ -52,120 +78,22 @@
         "matcher": "Bash",
         "hooks": [
           {
-            "type": "command",
-            "command": "python3 ~/.dotfiles/config/claude/hooks/protect-files.py"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash(git commit:*)",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-commit.py"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash(gh pr create:*)",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-pr.py"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash(git push:*)",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-push.py"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash(terraform:*)",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-terraform.py"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash(npm install:*)|Bash(npm i:*)|Bash(npm add:*)|Bash(pnpm add:*)|Bash(yarn add:*)|Bash(bun add:*)|Bash(pip install:*)|Bash(pip3 install:*)|Bash(cargo add:*)",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.dotfiles/config/claude/hooks/pre-install.py"
+            "type": "prompt",
+            "prompt": "The user is about to run a bash command. Check if it: (1) contains 'rm -rf' or 'rm -r' targeting a path outside the current project directory ($CLAUDE_PROJECT_DIR), (2) force-pushes to main/master/develop branches, (3) runs terraform destroy without a targeted resource, or (4) drops database tables. If dangerous, set decision to 'block' with a clear reason. If safe, set decision to 'approve'."
           }
         ]
       }
     ],
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.dotfiles/config/claude/hooks/auto-format.py"
-          }
-        ]
-      }
-    ],
-    "Notification": [
+    "Stop": [
       {
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
-          }
-        ]
-      }
-    ],
-    "TaskCompleted": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.dotfiles/config/claude/hooks/task-completed.py"
-          }
-        ]
-      }
-    ],
-    "TeammateIdle": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.dotfiles/config/claude/hooks/teammate-idle.py"
+            "command": "osascript -e 'display notification \"Task completed\" with title \"Claude Code\"' 2>/dev/null || true"
           }
         ]
       }
     ]
-  },
-  "alwaysThinkingEnabled": true,
-  "additionalDirectories": [
-    "~/projects"
-  ],
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp@latest"
-      ]
-    }
-  },
-  "autoApprove": [],
-  "enabledPlugins": {
-    "vtsls@claude-code-lsps": true
-  },
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   }
 }
