@@ -1,3 +1,15 @@
+---
+model: sonnet
+allowed-tools:
+  - Bash(git diff:*)
+  - Bash(git add:*)
+  - Bash(git commit:*)
+  - Bash(git status)
+  - Bash(git log:*)
+  - Bash(git stash:*)
+  - Read
+---
+
 Create a clean, conventional commit for the current changes.
 
 ## Process
@@ -11,7 +23,8 @@ Create a clean, conventional commit for the current changes.
    - Red flags: secrets, .env files, debug code (console.log, debugger
      statements), large binaries, generated files, TODO/FIXME additions
 
-3. If red flags found, report them and ask whether to proceed.
+3. If red flags found, report them and STOP. Do not proceed without explicit
+   confirmation.
 
 4. Generate a conventional commit message:
    - Format: `<type>(<scope>): <description>`
@@ -22,10 +35,8 @@ Create a clean, conventional commit for the current changes.
    - Footer: reference ticket/issue numbers if mentioned in the conversation
    - NEVER mention Claude, AI, or any AI tool anywhere in the commit
 
-5. Present the commit message and a brief summary of what's being committed.
-   Ask for confirmation or edits.
-
-6. Commit.
+5. Commit immediately. Do not ask for confirmation — the user invoked this
+   command because they want a commit, not a review.
 
 ## Guards
 

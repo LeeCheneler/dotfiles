@@ -1,3 +1,20 @@
+---
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Write
+  - Edit
+  - Bash(npm test:*)
+  - Bash(npx:*)
+  - Bash(yarn:*)
+  - Bash(pnpm:*)
+  - Bash(cargo test:*)
+  - Bash(go test:*)
+  - Bash(pytest:*)
+  - Bash(make test:*)
+---
+
 Generate tests for the specified code.
 
 ## Philosophy

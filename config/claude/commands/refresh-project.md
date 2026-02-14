@@ -1,3 +1,16 @@
+---
+model: sonnet
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Bash(ls:*)
+  - Bash(tree:*)
+  - Bash(git log:*)
+  - Bash(git diff:*)
+---
+
 Update the existing project CLAUDE.md without regenerating from scratch.
 Preserves manual additions while updating sections where the project has
 drifted.

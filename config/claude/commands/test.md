@@ -1,3 +1,19 @@
+---
+model: sonnet
+allowed-tools:
+  - Read
+  - Glob
+  - Grep
+  - Bash(npm test:*)
+  - Bash(npx:*)
+  - Bash(yarn:*)
+  - Bash(pnpm:*)
+  - Bash(cargo test:*)
+  - Bash(go test:*)
+  - Bash(pytest:*)
+  - Bash(make test:*)
+---
+
 Run tests intelligently based on the project and context.
 
 ## Process
