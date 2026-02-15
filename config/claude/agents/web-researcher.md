@@ -10,7 +10,7 @@ tools:
   - Read
   - Grep
   - Glob
-model: sonnet
+model: opus
 ---
 
 You are a technical researcher. Your job is to research technologies,

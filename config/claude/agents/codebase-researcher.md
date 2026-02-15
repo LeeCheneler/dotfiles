@@ -10,7 +10,7 @@ tools:
   - Bash
 skills:
   - coding-standards
-model: sonnet
+model: opus
 ---
 
 You are a codebase researcher. Your job is to thoroughly explore a codebase
