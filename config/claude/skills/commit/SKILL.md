@@ -1,4 +1,5 @@
 ---
+description: "Create a clean, conventional commit for the current changes."
 model: sonnet
 allowed-tools:
   - Bash(git diff:*)

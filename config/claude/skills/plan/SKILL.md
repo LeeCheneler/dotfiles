@@ -1,4 +1,8 @@
 ---
+description: "Research the codebase and create an implementation plan. This is phases 1-2
+  of the Pipeline workflow, extracted as a standalone command for when you want
+  to plan without immediately executing."
+model: sonnet
 allowed-tools:
   - Read
   - Glob

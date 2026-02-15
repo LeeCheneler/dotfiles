@@ -1,4 +1,5 @@
 ---
+description: "Create a pull request for the current branch."
 model: sonnet
 allowed-tools:
   - Read
@@ -8,6 +9,7 @@ allowed-tools:
   - Bash(git fetch:*)
   - Bash(git diff:*)
   - Bash(git status)
+  - Bash(git push:*)
   - Bash(gh pr:*)
 ---
 

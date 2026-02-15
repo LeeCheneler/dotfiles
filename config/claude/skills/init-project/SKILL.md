@@ -1,4 +1,6 @@
 ---
+description: "Generate a world-class project-specific CLAUDE.md by deeply analyzing this
+  repository."
 model: sonnet
 allowed-tools:
   - Read

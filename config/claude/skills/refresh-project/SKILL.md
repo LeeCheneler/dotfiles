@@ -1,4 +1,5 @@
 ---
+description: "Update the existing project CLAUDE.md without regenerating from scratch."
 model: sonnet
 allowed-tools:
   - Read

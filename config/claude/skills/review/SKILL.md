@@ -1,4 +1,6 @@
 ---
+description: "Review code changes for quality, patterns, and potential issues."
+model: sonnet
 allowed-tools:
   - Read
   - Glob

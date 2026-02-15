@@ -1,4 +1,6 @@
 ---
+description: "Generate tests for the specified code."
+model: sonnet
 allowed-tools:
   - Read
   - Glob

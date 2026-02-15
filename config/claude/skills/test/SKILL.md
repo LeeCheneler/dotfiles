@@ -1,4 +1,5 @@
 ---
+description: "Run tests intelligently based on the project and context."
 model: sonnet
 allowed-tools:
   - Read

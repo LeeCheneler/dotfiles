@@ -1,4 +1,6 @@
 ---
+description: "Evaluate the task and route it to the most appropriate workflow."
+model: sonnet
 allowed-tools:
   - Read
   - Glob

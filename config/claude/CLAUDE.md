@@ -41,9 +41,9 @@ and game engine programming. Adapt to whatever project you're in.
 
 ## Workflow System
 
-Use `/workflow <task>` to auto-route, or invoke commands directly:
+Use `/workflow <task>` to auto-route, or invoke skills directly:
 
-| Command                 | Purpose                                           |
+| Skill                   | Purpose                                           |
 | ----------------------- | ------------------------------------------------- |
 | `/workflow <task>`      | Auto-route to Simple or Pipeline workflow         |
 | `/commit`               | Conventional commit with guards                   |
