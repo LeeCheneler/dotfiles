@@ -8,6 +8,8 @@ tools:
   - Grep
   - Glob
   - Bash
+skills:
+  - coding-standards
 ---
 
 You are a codebase researcher. Your job is to thoroughly explore a codebase

@@ -7,6 +7,9 @@ tools:
   - Grep
   - Glob
   - Bash
+skills:
+  - coding-standards
+  - test-conventions
 ---
 
 You are a code reviewer. Your job is to review code changes thoroughly but
