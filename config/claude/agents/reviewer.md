@@ -10,6 +10,7 @@ tools:
 skills:
   - coding-standards
   - test-conventions
+model: sonnet
 ---
 
 You are a code reviewer. Your job is to review code changes thoroughly but
