@@ -1,8 +1,8 @@
 ---
-name: researcher
-description: "Deep codebase exploration. Use when the pipeline workflow needs
-  to understand existing architecture, patterns, and dependencies before
-  planning implementation."
+name: codebase-researcher
+description: "Deep codebase exploration. Use when you need to understand
+  existing architecture, patterns, dependencies, and conventions within
+  the current project before planning or implementing changes."
 tools:
   - Read
   - Grep

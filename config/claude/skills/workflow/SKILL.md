@@ -45,7 +45,7 @@ exist for the affected area → /commit.
 
 **Flow:**
 
-1. Research: use the **researcher agent** to explore relevant code, docs,
+1. Research: use the **codebase-researcher agent** to explore relevant code, docs,
    tests, dependencies. It writes findings to `docs/work/<slug>/research.md`.
 2. Plan (main context): break into numbered milestones, each = one atomic
    commit. Include gate criteria, commit messages, risks. Penultimate

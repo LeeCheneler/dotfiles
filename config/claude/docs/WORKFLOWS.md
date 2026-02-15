@@ -16,7 +16,7 @@ For multi-file, multi-step work that benefits from planning.
 
 ### Phases
 
-1. **Research** — **researcher agent** explores code, docs, tests, deps →
+1. **Research** — **codebase-researcher agent** explores code, docs, tests, deps →
    `docs/work/<slug>/research.md`
 2. **Plan** (main context) — milestones, gates, commit messages →
    `docs/work/<slug>/plan.md`

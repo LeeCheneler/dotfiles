@@ -20,7 +20,7 @@ to plan without immediately executing.
 
 ## Process
 
-1. **Research** using the **researcher agent** to explore the relevant areas:
+1. **Research** using the **codebase-researcher agent** to explore the relevant areas:
    - Find related code, tests, docs, config files
    - Understand the current architecture and patterns
    - Identify dependencies and blast radius
