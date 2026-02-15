@@ -1,13 +1,6 @@
 ---
-allowed-tools:
-  - Read
-  - Glob
-  - Grep
-  - Write
-  - Bash(git log:*)
-  - Bash(git diff:*)
-  - Bash(ls:*)
-  - Bash(tree:*)
+name: implementation-planning
+description: "Research the codebase and create an implementation plan. This is phases 1-2 of the Pipeline workflow, extracted as a standalone command for when you want to plan without immediately executing."
 ---
 
 Research the codebase and create an implementation plan. This is phases 1-2
@@ -16,11 +9,11 @@ to plan without immediately executing.
 
 ## Process
 
-1. **Research** the relevant areas of the codebase:
+1. **Research** using the **codebase-researcher agent** to explore the relevant areas:
    - Find related code, tests, docs, config files
    - Understand the current architecture and patterns
    - Identify dependencies and blast radius
-   - Write findings to `docs/work/<slug>/research.md`
+   - Writes findings to `docs/work/<slug>/research.md`
 
 2. **Plan** the implementation:
    - Break into numbered milestones (each = one atomic, testable commit)

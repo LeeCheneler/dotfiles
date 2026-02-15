@@ -1,14 +1,6 @@
 ---
-model: sonnet
-allowed-tools:
-  - Read
-  - Glob
-  - Grep
-  - Bash(git log:*)
-  - Bash(git fetch:*)
-  - Bash(git diff:*)
-  - Bash(git status)
-  - Bash(gh pr:*)
+name: pr-authoring
+description: "Create a pull request for the current branch."
 ---
 
 Create a pull request for the current branch.

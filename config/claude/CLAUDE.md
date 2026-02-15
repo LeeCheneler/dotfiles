@@ -41,19 +41,31 @@ and game engine programming. Adapt to whatever project you're in.
 
 ## Workflow System
 
-Use `/workflow <task>` to auto-route, or invoke commands directly:
+For simple, unambiguous changes — just do the work: read the relevant code,
+make the edit, run tests, `/commit-authoring`.
 
-| Command                 | Purpose                                           |
-| ----------------------- | ------------------------------------------------- |
-| `/workflow <task>`      | Auto-route to Simple or Pipeline workflow         |
-| `/commit`               | Conventional commit with guards                   |
-| `/pr`                   | Create pull request                               |
-| `/review [target]`      | Code review                                       |
-| `/test [scope]`         | Run tests                                         |
-| `/write-tests [target]` | Generate tests                                    |
-| `/plan <task>`          | Research + plan only (no execution)               |
-| `/init-project`         | Generate project CLAUDE.md from codebase analysis |
-| `/refresh-project`      | Update existing project CLAUDE.md                 |
+For complex, multi-step work — use `/implementation-planning <task>` to
+research and plan first.
+
+Available skills:
+
+| Skill                             | Purpose                                  |
+| --------------------------------- | ---------------------------------------- |
+| `/commit-authoring`               | Conventional commit with guards          |
+| `/pr-authoring`                   | Create pull request                      |
+| `/code-reviewing [target]`        | Code review (isolated context)           |
+| `/test-running [scope]`           | Run tests (isolated context)             |
+| `/test-authoring [target]`        | Generate tests                           |
+| `/implementation-planning <task>` | Research + plan only (no execution)      |
+| `/claude-md-authoring`            | Generate project CLAUDE.md from codebase |
+
+## Agent Context Isolation
+
+Agents run in their own context window. They do NOT inherit this CLAUDE.md,
+conversation history, or auto-loaded skills. Each agent is a thin runner
+that preloads the skills it needs via `skills:` frontmatter. The full
+instructions live in the skills — agents just provide isolated execution
+context, model selection, and tool access.
 
 ## Security Rules
 
@@ -93,6 +105,17 @@ When compacting context, ALWAYS preserve:
 3. Any deviations from the plan noted so far
 4. The project CLAUDE.md contents
 5. Any gotchas discovered during this session
+
+Use this format for compacted state:
+
+    ## Session State
+    **Task:** <one-line description>
+    **Workflow:** simple | pipeline (gate mode: continuous|gated)
+    **Current milestone:** <number> — <title> (<status>)
+    **Completed:** <list of done milestone numbers>
+    **Blockers:** <any blockers or none>
+    **Gotchas found:** <list or none>
+    **Key files touched:** <list of files modified this session>
 
 Deprioritize: file contents already committed, completed milestone details,
 exploratory reads that didn't yield useful information.
