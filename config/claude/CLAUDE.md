@@ -94,6 +94,17 @@ When compacting context, ALWAYS preserve:
 4. The project CLAUDE.md contents
 5. Any gotchas discovered during this session
 
+Use this format for compacted state:
+
+    ## Session State
+    **Task:** <one-line description>
+    **Workflow:** simple | pipeline (gate mode: continuous|gated)
+    **Current milestone:** <number> — <title> (<status>)
+    **Completed:** <list of done milestone numbers>
+    **Blockers:** <any blockers or none>
+    **Gotchas found:** <list or none>
+    **Key files touched:** <list of files modified this session>
+
 Deprioritize: file contents already committed, completed milestone details,
 exploratory reads that didn't yield useful information.
 
