@@ -62,9 +62,10 @@ Available skills:
 ## Agent Context Isolation
 
 Agents run in their own context window. They do NOT inherit this CLAUDE.md,
-conversation history, or auto-loaded skills. Agents preload what they need
-via `skills:` frontmatter. This isolation is by design — it keeps the main
-context clean.
+conversation history, or auto-loaded skills. Each agent is a thin runner
+that preloads the skills it needs via `skills:` frontmatter. The full
+instructions live in the skills — agents just provide isolated execution
+context, model selection, and tool access.
 
 ## Security Rules
 
