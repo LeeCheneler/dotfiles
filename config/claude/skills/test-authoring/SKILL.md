@@ -3,20 +3,6 @@ name: test-authoring
 description: "Conventions for writing tests and generating test suites.
   Auto-loads when writing, reviewing, or generating tests. Invoke with
   /test-authoring to generate tests for specified code."
-allowed-tools:
-  - Read
-  - Glob
-  - Grep
-  - Write
-  - Edit
-  - Bash(npm test:*)
-  - Bash(npx:*)
-  - Bash(yarn:*)
-  - Bash(pnpm:*)
-  - Bash(cargo test:*)
-  - Bash(go test:*)
-  - Bash(pytest:*)
-  - Bash(make test:*)
 ---
 
 # Test Authoring

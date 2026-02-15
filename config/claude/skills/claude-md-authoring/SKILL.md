@@ -2,15 +2,6 @@
 name: claude-md-authoring
 description: "Generate a world-class project-specific CLAUDE.md by deeply analyzing this
   repository."
-model: sonnet
-allowed-tools:
-  - Read
-  - Glob
-  - Grep
-  - Write
-  - Bash(ls:*)
-  - Bash(tree:*)
-  - Bash(git log:*)
 ---
 
 Generate a world-class project-specific CLAUDE.md by deeply analyzing this

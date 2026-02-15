@@ -3,15 +3,6 @@ name: commit-authoring
 description: "Conventions for writing commits and creating clean, conventional
   commits for staged changes. Auto-loads when writing commit messages.
   Invoke with /commit-authoring to commit current changes."
-model: sonnet
-allowed-tools:
-  - Bash(git diff:*)
-  - Bash(git add:*)
-  - Bash(git commit:*)
-  - Bash(git status)
-  - Bash(git log:*)
-  - Bash(git stash:*)
-  - Read
 ---
 
 # Commit Authoring

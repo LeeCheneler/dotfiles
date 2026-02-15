@@ -3,12 +3,6 @@ name: web-researching
 description: "Research technologies, libraries, APIs, and approaches using
   web search. Auto-loads when evaluating external tools or checking docs.
   Invoke with /web-researching to write a research document."
-allowed-tools:
-  - WebSearch
-  - WebFetch
-  - Read
-  - Glob
-  - Grep
 ---
 
 # Web Researching

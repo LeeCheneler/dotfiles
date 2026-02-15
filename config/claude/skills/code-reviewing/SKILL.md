@@ -3,13 +3,6 @@ name: code-reviewing
 description: "Review code changes for quality, security, performance, and
   conventions. Auto-loads when reviewing diffs or PRs. Invoke with
   /code-reviewing to run a full review."
-allowed-tools:
-  - Read
-  - Grep
-  - Glob
-  - Bash(git diff:*)
-  - Bash(gh pr diff:*)
-  - Bash(gh pr view:*)
 ---
 
 # Code Reviewing

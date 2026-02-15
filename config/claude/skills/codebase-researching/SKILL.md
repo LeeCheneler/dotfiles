@@ -3,13 +3,6 @@ name: codebase-researching
 description: "Deep codebase exploration — architecture, patterns, dependencies,
   and conventions. Auto-loads when exploring unfamiliar code. Invoke with
   /codebase-researching to write a research document."
-allowed-tools:
-  - Read
-  - Glob
-  - Grep
-  - Bash(ls:*)
-  - Bash(tree:*)
-  - Bash(git log:*)
 ---
 
 # Codebase Researching
