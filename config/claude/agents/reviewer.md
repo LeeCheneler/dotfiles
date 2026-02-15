@@ -10,7 +10,7 @@ tools:
   - Bash
 skills:
   - coding-standards
-  - test-conventions
+  - test-authoring
 model: opus
 ---
 

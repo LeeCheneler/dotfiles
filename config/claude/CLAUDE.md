@@ -41,18 +41,30 @@ and game engine programming. Adapt to whatever project you're in.
 
 ## Workflow System
 
-Use `/workflow <task>` to auto-route, or invoke skills directly:
+For simple, unambiguous changes — just do the work: read the relevant code,
+make the edit, run tests, `/commit-authoring`.
 
-| Skill                   | Purpose                                           |
-| ----------------------- | ------------------------------------------------- |
-| `/workflow <task>`      | Auto-route to Simple or Pipeline workflow         |
-| `/commit`               | Conventional commit with guards                   |
-| `/pr`                   | Create pull request                               |
-| `/test [scope]`         | Run tests                                         |
-| `/write-tests [target]` | Generate tests                                    |
-| `/plan <task>`          | Research + plan only (no execution)               |
-| `/init-project`         | Generate project CLAUDE.md from codebase analysis |
-| `/refresh-project`      | Update existing project CLAUDE.md                 |
+For complex, multi-step work — use `/implementation-planning <task>` to
+research and plan first.
+
+Available skills:
+
+| Skill                             | Purpose                                  |
+| --------------------------------- | ---------------------------------------- |
+| `/commit-authoring`               | Conventional commit with guards          |
+| `/pr-authoring`                   | Create pull request                      |
+| `/code-reviewing [target]`        | Code review (isolated context)           |
+| `/test-running [scope]`           | Run tests (isolated context)             |
+| `/test-authoring [target]`        | Generate tests                           |
+| `/implementation-planning <task>` | Research + plan only (no execution)      |
+| `/claude-md-authoring`            | Generate project CLAUDE.md from codebase |
+
+## Agent Context Isolation
+
+Agents run in their own context window. They do NOT inherit this CLAUDE.md,
+conversation history, or auto-loaded skills. Agents preload what they need
+via `skills:` frontmatter. This isolation is by design — it keeps the main
+context clean.
 
 ## Security Rules
 

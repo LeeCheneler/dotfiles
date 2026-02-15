@@ -1,4 +1,5 @@
 ---
+name: pr-authoring
 description: "Create a pull request for the current branch."
 model: sonnet
 allowed-tools:
