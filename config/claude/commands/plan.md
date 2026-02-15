@@ -16,11 +16,11 @@ to plan without immediately executing.
 
 ## Process
 
-1. **Research** the relevant areas of the codebase:
+1. **Research** using the **researcher agent** to explore the relevant areas:
    - Find related code, tests, docs, config files
    - Understand the current architecture and patterns
    - Identify dependencies and blast radius
-   - Write findings to `docs/work/<slug>/research.md`
+   - Writes findings to `docs/work/<slug>/research.md`
 
 2. **Plan** the implementation:
    - Break into numbered milestones (each = one atomic, testable commit)
