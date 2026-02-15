@@ -1,8 +1,6 @@
 ---
 name: codebase-researching
-description: "Deep codebase exploration — architecture, patterns, dependencies,
-  and conventions. Auto-loads when exploring unfamiliar code. Invoke with
-  /codebase-researching to write a research document."
+description: "Deep codebase exploration — architecture, patterns, dependencies, and conventions. Auto-loads when exploring unfamiliar code. Invoke with /codebase-researching to write a research document."
 ---
 
 # Codebase Researching

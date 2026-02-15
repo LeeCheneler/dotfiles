@@ -1,7 +1,6 @@
 ---
 name: claude-md-authoring
-description: "Generate a world-class project-specific CLAUDE.md by deeply analyzing this
-  repository."
+description: "Generate a world-class project-specific CLAUDE.md by deeply analyzing this repository."
 ---
 
 Generate a world-class project-specific CLAUDE.md by deeply analyzing this

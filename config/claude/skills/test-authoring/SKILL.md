@@ -1,8 +1,6 @@
 ---
 name: test-authoring
-description: "Conventions for writing tests and generating test suites.
-  Auto-loads when writing, reviewing, or generating tests. Invoke with
-  /test-authoring to generate tests for specified code."
+description: "Conventions for writing tests and generating test suites. Auto-loads when writing, reviewing, or generating tests. Invoke with /test-authoring to generate tests for specified code."
 ---
 
 # Test Authoring

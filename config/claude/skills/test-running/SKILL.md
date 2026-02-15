@@ -1,7 +1,6 @@
 ---
 name: test-running
-description: "Run tests and report results concisely. Auto-loads when
-  running test suites. Invoke with /test-running to run and summarize tests."
+description: "Run tests and report results concisely. Auto-loads when running test suites. Invoke with /test-running to run and summarize tests."
 ---
 
 # Test Running

@@ -1,6 +1,5 @@
 ---
-description: "Apply when writing, editing, or reviewing code in any language.
-  Covers naming, structure, error handling, and code quality standards."
+description: "Apply when writing, editing, or reviewing code in any language. Covers naming, structure, error handling, and code quality standards."
 ---
 
 # Coding Standards

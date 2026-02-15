@@ -1,8 +1,6 @@
 ---
 name: code-reviewing
-description: "Review code changes for quality, security, performance, and
-  conventions. Auto-loads when reviewing diffs or PRs. Invoke with
-  /code-reviewing to run a full review."
+description: "Review code changes for quality, security, performance, and conventions. Auto-loads when reviewing diffs or PRs. Invoke with /code-reviewing to run a full review."
 ---
 
 # Code Reviewing
