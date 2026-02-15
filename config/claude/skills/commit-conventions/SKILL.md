@@ -32,6 +32,24 @@ description: "Apply when creating commits, reviewing commit messages, or
 - Don't commit generated files, build artifacts, or debug code.
 - Don't commit .env files, secrets, or credentials.
 
+## Examples
+
+```
+Good:
+  feat(auth): add password reset flow
+  fix(api): handle null response from payment provider
+  refactor(users): extract email validation to shared util
+  test(checkout): add edge cases for expired discount codes
+
+Bad:
+  Updated files
+  fix bug
+  feat: Add New User Authentication Flow Using OAuth2
+  refactor(users): refactored user service to extract email validation
+    into a shared utility function
+  fix(api): fixed the bug where payment provider returns null (AI-generated)
+```
+
 ## Atomicity
 
 A good commit should be:
