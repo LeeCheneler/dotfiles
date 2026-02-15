@@ -16,12 +16,15 @@ For multi-file, multi-step work that benefits from planning.
 
 ### Phases
 
-1. **Research** — explore code, docs, tests, deps → `docs/work/<slug>/research.md`
-2. **Plan** — milestones, gates, commit messages → `docs/work/<slug>/plan.md`
+1. **Research** — **researcher agent** explores code, docs, tests, deps →
+   `docs/work/<slug>/research.md`
+2. **Plan** (main context) — milestones, gates, commit messages →
+   `docs/work/<slug>/plan.md`
 3. **⏸️ Gate** — present plan, wait for approval
-4. **Execute** — work through milestones, committing after each
-5. **Finalize** — test suite, propose learnings, extract ADRs, delete work
-   dir, /pr
+4. **Execute** (main context) — work through milestones, committing after
+   each. Use **test-runner agent** to verify tests after each milestone.
+5. **Finalize** — **test-runner agent** for full suite, propose learnings,
+   extract ADRs, delete work dir, /pr
 
 ### Gate Modes
 
