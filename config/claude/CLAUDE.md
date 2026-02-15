@@ -48,7 +48,6 @@ Use `/workflow <task>` to auto-route, or invoke skills directly:
 | `/workflow <task>`      | Auto-route to Simple or Pipeline workflow         |
 | `/commit`               | Conventional commit with guards                   |
 | `/pr`                   | Create pull request                               |
-| `/review [target]`      | Code review                                       |
 | `/test [scope]`         | Run tests                                         |
 | `/write-tests [target]` | Generate tests                                    |
 | `/plan <task>`          | Research + plan only (no execution)               |
