@@ -55,7 +55,7 @@ Available skills:
 | `/pr-authoring`                   | Create pull request                      |
 | `/code-reviewing [target]`        | Code review (isolated context)           |
 | `/test-running [scope]`           | Run tests (isolated context)             |
-| `/test-authoring [target]`        | Generate tests                           |
+| `/coding-tests [target]`          | Generate tests                           |
 | `/implementation-planning <task>` | Research + plan only (no execution)      |
 | `/claude-md-authoring`            | Generate project CLAUDE.md from codebase |
 

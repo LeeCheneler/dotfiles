@@ -3,8 +3,9 @@ name: reviewer
 description: "Code review in isolated context."
 skills:
   - code-reviewing
-  - coding-standards
-  - test-authoring
+  - coding
+  - coding-typescript
+  - coding-tests
 model: opus
 tools:
   - Read

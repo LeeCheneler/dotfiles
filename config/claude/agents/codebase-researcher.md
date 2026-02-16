@@ -3,7 +3,8 @@ name: codebase-researcher
 description: "Deep codebase exploration in isolated context."
 skills:
   - codebase-researching
-  - coding-standards
+  - coding
+  - coding-typescript
 model: opus
 tools:
   - Read
