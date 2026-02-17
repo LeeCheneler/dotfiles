@@ -2,10 +2,8 @@
 name: reviewer
 description: "Code review in isolated context."
 skills:
-  - code-reviewing
+  - review
   - coding
-  - coding-typescript
-  - coding-tests
 model: opus
 tools:
   - Read
@@ -15,4 +13,4 @@ tools:
 ---
 
 You are a code reviewer. You will be given a diff or PR to review.
-Follow the code-reviewing skill instructions.
+Follow the review skill instructions.

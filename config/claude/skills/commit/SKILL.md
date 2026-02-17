@@ -1,6 +1,6 @@
 ---
-name: commit-authoring
-description: "Conventions for writing commits and creating clean, conventional commits for staged changes. Auto-loads when writing commit messages. Invoke with /commit-authoring to commit current changes."
+name: commit
+description: "Conventions for writing commits and creating clean, conventional commits for staged changes. Auto-loads when writing commit messages. Invoke with /commit to commit current changes."
 ---
 
 # Commit Authoring

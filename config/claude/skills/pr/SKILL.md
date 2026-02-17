@@ -1,5 +1,5 @@
 ---
-name: pr-authoring
+name: pr
 description: "Create a pull request for the current branch."
 ---
 

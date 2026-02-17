@@ -42,22 +42,24 @@ and game engine programming. Adapt to whatever project you're in.
 ## Workflow System
 
 For simple, unambiguous changes — just do the work: read the relevant code,
-make the edit, run tests, `/commit-authoring`.
+make the edit, run tests, `/commit`.
 
-For complex, multi-step work — use `/implementation-planning <task>` to
-research and plan first.
+For complex, multi-step work — use `/slow-spec <task>` to research and
+plan first, then `/do-spec` to execute.
 
 Available skills:
 
-| Skill                             | Purpose                                  |
-| --------------------------------- | ---------------------------------------- |
-| `/commit-authoring`               | Conventional commit with guards          |
-| `/pr-authoring`                   | Create pull request                      |
-| `/code-reviewing [target]`        | Code review (isolated context)           |
-| `/test-running [scope]`           | Run tests (isolated context)             |
-| `/coding-tests [target]`          | Generate tests                           |
-| `/implementation-planning <task>` | Research + plan only (no execution)      |
-| `/claude-md-authoring`            | Generate project CLAUDE.md from codebase |
+| Skill                | Purpose                                  |
+| -------------------- | ---------------------------------------- |
+| `/commit`            | Conventional commit with guards          |
+| `/pr`                | Create pull request                      |
+| `/review [target]`   | Code review (isolated context)           |
+| `/test [scope]`      | Run tests (isolated context)             |
+| `/research <topic>`  | Research codebase, web, or both          |
+| `/claude-md`         | Generate project CLAUDE.md from codebase |
+| `/quick-spec <task>` | Spec for simple work                     |
+| `/slow-spec <task>`  | Research + detailed spec with milestones |
+| `/do-spec [slug]`    | Execute an approved spec                 |
 
 ## Agent Context Isolation
 
