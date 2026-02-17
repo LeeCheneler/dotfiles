@@ -19,6 +19,9 @@ brew "rust"       # Rust programming language (rustc + cargo)
 brew "gh"         # GitHub CLI
 brew "starship"   # Cross-shell prompt
 
+# Document processing
+brew "poppler"    # PDF rendering library (pdftotext, pdfinfo, etc.)
+
 # Formatting & linting
 brew "shfmt"      # Shell formatter
 brew "shellcheck" # Shell script linter
