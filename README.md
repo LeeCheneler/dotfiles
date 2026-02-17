@@ -74,7 +74,7 @@ dotfiles/
     ├── starship/starship.toml
     ├── git/.gitconfig       # Git configuration
     ├── vscode/              # VSCode settings + extensions
-    ├── claude/              # Claude Code config
+    ├── claude/              # Claude Code config (skills, agents)
     └── copilot/             # Copilot instructions template
 ```
 
@@ -127,50 +127,40 @@ export PATH="/work/tools:$PATH"
 
 Global Claude Code configuration is symlinked to `~/.claude/`:
 
-- `CLAUDE.md` - Global instructions (principles, security rules, workflow docs)
+- `CLAUDE.md` - Global instructions (principles, security rules, workflow)
 - `settings.json` - Permissions (deny/ask/allow), hooks, notifications
-- `commands/` - Slash commands invoked explicitly by the user
-- `skills/` - Auto-discovered conventions applied based on context
-- `agents/` - Sub-agent definitions for pipeline workflow delegation
-
-#### Commands
-
-| Command            | Purpose                                   |
-| ------------------ | ----------------------------------------- |
-| `/workflow <task>` | Auto-route to Simple or Pipeline workflow |
-| `/commit`          | Conventional commit with guards           |
-| `/pr`              | Create pull request                       |
-| `/review [target]` | Code review                               |
-| `/test [scope]`    | Run tests                                 |
-| `/write-tests`     | Generate tests                            |
-| `/plan <task>`     | Research + plan only (no execution)       |
-| `/init-project`    | Generate project CLAUDE.md from codebase  |
-| `/refresh-project` | Update existing project CLAUDE.md         |
-
-#### Agents
-
-| Agent         | Purpose                                           |
-| ------------- | ------------------------------------------------- |
-| `researcher`  | Deep codebase exploration for pipeline research   |
-| `planner`     | Milestone-based implementation planning           |
-| `coder`       | Focused code changes during pipeline execution    |
-| `reviewer`    | Code review for correctness, security, simplicity |
-| `test-writer` | Generate behavior-focused tests                   |
-| `test-runner` | Run tests, return concise pass/fail summary       |
+- `skills/` - Fat skills with full instructions, auto-loaded by context
+- `agents/` - Thin agent runners for isolated execution contexts
 
 #### Skills
 
-| Skill                | Auto-applied when...                       |
-| -------------------- | ------------------------------------------ |
-| `coding-standards`   | Writing, editing, or reviewing code        |
-| `test-conventions`   | Writing, generating, or reviewing tests    |
-| `commit-conventions` | Creating commits or planning commit splits |
+| Skill                | Purpose                                  |
+| -------------------- | ---------------------------------------- |
+| `/commit`            | Conventional commit with guards          |
+| `/pr`                | Create pull request                      |
+| `/review [target]`   | Code review (isolated context)           |
+| `/test [scope]`      | Run tests (isolated context)             |
+| `/research <topic>`  | Research codebase, web, or both          |
+| `/claude-md`         | Generate project CLAUDE.md from codebase |
+| `/quick-spec <task>` | Spec for simple work                     |
+| `/slow-spec <task>`  | Research + detailed spec with milestones |
+| `/do-spec [slug]`    | Execute an approved spec                 |
+
+Auto-loaded reference skills: `coding` (TypeScript, React, testing conventions).
+
+#### Agents
+
+| Agent         | Purpose                             |
+| ------------- | ----------------------------------- |
+| `researcher`  | Codebase and web research           |
+| `reviewer`    | Code review                         |
+| `test-runner` | Run tests, return pass/fail summary |
+| `committer`   | Create commits                      |
+| `pr-creator`  | Create pull requests                |
 
 #### Project Setup
 
-Generate a project-specific CLAUDE.md by running `/init-project` inside a Claude Code session. This deeply analyzes the repo and creates a `CLAUDE.md` at the project root with stack, conventions, architecture, and gotchas. Use `/refresh-project` to update it later without losing manual additions.
-
-See `config/claude/docs/` for full architecture, workflow, and convention documentation.
+Generate a project-specific CLAUDE.md by running `/claude-md` inside a Claude Code session. This analyzes the repo and creates a `CLAUDE.md` at the project root with stack, conventions, architecture, and gotchas.
 
 ### Copilot Instructions
 

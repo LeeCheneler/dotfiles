@@ -61,13 +61,29 @@ Available skills:
 | `/slow-spec <task>`  | Research + detailed spec with milestones |
 | `/do-spec [slug]`    | Execute an approved spec                 |
 
-## Agent Context Isolation
+## Agent Routing
 
-Agents run in their own context window. They do NOT inherit this CLAUDE.md,
-conversation history, or auto-loaded skills. Each agent is a thin runner
-that preloads the skills it needs via `skills:` frontmatter. The full
-instructions live in the skills — agents just provide isolated execution
-context, model selection, and tool access.
+**ALWAYS delegate these tasks to agents via the Task tool.** Never do them
+inline in the main conversation — agents run in isolated context with the
+right skills pre-loaded.
+
+| Task                    | Agent       | subagent_type |
+| ----------------------- | ----------- | ------------- |
+| Committing changes      | committer   | committer     |
+| Creating pull requests  | pr-creator  | pr-creator    |
+| Code review             | reviewer    | reviewer      |
+| Running tests           | test-runner | test-runner   |
+| Research (codebase/web) | researcher  | researcher    |
+
+When `/commit` is invoked, delegate to the committer agent. When `/pr` is
+invoked, delegate to the pr-creator agent. And so on. The skill instructions
+tell the agent what to do — your job is to route to the right agent with
+a clear prompt describing the task.
+
+Agents do NOT inherit this CLAUDE.md, conversation history, or auto-loaded
+skills. Each agent is a thin runner that preloads the skills it needs via
+`skills:` frontmatter. The full instructions live in the skills — agents
+just provide isolated execution context, model selection, and tool access.
 
 ## Security Rules
 
