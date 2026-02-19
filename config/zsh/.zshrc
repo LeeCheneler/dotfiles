@@ -129,6 +129,9 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 # Claude Code CLI
 export PATH="$HOME/.local/bin:$PATH"
 
+# Claude Code multi-account (BPP Team plan via separate config dir)
+alias claude-bpp='CLAUDE_CONFIG_DIR=$HOME/.claude-bpp claude'
+
 # pnpm
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"

@@ -23,6 +23,15 @@ backup_and_link_dir "$DOTFILES_DIR/config/claude/commands" "$HOME/.claude/comman
 backup_and_link_dir "$DOTFILES_DIR/config/claude/skills" "$HOME/.claude/skills"
 backup_and_link_dir "$DOTFILES_DIR/config/claude/agents" "$HOME/.claude/agents"
 
+# BPP Claude Code config directory (separate auth, shared config)
+mkdir -p "$HOME/.claude-bpp"
+
+backup_and_link "$DOTFILES_DIR/config/claude/CLAUDE.md" "$HOME/.claude-bpp/CLAUDE.md"
+backup_and_link "$DOTFILES_DIR/config/claude/settings.json" "$HOME/.claude-bpp/settings.json"
+backup_and_link_dir "$DOTFILES_DIR/config/claude/commands" "$HOME/.claude-bpp/commands"
+backup_and_link_dir "$DOTFILES_DIR/config/claude/skills" "$HOME/.claude-bpp/skills"
+backup_and_link_dir "$DOTFILES_DIR/config/claude/agents" "$HOME/.claude-bpp/agents"
+
 # =============================================================================
 # TypeScript LSP for Claude Code
 # =============================================================================
