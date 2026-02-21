@@ -73,7 +73,8 @@ branch: feat/[slug]
 
 ## Approach
 
-[Brief description of what will be done]
+- [ ] [Task/change description and what will be done]
+- [ ] [Additional task if multiple discrete changes]
 
 ## Acceptance Criteria
 

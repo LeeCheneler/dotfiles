@@ -77,7 +77,10 @@ For each milestone:
 6. If approved, commit using `/commit` with the commit
    message from the milestone.
 
-7. Continue to the next milestone.
+7. Update the spec file: change the completed milestone's
+   `- [ ]` to `- [x]` and commit the spec update.
+
+8. Continue to the next milestone.
 
 **If the spec has `## Approach`** (quick spec):
 
@@ -105,6 +108,9 @@ For each milestone:
 4. **⏸ STOP — Wait for approval.**
 
 5. If approved, commit using `/commit`.
+
+6. Update the spec file: check off completed approach items
+   (`- [ ]` → `- [x]`) and commit the spec update.
 
 ### Step 3: Finalize
 

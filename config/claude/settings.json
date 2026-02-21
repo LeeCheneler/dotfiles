@@ -72,6 +72,7 @@
       "Bash(aws *)"
     ]
   },
+  "model": "opus",
   "hooks": {
     "Stop": [
       {

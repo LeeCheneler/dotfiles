@@ -50,9 +50,9 @@ for complex, multi-step work.
 [Key findings in 3-5 bullets]
 
 **Milestones:**
-1. M1: [description] — `type(scope): message`
-2. M2: [description] — `type(scope): message`
-3. M3: [description] — `type(scope): message`
+- [ ] M1: [description] — `type(scope): message`
+- [ ] M2: [description] — `type(scope): message`
+- [ ] M3: [description] — `type(scope): message`
 
 **Risks:**
 - [Risk and mitigation]
@@ -93,16 +93,16 @@ branch: feat/[slug]
 
 ## Milestones
 
-### M1: [Short description]
+- [ ] **M1: [Short description]**
 
-**Files:** [list]
-**Approach:** [what and how]
-**Gate:** [what must be true before commit]
-**Commit:** `type(scope): message`
+  **Files:** [list]
+  **Approach:** [what and how]
+  **Gate:** [what must be true before commit]
+  **Commit:** `type(scope): message`
 
-### M2: [Short description]
+- [ ] **M2: [Short description]**
 
-...
+  ...
 
 ## Risks
 
