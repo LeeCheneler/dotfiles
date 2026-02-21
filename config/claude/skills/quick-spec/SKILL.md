@@ -17,7 +17,7 @@ Write a specification for a simple, well-understood task.
 ### Step 1: Create the spec
 
 1. Generate a short kebab-case slug from the description.
-2. Create `docs/specs/YYYY-MM-DD-<slug>/`.
+2. Create `.wip/YYYY-MM-DD-<slug>/`.
 3. Write `spec.md` using the quick template (see below).
 4. Fill in: title, context (from user's description), scope (inferred —
    state assumptions explicitly), approach (your proposed plan), and
@@ -31,7 +31,7 @@ Present your understanding:
 ## Spec: [Title]
 
 **Branch:** `feat/<slug>`
-**Spec:** `docs/specs/YYYY-MM-DD-<slug>/spec.md`
+**Spec:** `.wip/YYYY-MM-DD-<slug>/spec.md`
 
 **Understanding:** [1-2 sentences]
 

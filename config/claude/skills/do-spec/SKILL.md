@@ -10,14 +10,14 @@ Execute an approved spec file.
 
 ## Inputs
 
-`$ARGUMENTS` — Path to a spec file, or a slug to find in `docs/specs/`.
+`$ARGUMENTS` — Path to a spec file, or a slug to find in `.wip/`.
 If empty, list available specs.
 
 ## Process
 
 ### Step 0: Find the spec
 
-1. If `$ARGUMENTS` is empty, list all specs in `docs/specs/`:
+1. If `$ARGUMENTS` is empty, list all specs in `.wip/`:
 
    ```
    Available specs:
@@ -30,7 +30,7 @@ If empty, list available specs.
 2. If `$ARGUMENTS` is a path, read that file.
 
 3. If `$ARGUMENTS` is a slug or partial match, find the spec in
-   `docs/specs/`.
+   `.wip/`.
 
 4. Read `spec.md` frontmatter. Verify status is `approved`.
    - If `draft` → tell the user and stop.

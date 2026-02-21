@@ -18,7 +18,7 @@ for complex, multi-step work.
 ### Phase 1: Research
 
 1. Generate a short kebab-case slug from the description.
-2. Create `docs/specs/YYYY-MM-DD-<slug>/` and `docs/specs/YYYY-MM-DD-<slug>/research/`.
+2. Create `.wip/YYYY-MM-DD-<slug>/` and `.wip/YYYY-MM-DD-<slug>/research/`.
 3. Identify the distinct research questions or areas to investigate.
 4. For each area, kick off a **researcher agent**. Each agent
    writes its own file in `research/` using a kebab-case slug:
@@ -44,7 +44,7 @@ for complex, multi-step work.
 ## Spec: [Title]
 
 **Branch:** `feat/<slug>`
-**Spec:** `docs/specs/YYYY-MM-DD-<slug>/spec.md`
+**Spec:** `.wip/YYYY-MM-DD-<slug>/spec.md`
 
 **Research Summary:**
 [Key findings in 3-5 bullets]
@@ -89,7 +89,7 @@ branch: feat/[slug]
 
 ## Research Summary
 
-[Key findings. See docs/specs/YYYY-MM-DD-<slug>/research/ for detail.]
+[Key findings. See .wip/YYYY-MM-DD-<slug>/research/ for detail.]
 
 ## Milestones
 
