@@ -76,6 +76,12 @@ branch: feat/[slug]
 - [ ] [Task/change description and what will be done]
 - [ ] [Additional task if multiple discrete changes]
 
+### Progress
+
+- [ ] Dev done
+- [ ] Reviewed & approved
+- [ ] Committed
+
 ## Acceptance Criteria
 
 - [ ] [Criterion 1]

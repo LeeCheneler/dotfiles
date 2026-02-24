@@ -1,19 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git status*)",
-      "Bash(git diff*)",
-      "Bash(git log*)",
-      "Bash(git branch*)",
-      "Bash(git add*)",
-      "Bash(git commit*)",
-      "Bash(git checkout*)",
-      "Bash(git switch*)",
-      "Bash(git stash*)",
-      "Bash(git fetch*)",
-      "Bash(git pull*)",
-      "Bash(git push)",
-      "Bash(git push origin*)",
+      "Bash(git *)",
+      "Bash(git -C *)",
       "Bash(npm *)",
       "Bash(npx *)",
       "Bash(pnpm *)",

@@ -37,6 +37,8 @@ for complex, multi-step work.
    - Is small enough to review meaningfully.
    - Builds on the previous milestone.
    - Includes: files affected, approach, gate criteria, commit message.
+   - Includes a progress checklist: `Dev done`, `Reviewed & approved`, `Committed`.
+     These track the lifecycle of each milestone — do not skip them.
 
 ### Phase 3: Present for review
 
@@ -100,9 +102,20 @@ branch: feat/[slug]
   **Gate:** [what must be true before commit]
   **Commit:** `type(scope): message`
 
+  - [ ] Dev done
+  - [ ] Reviewed & approved
+  - [ ] Committed
+
 - [ ] **M2: [Short description]**
 
-  ...
+  **Files:** [list]
+  **Approach:** [what and how]
+  **Gate:** [what must be true before commit]
+  **Commit:** `type(scope): message`
+
+  - [ ] Dev done
+  - [ ] Reviewed & approved
+  - [ ] Committed
 
 ## Risks
 

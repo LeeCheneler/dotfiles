@@ -45,6 +45,11 @@ If empty, list available specs.
 
 **If the spec has `## Milestones`** (slow spec):
 
+**CRITICAL: Execute ONE milestone at a time. After each milestone you MUST
+stop and wait for the user to approve before continuing. Do NOT proceed to
+the next milestone without explicit user approval. Do NOT batch milestones.
+Each milestone is a separate approve-then-commit cycle.**
+
 For each milestone:
 
 1. Announce:
@@ -57,7 +62,8 @@ For each milestone:
 
 3. Run relevant tests.
 
-4. Present:
+4. Present a summary using `AskUserQuestion` with options to approve,
+   request changes, or abort:
 
    ```
    ## Completed M[N]: [description]
@@ -65,14 +71,19 @@ For each milestone:
    **Changes:**
    - [file]: [what changed]
 
-   **Tests:** [pass/fail]
+   **Tests:** [pass/fail summary]
 
-   **Next:** M[N+1]: [description]
-
-   Approve this milestone for commit?
+   **Next:** M[N+1]: [description] (or "Final milestone" if last)
    ```
 
-5. **⏸ STOP — Wait for approval.**
+   Options:
+   - **Approve & commit** — Commit this milestone and continue
+   - **Request changes** — Describe what needs fixing
+   - **Abort** — Stop execution, leave spec in-progress
+
+5. **⏸ HARD STOP — You MUST use `AskUserQuestion` and wait for
+   the user's response. Do NOT continue until the user selects
+   an option. This is NOT optional.**
 
 6. If approved, commit using `/commit` with the commit
    message from the milestone.
@@ -80,7 +91,8 @@ For each milestone:
 7. Update the spec file: change the completed milestone's
    `- [ ]` to `- [x]` and commit the spec update.
 
-8. Continue to the next milestone.
+8. **Only after the commit succeeds and the user approved,**
+   continue to the next milestone. Go back to step 1.
 
 **If the spec has `## Approach`** (quick spec):
 
@@ -88,7 +100,8 @@ For each milestone:
 
 2. Run relevant tests.
 
-3. Present:
+3. Present a summary using `AskUserQuestion` with options to approve,
+   request changes, or abort:
 
    ```
    ## Done: [Title]
@@ -96,16 +109,21 @@ For each milestone:
    **Changes:**
    - [file]: [what changed]
 
-   **Tests:** [pass/fail]
+   **Tests:** [pass/fail summary]
 
    **Acceptance Criteria:**
    - [x] Met
    - [ ] Not met (explain)
-
-   Approve for commit and PR?
    ```
 
-4. **⏸ STOP — Wait for approval.**
+   Options:
+   - **Approve & commit** — Commit and continue to PR
+   - **Request changes** — Describe what needs fixing
+   - **Abort** — Stop execution, leave spec in-progress
+
+4. **⏸ HARD STOP — You MUST use `AskUserQuestion` and wait for
+   the user's response. Do NOT continue until the user selects
+   an option. This is NOT optional.**
 
 5. If approved, commit using `/commit`.
 
