@@ -8,23 +8,47 @@ disable-model-invocation: true
 
 Execute an approved spec file.
 
+**CRITICAL RULES — read these before doing anything:**
+
+1. **ONE milestone at a time.** Complete one milestone, present it for
+   review, get explicit user approval, commit it, then move to the next.
+   NEVER start the next milestone until the current one is approved and
+   committed.
+2. **Always commit.** Every approved milestone gets committed via `/commit`
+   before moving on. No batching. No skipping commits.
+3. **Always wait.** Use `AskUserQuestion` after every milestone and
+   STOP. Do not continue until the user responds. This is non-negotiable.
+
 ## Inputs
 
 `$ARGUMENTS` — Path to a spec file, or a slug to find in `.wip/`.
-If empty, list available specs.
+If empty, list available specs and ask the user to choose.
 
 ## Process
 
 ### Step 0: Find the spec
 
-1. If `$ARGUMENTS` is empty, list all specs in `.wip/`:
+1. If `$ARGUMENTS` is empty, scan `.wip/` for all spec directories.
+   Read each `spec.md` frontmatter and filter to specs with status
+   `approved` or `in-progress`. Exclude specs with status `done` or
+   `draft`.
 
+   If no eligible specs exist, tell the user and stop.
+
+   If exactly one eligible spec exists, confirm it with the user:
+   ```
+   Found one spec: [title] ([type], [status])
+   Proceed with this spec?
+   ```
+   **⏸ STOP — Wait for user confirmation.**
+
+   If multiple eligible specs exist, present them and ask the user
+   to choose using `AskUserQuestion`:
    ```
    Available specs:
    - 2026-02-17-health-check (quick, approved)
-   - 2026-02-17-auth-migration (slow, approved)
+   - 2026-02-17-auth-migration (slow, in-progress — M2 pending)
    ```
-
    **⏸ STOP — Ask which spec to execute.**
 
 2. If `$ARGUMENTS` is a path, read that file.
@@ -32,7 +56,8 @@ If empty, list available specs.
 3. If `$ARGUMENTS` is a slug or partial match, find the spec in
    `.wip/`.
 
-4. Read `spec.md` frontmatter. Verify status is `approved`.
+4. Read `spec.md` frontmatter. Verify status is `approved` or
+   `in-progress`.
    - If `draft` → tell the user and stop.
    - If `done` → tell the user it's already completed.
 
@@ -45,25 +70,26 @@ If empty, list available specs.
 
 **If the spec has `## Milestones`** (slow spec):
 
-**CRITICAL: Execute ONE milestone at a time. After each milestone you MUST
-stop and wait for the user to approve before continuing. Do NOT proceed to
-the next milestone without explicit user approval. Do NOT batch milestones.
-Each milestone is a separate approve-then-commit cycle.**
+For specs that are `in-progress`, check which milestones are already
+marked `[x]` and resume from the first unchecked milestone.
 
-For each milestone:
+Execute milestones one at a time using this loop. **Do NOT skip steps.
+Do NOT combine milestones. Do NOT proceed without user approval.**
 
-1. Announce:
+**For each milestone:**
 
+1. **Announce** what you're about to work on:
    ```
    ## Starting M[N]: [description]
    ```
 
-2. Execute the work described.
+2. **Execute** only the work described in this single milestone.
+   Do NOT touch files or make changes belonging to later milestones.
 
-3. Run relevant tests.
+3. **Run** relevant tests.
 
-4. Present a summary using `AskUserQuestion` with options to approve,
-   request changes, or abort:
+4. **Present results** using `AskUserQuestion` — you MUST use this
+   tool, not just print text:
 
    ```
    ## Completed M[N]: [description]
@@ -81,27 +107,31 @@ For each milestone:
    - **Request changes** — Describe what needs fixing
    - **Abort** — Stop execution, leave spec in-progress
 
-5. **⏸ HARD STOP — You MUST use `AskUserQuestion` and wait for
-   the user's response. Do NOT continue until the user selects
-   an option. This is NOT optional.**
+5. **⏸ HARD STOP.** Your message MUST end with the `AskUserQuestion`
+   tool call. Do NOT include any text or tool calls after it. Do NOT
+   continue working. Do NOT start the next milestone. WAIT for the
+   user to respond. **This is the most important rule in this skill.**
 
-6. If approved, commit using `/commit` with the commit
-   message from the milestone.
+6. **If approved:** commit using `/commit` with the commit message
+   from the milestone. Then update the spec file: change the completed
+   milestone's `- [ ]` to `- [x]` and include this in the commit.
 
-7. Update the spec file: change the completed milestone's
-   `- [ ]` to `- [x]` and commit the spec update.
+7. **If changes requested:** make the requested changes, re-run tests,
+   and present again (go back to step 4).
 
-8. **Only after the commit succeeds and the user approved,**
-   continue to the next milestone. Go back to step 1.
+8. **If aborted:** stop immediately. Leave the spec as `in-progress`.
+
+9. **Only after the commit succeeds,** go back to step 1 for the
+   next milestone.
 
 **If the spec has `## Approach`** (quick spec):
 
-1. Execute the work described.
+1. **Execute** the work described.
 
-2. Run relevant tests.
+2. **Run** relevant tests.
 
-3. Present a summary using `AskUserQuestion` with options to approve,
-   request changes, or abort:
+3. **Present results** using `AskUserQuestion` — you MUST use this
+   tool, not just print text:
 
    ```
    ## Done: [Title]
@@ -121,14 +151,17 @@ For each milestone:
    - **Request changes** — Describe what needs fixing
    - **Abort** — Stop execution, leave spec in-progress
 
-4. **⏸ HARD STOP — You MUST use `AskUserQuestion` and wait for
-   the user's response. Do NOT continue until the user selects
-   an option. This is NOT optional.**
+4. **⏸ HARD STOP.** Your message MUST end with the `AskUserQuestion`
+   tool call. Do NOT include any text or tool calls after it. Do NOT
+   continue working. WAIT for the user to respond.
 
-5. If approved, commit using `/commit`.
+5. **If approved:** commit using `/commit`.
 
-6. Update the spec file: check off completed approach items
-   (`- [ ]` → `- [x]`) and commit the spec update.
+6. **If changes requested:** make the requested changes, re-run tests,
+   and present again (go back to step 3).
+
+7. Update the spec file: check off completed approach items
+   (`- [ ]` → `- [x]`) and include this in the commit.
 
 ### Step 3: Finalize
 

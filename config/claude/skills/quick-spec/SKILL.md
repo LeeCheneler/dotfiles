@@ -8,6 +8,11 @@ disable-model-invocation: true
 
 Write a specification for a simple, well-understood task.
 
+**CRITICAL: This skill is PLANNING ONLY. Do NOT write code, edit source
+files, run tests, create branches, or execute any implementation work.
+Your only output is the spec file and a summary for the user. Use
+`/do-spec` to execute an approved spec.**
+
 ## Inputs
 
 `$ARGUMENTS` — A short description of the work.

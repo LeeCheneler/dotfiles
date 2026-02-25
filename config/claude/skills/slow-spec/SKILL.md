@@ -9,6 +9,11 @@ disable-model-invocation: true
 Research the codebase and write a detailed specification with milestones
 for complex, multi-step work.
 
+**CRITICAL: This skill is PLANNING ONLY. Do NOT write code, edit source
+files, run tests, create branches, or execute any implementation work.
+Your only output is the spec file, research files, and a summary for
+the user. Use `/do-spec` to execute an approved spec.**
+
 ## Inputs
 
 `$ARGUMENTS` — A description of the work.
