@@ -63,8 +63,13 @@ If empty, list available specs and ask the user to choose.
 
 ### Step 1: Set up
 
-1. Create the branch from the spec frontmatter (if not already on it).
-2. Update spec status to `in-progress`.
+1. Before creating the branch, ask the user if there is an issue/ticket
+   number to include (e.g. `JN-1234`). Use `AskUserQuestion`:
+   - **Yes** — ask for the number, then name the branch
+     `feat/<issue-number>-<slug>` (e.g. `feat/JN-1234-health-check`)
+   - **No** — use `feat/<slug>` as normal
+2. Create the branch (if not already on it).
+3. Update spec status to `in-progress`.
 
 ### Step 2: Execute
 

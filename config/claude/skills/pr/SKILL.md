@@ -29,15 +29,21 @@ Create a pull request for the current branch.
      - **Notes:** breaking changes, migration steps, deployment considerations
    - If `docs/work/<slug>/plan.md` exists, reference relevant context from it
 
-4. NEVER mention Claude, AI, or any AI tool in the PR description.
+4. Ask the user if there is an issue/ticket number or link to include in
+   the PR description (e.g. Jira ticket, GitHub issue). Use `AskUserQuestion`:
+   - **Yes** — ask for the number/link, then include it in the description
+     under a `## References` section
+   - **No** — proceed without one
 
-5. Create the PR immediately — do not ask for confirmation on the title or
+5. NEVER mention Claude, AI, or any AI tool in the PR description.
+
+6. Create the PR immediately — do not ask for confirmation on the title or
    description. The user invoked this command because they want a PR, not a
    review of the description.
 
    `gh pr create --title "..." --body "..." --base <target>`
 
-6. Present the PR URL.
+7. Present the PR URL.
 
 ## Guards
 
