@@ -39,52 +39,6 @@ and game engine programming. Adapt to whatever project you're in.
    the one that matches existing codebase patterns. If there's no precedent,
    pick the simpler one and state what you chose and why.
 
-## Workflow System
-
-For simple, unambiguous changes — just do the work: read the relevant code,
-make the edit, run tests, `/commit`.
-
-For complex, multi-step work — use `/slow-spec <task>` to research and
-plan first, then `/do-spec` to execute.
-
-Available skills:
-
-| Skill                | Purpose                                  |
-| -------------------- | ---------------------------------------- |
-| `/commit`            | Conventional commit with guards          |
-| `/pr`                | Create pull request                      |
-| `/review [target]`   | Code review (isolated context)           |
-| `/test [scope]`      | Run tests (isolated context)             |
-| `/research <topic>`  | Research codebase, web, or both          |
-| `/claude-md`         | Generate project CLAUDE.md from codebase |
-| `/quick-spec <task>` | Spec for simple work                     |
-| `/slow-spec <task>`  | Research + detailed spec with milestones |
-| `/do-spec [slug]`    | Execute an approved spec                 |
-
-## Agent Routing
-
-**ALWAYS delegate these tasks to agents via the Task tool.** Never do them
-inline in the main conversation — agents run in isolated context with the
-right skills pre-loaded.
-
-| Task                    | Agent       | subagent_type |
-| ----------------------- | ----------- | ------------- |
-| Committing changes      | committer   | committer     |
-| Creating pull requests  | pr-creator  | pr-creator    |
-| Code review             | reviewer    | reviewer      |
-| Running tests           | test-runner | test-runner   |
-| Research (codebase/web) | researcher  | researcher    |
-
-When `/commit` is invoked, delegate to the committer agent. When `/pr` is
-invoked, delegate to the pr-creator agent. And so on. The skill instructions
-tell the agent what to do — your job is to route to the right agent with
-a clear prompt describing the task.
-
-Agents do NOT inherit this CLAUDE.md, conversation history, or auto-loaded
-skills. Each agent is a thin runner that preloads the skills it needs via
-`skills:` frontmatter. The full instructions live in the skills — agents
-just provide isolated execution context, model selection, and tool access.
-
 ## Security Rules
 
 ### Deletion Safety
