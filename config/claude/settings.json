@@ -73,5 +73,16 @@
       }
     ]
   },
-  "effortLevel": "high"
+  "extraKnownMarketplaces": {
+    "leecheneler-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "LeeCheneler/claude-plugins"
+      }
+    }
+  },
+  "effortLevel": "high",
+  "enabledPlugins": {
+    "dev@leecheneler-plugins": true
+  }
 }
