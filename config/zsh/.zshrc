@@ -149,6 +149,7 @@ load-secrets() {
 	echo "Loading secrets from 1Password..."
 	export GITHUB_TOKEN="$(op read 'op://Private/GitHub PAT/credential')"
 	export GITHUB_PACKAGES_TOKEN="$GITHUB_TOKEN"
+	export TAVILY_API_KEY="$(op read 'op://Private/Tavily API Key/credential')"
 	echo "Secrets loaded"
 }
 
