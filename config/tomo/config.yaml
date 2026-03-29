@@ -1,0 +1,19 @@
+activeProvider: openrouter
+activeModel: nvidia/nemotron-3-super-120b-a12b:free
+maxTokens: 8192
+providers:
+  - name: ollama
+    type: ollama
+    baseUrl: http://localhost:11434
+  - name: opencode-zen
+    type: opencode-zen
+    baseUrl: https://opencode.ai/zen
+  - name: openrouter
+    type: openrouter
+    baseUrl: https://openrouter.ai/api
+mcpServers: {}
+skillSetSources:
+  - url: git@github.com:leecheneler/tomo-skills.git
+enabledSkillSets:
+  - sourceUrl: git@github.com:leecheneler/tomo-skills.git
+    name: dev

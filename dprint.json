@@ -1,5 +1,5 @@
 {
-  "includes": ["**/*.md", "**/*.json", "**/*.yaml", "**/*.yml"],
+  "includes": ["**/*.md", "**/*.json"],
   "excludes": ["**/node_modules"],
   "plugins": [
     "https://plugins.dprint.dev/markdown-0.17.8.wasm",
