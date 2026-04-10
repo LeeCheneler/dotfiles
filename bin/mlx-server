@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Background controller for mlx_lm.server.
+# Runs without --model so the model is selected per-request via the "model"
+# field (like Ollama), and cached in memory after first load.
+
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/mlx-server"
+PID_FILE="$STATE_DIR/mlx-server.pid"
+LOG_FILE="$STATE_DIR/mlx-server.log"
+HOST="${MLX_SERVER_HOST:-127.0.0.1}"
+PORT="${MLX_SERVER_PORT:-8080}"
+
+mkdir -p "$STATE_DIR"
+
+is_running() {
+	[[ -f "$PID_FILE" ]] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null
+}
+
+cmd_start() {
+	if is_running; then
+		echo "mlx-server already running (pid $(cat "$PID_FILE")) on http://$HOST:$PORT"
+		return 0
+	fi
+
+	if ! command -v mlx_lm.server &>/dev/null; then
+		echo "Error: mlx_lm.server not found. Install with: brew install mlx-lm"
+		return 1
+	fi
+
+	echo "Starting mlx-server on http://$HOST:$PORT..."
+	nohup mlx_lm.server --host "$HOST" --port "$PORT" >>"$LOG_FILE" 2>&1 &
+	echo $! >"$PID_FILE"
+	sleep 1
+
+	if is_running; then
+		echo "Started (pid $(cat "$PID_FILE")). Logs: $LOG_FILE"
+	else
+		echo "Failed to start. Check $LOG_FILE"
+		rm -f "$PID_FILE"
+		return 1
+	fi
+}
+
+cmd_stop() {
+	if ! is_running; then
+		echo "mlx-server not running"
+		rm -f "$PID_FILE"
+		return 0
+	fi
+
+	local pid
+	pid=$(cat "$PID_FILE")
+	echo "Stopping mlx-server (pid $pid)..."
+	kill "$pid"
+
+	for _ in {1..20}; do
+		if ! kill -0 "$pid" 2>/dev/null; then
+			break
+		fi
+		sleep 0.2
+	done
+
+	if kill -0 "$pid" 2>/dev/null; then
+		echo "Force killing..."
+		kill -9 "$pid" 2>/dev/null || true
+	fi
+
+	rm -f "$PID_FILE"
+	echo "Stopped"
+}
+
+cmd_restart() {
+	cmd_stop || true
+	cmd_start
+}
+
+cmd_status() {
+	if is_running; then
+		echo "mlx-server: running (pid $(cat "$PID_FILE")) on http://$HOST:$PORT"
+	else
+		echo "mlx-server: stopped"
+	fi
+}
+
+cmd_logs() {
+	if [[ ! -f "$LOG_FILE" ]]; then
+		echo "No log file yet at $LOG_FILE"
+		return 0
+	fi
+	tail -f "$LOG_FILE"
+}
+
+usage() {
+	cat <<USAGE
+Usage: mlx-server <command>
+
+Commands:
+  start    Start mlx_lm.server in the background
+  stop     Stop the running server
+  restart  Restart the server
+  status   Show running state, pid, and URL
+  logs     Tail the server log (Ctrl-C to exit)
+
+Environment:
+  MLX_SERVER_HOST  Host to bind (default: 127.0.0.1)
+  MLX_SERVER_PORT  Port to bind (default: 8080)
+
+The server runs without --model, so clients pick the model per-request
+via the "model" field (same behaviour as Ollama).
+USAGE
+}
+
+case "${1:-}" in
+	start) cmd_start ;;
+	stop) cmd_stop ;;
+	restart) cmd_restart ;;
+	status) cmd_status ;;
+	logs) cmd_logs ;;
+	-h | --help | help | "") usage ;;
+	*)
+		echo "Unknown command: $1"
+		echo
+		usage
+		exit 1
+		;;
+esac

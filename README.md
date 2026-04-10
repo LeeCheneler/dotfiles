@@ -202,6 +202,31 @@ mlx_lm.generate --model mlx-community/Llama-3.2-3B-Instruct-4bit \
 
 The `mlx-community` org on HF hosts pre-quantized models optimized for Apple Silicon. Models are cached under `~/.cache/huggingface/`.
 
+#### MLX Server (Ollama-style API)
+
+Run `mlx_lm.server` in the background and hit it with OpenAI-compatible requests. Model is selected per-request via the `model` field — no need to restart the server to switch models.
+
+```bash
+mlx-server start    # Start in background
+mlx-server status   # Show pid and URL
+mlx-server logs     # Tail the log
+mlx-server stop     # Stop
+mlx-server restart  # Restart
+```
+
+Default bind: `http://127.0.0.1:8080`. Override with `MLX_SERVER_HOST` / `MLX_SERVER_PORT`. Logs live at `~/.local/state/mlx-server/mlx-server.log`.
+
+Example request:
+
+```bash
+curl http://127.0.0.1:8080/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "mlx-community/Llama-3.2-3B-Instruct-4bit",
+    "messages": [{"role": "user", "content": "hello"}]
+  }'
+```
+
 ## 🔐 Secrets
 
 Uses [1Password CLI](https://1password.com/) for secrets management. Tokens are loaded on-demand to avoid authentication popups at shell startup:

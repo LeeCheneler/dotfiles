@@ -11,6 +11,9 @@ providers:
   - name: openrouter
     type: openrouter
     baseUrl: https://openrouter.ai/api
+  - name: mlx
+    type: mlx
+    baseUrl: http://localhost:8080
 mcpServers: {}
 skillSets:
   sources:
