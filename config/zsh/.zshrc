@@ -136,6 +136,9 @@ alias claude-bpp='CLAUDE_CONFIG_DIR=$HOME/.claude-bpp claude'
 export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
+# Hugging Face: enable hf_transfer for faster model downloads
+export HF_HUB_ENABLE_HF_TRANSFER=1
+
 # =============================================================================
 # Secrets (loaded from 1Password on-demand)
 # =============================================================================

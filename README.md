@@ -173,6 +173,35 @@ init-copilot
 
 This copies the template from `config/copilot/` - edit it to add project-specific context.
 
+### Local LLMs
+
+Two options for running models locally:
+
+- **Ollama** (`ollama-app`) - easy model management with a curated library
+- **MLX + Hugging Face** (`mlx-lm`, `hf`) - run any HF model natively on Apple Silicon
+
+#### Ollama
+
+```bash
+ollama pull llama3.2          # Pull a model
+ollama run llama3.2           # Interactive chat
+ollama list                   # List installed models
+ollama rm llama3.2            # Remove a model
+```
+
+Browse models at [ollama.com/library](https://ollama.com/library).
+
+#### Hugging Face + MLX
+
+```bash
+hf auth login                             # Authenticate (needed for gated models)
+hf download mlx-community/Llama-3.2-3B-Instruct-4bit
+mlx_lm.generate --model mlx-community/Llama-3.2-3B-Instruct-4bit \
+  --prompt "Explain MLX in one sentence"
+```
+
+The `mlx-community` org on HF hosts pre-quantized models optimized for Apple Silicon. Models are cached under `~/.cache/huggingface/`.
+
 ## 🔐 Secrets
 
 Uses [1Password CLI](https://1password.com/) for secrets management. Tokens are loaded on-demand to avoid authentication popups at shell startup:
