@@ -12,8 +12,10 @@ providers:
     type: openrouter
     baseUrl: https://openrouter.ai/api
 mcpServers: {}
-skillSetSources:
-  - url: git@github.com:leecheneler/tomo-skills.git
-enabledSkillSets:
-  - sourceUrl: git@github.com:leecheneler/tomo-skills.git
-    name: dev
+skillSets:
+  sources:
+    - url: git@github.com:LeeCheneler/tomo-skills.git
+      enabledSets:
+        - dev
+mcp:
+  connections: {}
