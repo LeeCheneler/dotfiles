@@ -25,7 +25,6 @@ brew "tomo"       # Task runner
 brew "starship"   # Cross-shell prompt
 
 # AI / ML
-brew "mlx-lm"     # Run LLMs locally with Apple MLX
 brew "hf"         # Hugging Face CLI (model downloads, hub client)
 cask "ollama-app" # Ollama desktop app for running local LLMs
 

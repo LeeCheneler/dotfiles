@@ -68,8 +68,7 @@ dotfiles/
 │   └── ai.sh                # AI tooling config
 ├── bin/
 │   ├── dotfiles             # Dotfiles CLI (help, update, apply, edit)
-│   ├── init-copilot         # Bootstrap copilot instructions
-│   └── mlx                  # Local MLX server + model management
+│   └── init-copilot         # Bootstrap copilot instructions
 └── config/
     ├── zsh/.zshrc           # Zsh + zinit config
     ├── kitty/kitty.conf     # Kitty terminal config
@@ -177,13 +176,6 @@ This copies the template from `config/copilot/` - edit it to add project-specifi
 
 ### Local LLMs
 
-Two options for running models locally:
-
-- **Ollama** (`ollama-app`) - easy model management with a curated library
-- **MLX + Hugging Face** (`mlx-lm`, `hf`) - run any HF model natively on Apple Silicon
-
-#### Ollama
-
 ```bash
 ollama pull llama3.2          # Pull a model
 ollama run llama3.2           # Interactive chat
@@ -193,47 +185,7 @@ ollama rm llama3.2            # Remove a model
 
 Browse models at [ollama.com/library](https://ollama.com/library).
 
-#### Hugging Face + MLX
-
-```bash
-hf auth login                             # Authenticate (needed for gated models)
-hf download mlx-community/Llama-3.2-3B-Instruct-4bit
-mlx_lm.generate --model mlx-community/Llama-3.2-3B-Instruct-4bit \
-  --prompt "Explain MLX in one sentence"
-```
-
-The `mlx-community` org on HF hosts pre-quantized models optimized for Apple Silicon. Models are cached under `~/.cache/huggingface/`.
-
-#### MLX CLI (server + model management)
-
-The `mlx` command unifies background server control and Hugging Face cache management. Run `mlx_lm.server` in the background and hit it with OpenAI-compatible requests. Model is selected per-request via the `model` field — no need to restart the server to switch models.
-
-```bash
-# Server
-mlx start            # Start in background
-mlx status           # Show pid and URL
-mlx logs             # Tail the log
-mlx stop             # Stop
-mlx restart          # Restart
-
-# Models (wraps `hf` for the HF cache)
-mlx ls               # List cached models
-mlx pull mlx-community/Llama-3.2-3B-Instruct-4bit
-mlx rm mlx-community/Llama-3.2-3B-Instruct-4bit
-```
-
-Default bind: `http://127.0.0.1:8080`. Override with `MLX_SERVER_HOST` / `MLX_SERVER_PORT`. Logs live at `~/.local/state/mlx-server/mlx-server.log`.
-
-Example request:
-
-```bash
-curl http://127.0.0.1:8080/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{
-    "model": "mlx-community/Llama-3.2-3B-Instruct-4bit",
-    "messages": [{"role": "user", "content": "hello"}]
-  }'
-```
+The `hf` CLI is also installed for downloading models from Hugging Face directly (`hf download …`, `hf cache ls`, `hf cache rm …`).
 
 ## 🔐 Secrets
 

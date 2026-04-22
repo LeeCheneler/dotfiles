@@ -1,5 +1,5 @@
-activeProvider: openrouter
-activeModel: nvidia/nemotron-3-super-120b-a12b:free
+activeProvider: mlx
+activeModel: Qwen/Qwen3.6-35B-A3B
 maxTokens: 8192
 providers:
   - name: ollama
@@ -13,12 +13,10 @@ providers:
     baseUrl: https://openrouter.ai/api
   - name: mlx
     type: mlx
-    baseUrl: http://localhost:8080
+    baseUrl: http://localhost:8000
 mcpServers: {}
 skillSets:
   sources:
     - url: git@github.com:LeeCheneler/tomo-skills.git
       enabledSets:
         - dev
-mcp:
-  connections: {}
