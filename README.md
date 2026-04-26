@@ -174,19 +174,6 @@ init-copilot
 
 This copies the template from `config/copilot/` - edit it to add project-specific context.
 
-### Local LLMs
-
-```bash
-ollama pull llama3.2          # Pull a model
-ollama run llama3.2           # Interactive chat
-ollama list                   # List installed models
-ollama rm llama3.2            # Remove a model
-```
-
-Browse models at [ollama.com/library](https://ollama.com/library).
-
-The `hf` CLI is also installed for downloading models from Hugging Face directly (`hf download …`, `hf cache ls`, `hf cache rm …`).
-
 ## 🔐 Secrets
 
 Uses [1Password CLI](https://1password.com/) for secrets management. Tokens are loaded on-demand to avoid authentication popups at shell startup:

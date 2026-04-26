@@ -15,7 +15,6 @@ Commands:
   cd           Change to the dotfiles dir (zsh function only)
 
 Custom CLIs (in $DOTFILES_DIR/bin):
-  mlx          Local MLX inference server + model management
   init-copilot Bootstrap GitHub Copilot config
 
 Zsh functions (defined in config/zsh/.zshrc):

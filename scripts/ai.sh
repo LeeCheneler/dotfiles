@@ -56,29 +56,6 @@ mkdir -p "$HOME/.tomo"
 backup_and_link "$DOTFILES_DIR/config/tomo/config.yaml" "$HOME/.tomo/config.yaml"
 
 # =============================================================================
-# OpenCode Configuration
-# =============================================================================
-
-echo "==> Configuring OpenCode"
-
-mkdir -p "$HOME/.config/opencode"
-
-backup_and_link "$DOTFILES_DIR/config/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
-
-# =============================================================================
-# Hugging Face Transfer Accelerator
-# =============================================================================
-
-echo "==> Installing hf_transfer (accelerated HF downloads)"
-
-if python3 -m pip show hf_transfer &>/dev/null; then
-	echo "    Already installed"
-else
-	python3 -m pip install hf_transfer --break-system-packages --quiet
-	echo "    Installed hf_transfer"
-fi
-
-# =============================================================================
 # TypeScript LSP for Claude Code
 # =============================================================================
 

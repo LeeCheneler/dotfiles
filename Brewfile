@@ -24,10 +24,6 @@ brew "opencode"   # Terminal-based AI coding assistant
 brew "tomo"       # Task runner
 brew "starship"   # Cross-shell prompt
 
-# AI / ML
-brew "hf"         # Hugging Face CLI (model downloads, hub client)
-cask "ollama-app" # Ollama desktop app for running local LLMs
-
 # Document processing
 brew "poppler"    # PDF rendering library (pdftotext, pdfinfo, etc.)
 

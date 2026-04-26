@@ -1,19 +1,12 @@
-activeProvider: mlx
-activeModel: Qwen/Qwen3.6-35B-A3B
+activeProvider: openrouter
 maxTokens: 8192
 providers:
-  - name: ollama
-    type: ollama
-    baseUrl: http://localhost:11434
   - name: opencode-zen
     type: opencode-zen
     baseUrl: https://opencode.ai/zen
   - name: openrouter
     type: openrouter
     baseUrl: https://openrouter.ai/api
-  - name: mlx
-    type: mlx
-    baseUrl: http://localhost:8000
 mcpServers: {}
 skillSets:
   sources:
