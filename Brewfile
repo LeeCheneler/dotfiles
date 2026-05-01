@@ -1,6 +1,5 @@
 # Taps
 tap "leecheneler/tomo"
-tap "oven-sh/bun"
 
 # Core CLI tools
 brew "git"        # Version control
@@ -19,7 +18,6 @@ brew "zoxide"     # Smarter cd
 
 # Development
 brew "mise"       # Polyglot runtime manager (Node, Deno, Python, etc.)
-brew "bun"        # JavaScript runtime & toolkit
 brew "rust"       # Rust programming language (rustc + cargo)
 brew "gh"         # GitHub CLI
 brew "opencode"   # Terminal-based AI coding assistant
