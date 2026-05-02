@@ -29,6 +29,9 @@ hashicorp.hcl
 # Deno
 denoland.vscode-deno
 
+# Bun
+oven.bun-vscode
+
 # DX/Productivity
 usernamehw.errorlens
 christian-kohler.path-intellisense
