@@ -1,5 +1,6 @@
 # Taps
 tap "leecheneler/tomo"
+tap "hashicorp/tap"
 
 # Core CLI tools
 brew "git"        # Version control
@@ -23,6 +24,7 @@ brew "gh"         # GitHub CLI
 brew "opencode"   # Terminal-based AI coding assistant
 brew "tomo"       # Task runner
 brew "starship"   # Cross-shell prompt
+brew "hashicorp/tap/terraform-ls" # Terraform language server
 
 # Document processing
 brew "poppler"    # PDF rendering library (pdftotext, pdfinfo, etc.)

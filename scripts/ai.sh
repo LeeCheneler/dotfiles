@@ -60,7 +60,7 @@ backup_and_link "$DOTFILES_DIR/config/tomo/config.yaml" "$HOME/.tomo/config.yaml
 # =============================================================================
 
 echo "==> Installing TypeScript LSP server"
-npm install -g @vtsls/language-server typescript
+npm install -g typescript-language-server typescript
 
 # =============================================================================
 # Done

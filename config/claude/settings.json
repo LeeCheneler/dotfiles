@@ -58,7 +58,8 @@
       "Bash(terraform apply:*)",
       "Bash(terraform destroy:*)",
       "Bash(aws:*)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
   "hooks": {
     "Stop": [
@@ -73,6 +74,13 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "sh ~/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "dev@leecheneler-plugins": true
+  },
   "extraKnownMarketplaces": {
     "leecheneler-plugins": {
       "source": {
@@ -82,7 +90,5 @@
     }
   },
   "effortLevel": "high",
-  "enabledPlugins": {
-    "dev@leecheneler-plugins": true
-  }
+  "skipAutoPermissionPrompt": true
 }
