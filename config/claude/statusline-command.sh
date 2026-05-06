@@ -6,6 +6,9 @@ model=$(echo "$input" | jq -r '.model.display_name // ""')
 effort=$(echo "$input" | jq -r '.effort.level // empty')
 used=$(echo "$input" | jq -r '.context_window.used_percentage // empty')
 git_branch=$(git -C "$cwd" --no-optional-locks branch --show-current 2>/dev/null)
+if [ ${#git_branch} -gt 15 ]; then
+	git_branch="$(printf '%s' "$git_branch" | cut -c1-14)…"
+fi
 git_staged=$(git -C "$cwd" --no-optional-locks diff --cached --name-only 2>/dev/null | wc -l | tr -d ' ')
 git_unstaged=$(git -C "$cwd" --no-optional-locks diff --name-only 2>/dev/null | wc -l | tr -d ' ')
 git_untracked=$(git -C "$cwd" --no-optional-locks ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ')
