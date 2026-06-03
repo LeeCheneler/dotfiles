@@ -79,7 +79,8 @@
     "command": "sh ~/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "dev@leecheneler-plugins": true
+    "dev@leecheneler-plugins": true,
+    "frontend-design@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "leecheneler-plugins": {
@@ -89,6 +90,9 @@
       }
     }
   },
-  "effortLevel": "high",
-  "skipAutoPermissionPrompt": true
+  "effortLevel": "xhigh",
+  "skipAutoPermissionPrompt": true,
+  "env": {
+    "CLAUDE_CODE_DISABLE_WORKFLOWS": "1"
+  }
 }
