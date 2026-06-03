@@ -77,3 +77,37 @@ summary of what will change and getting explicit confirmation before proceeding.
 - If something is ambiguous, state your assumption and proceed.
   Don't block on clarification for small decisions.
 - Don't ask for permission to do things that are obviously part of the task.
+
+## Local Tooling
+
+### `new-worktree` — spin up a git worktree for any repo
+
+`new-worktree` is a global helper on my PATH (lives in `~/.dotfiles/bin`).
+Use it whenever I want to work on another branch or ticket in parallel
+without disturbing my current checkout.
+
+```
+new-worktree <repo-dir> <branch> [base-ref]
+```
+
+- `<repo-dir>` — path to the repo, or any of its existing worktrees.
+- `<branch>` — branch to work on. Checked out if it exists locally or on
+  origin, otherwise created.
+- `[base-ref]` — base for a brand-new branch. Defaults to `origin/main`.
+
+What it does:
+
+- Creates the worktree as a sibling of the source checkout, named
+  `<repo>-<id>` — `<id>` is a ticket id found in the branch (e.g. `JN-3554`)
+  when present, otherwise the slugified branch name.
+- Symlinks every git-ignored `.env` / `.env.*` from the source checkout into
+  the worktree, so the worktree shares the source's secrets. Symlinks are
+  shared, so edits affect every worktree; for per-worktree values, replace a
+  symlink with a copy (the script prints how).
+- Installs JS deps for each lockfile found: `pnpm-lock.yaml` → pnpm,
+  `yarn.lock` → yarn (v1), `package-lock.json` → npm — run in each lockfile's
+  own directory. JS ecosystem only.
+
+When to trigger it: when I ask to "spin up" or "create a worktree", work on
+another ticket in parallel, or get a fresh branch checkout ready with env
+files and deps in place. Tear down with `git worktree remove <dir>`.
