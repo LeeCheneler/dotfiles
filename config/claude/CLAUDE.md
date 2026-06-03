@@ -83,8 +83,26 @@ summary of what will change and getting explicit confirmation before proceeding.
 ### `new-worktree` — spin up a git worktree for any repo
 
 `new-worktree` is a global helper on my PATH (lives in `~/.dotfiles/bin`).
-Use it whenever I want to work on another branch or ticket in parallel
-without disturbing my current checkout.
+Use it to get a clean, isolated checkout for any new piece of work without
+disturbing my current one.
+
+**Default to a worktree for new work.** Whenever you're about to start a new
+unit of work in a repo — a new branch, ticket, feature, fix, or experiment —
+propose spinning up a worktree with `new-worktree` _before_ writing any code,
+rather than working in the current checkout. This is the default, not the
+exception. Briefly say you're creating one and go ahead; don't make me ask.
+
+Skip it only when:
+
+- The work clearly belongs on the current branch (continuing in-progress work,
+  amending an open PR, or I'm already in a worktree/feature branch for it).
+- I'm making a quick edit, just reading/answering questions, or explicitly say
+  to work in place.
+- The repo has no remote/branches yet, or a worktree otherwise doesn't make
+  sense.
+
+If you're unsure whether new work warrants a worktree, lean towards creating
+one — isolation is cheap and tear-down is one command.
 
 ```
 new-worktree <repo-dir> <branch> [base-ref]
@@ -108,6 +126,6 @@ What it does:
   `yarn.lock` → yarn (v1), `package-lock.json` → npm — run in each lockfile's
   own directory. JS ecosystem only.
 
-When to trigger it: when I ask to "spin up" or "create a worktree", work on
-another ticket in parallel, or get a fresh branch checkout ready with env
-files and deps in place. Tear down with `git worktree remove <dir>`.
+Also reach for it explicitly when I ask to "spin up" or "create a worktree",
+work on another ticket in parallel, or get a fresh branch checkout ready with
+env files and deps in place. Tear down with `git worktree remove <dir>`.
