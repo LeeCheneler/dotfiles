@@ -19,6 +19,7 @@ mkdir -p "$HOME/.claude"
 
 backup_and_link "$DOTFILES_DIR/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 backup_and_link "$DOTFILES_DIR/config/claude/settings.json" "$HOME/.claude/settings.json"
+backup_and_link "$DOTFILES_DIR/config/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
 
 # =============================================================================
 # Claude Desktop BPP Wrapper App
