@@ -21,6 +21,9 @@
 #
 # Installs: pnpm-lock.yaml -> pnpm, yarn.lock -> yarn, package-lock.json -> npm,
 # run in each lockfile's own directory (JS ecosystem only).
+#
+# mise: if mise is installed, the worktree's config is trusted (mise trust) so
+# it won't prompt the first time you cd into it.
 set -euo pipefail
 
 repo_arg="${1:?usage: new-worktree <repo-dir> <branch> [base-ref]}"
@@ -57,6 +60,12 @@ elif git -C "$main" show-ref --verify --quiet "refs/remotes/origin/$branch"; the
 	git -C "$main" worktree add --track -b "$branch" "$wt" "origin/$branch"
 else
 	git -C "$main" worktree add -b "$branch" "$wt" "$base"
+fi
+
+# Trust the worktree's mise config so mise won't prompt on first cd into it.
+if command -v mise &>/dev/null; then
+	echo "==> mise trust ($wt)"
+	(cd "$wt" && mise trust) || true
 fi
 
 # Symlink git-ignored env files from the source checkout into the worktree.
