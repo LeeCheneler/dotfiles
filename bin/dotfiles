@@ -16,6 +16,7 @@ Commands:
 
 Custom CLIs (in $DOTFILES_DIR/bin):
   init-copilot Bootstrap GitHub Copilot config
+  new-worktree Create a git worktree for a repo (links .env files, installs deps)
 
 Zsh functions (defined in config/zsh/.zshrc):
   load-secrets Load API keys from 1Password into the current shell

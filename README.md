@@ -68,7 +68,8 @@ dotfiles/
 │   └── ai.sh                # AI tooling config
 ├── bin/
 │   ├── dotfiles             # Dotfiles CLI (help, update, apply, edit)
-│   └── init-copilot         # Bootstrap copilot instructions
+│   ├── init-copilot         # Bootstrap copilot instructions
+│   └── new-worktree         # Create a git worktree (links .env, installs deps)
 └── config/
     ├── zsh/.zshrc           # Zsh + zinit config
     ├── kitty/kitty.conf     # Kitty terminal config
