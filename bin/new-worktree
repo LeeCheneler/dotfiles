@@ -20,7 +20,8 @@
 # printed at the end).
 #
 # Installs: pnpm-lock.yaml -> pnpm, yarn.lock -> yarn, package-lock.json -> npm,
-# run in each lockfile's own directory (JS ecosystem only).
+# bun.lock / bun.lockb -> bun, run in each lockfile's own directory (JS
+# ecosystem only).
 #
 # mise: if mise is installed, the worktree's config is trusted (mise trust) so
 # it won't prompt the first time you cd into it.
@@ -98,8 +99,9 @@ while IFS= read -r lock; do
 	pnpm-lock.yaml) install_for pnpm "$lock" ;;
 	yarn.lock) install_for yarn "$lock" ;;
 	package-lock.json) install_for npm "$lock" ;;
+	bun.lock | bun.lockb) install_for bun "$lock" ;;
 	esac
-done < <(git -C "$wt" ls-files '*pnpm-lock.yaml' '*yarn.lock' '*package-lock.json' || true)
+done < <(git -C "$wt" ls-files '*pnpm-lock.yaml' '*yarn.lock' '*package-lock.json' '*bun.lock' '*bun.lockb' || true)
 
 echo "✅ $wt"
 echo "   branch: $branch   base: $base   env files: $env_count"
