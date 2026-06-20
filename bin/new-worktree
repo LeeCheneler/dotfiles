@@ -81,16 +81,23 @@ while IFS= read -r f; do
 done < <(git -C "$main" ls-files --others --ignored --exclude-standard --directory |
 	grep -E '(^|/)\.env([.][^/]*)?$' || true)
 
-# Install JS deps for every lockfile in the worktree.
+# Install JS deps for every lockfile in the worktree. Prefer the package
+# manager on PATH; otherwise fall back to `mise exec`, which resolves tools
+# (e.g. bun) pinned in the worktree's config but not globally on PATH — mise's
+# shims only land on PATH inside an interactive shell where `mise activate` ran,
+# not in this script.
 install_for() {
 	local pm="$1" lock="$2" dir
 	dir="$wt/$(dirname "$lock")"
-	if ! command -v "$pm" &>/dev/null; then
+	if command -v "$pm" &>/dev/null; then
+		echo "==> $pm install ($dir)"
+		(cd "$dir" && "$pm" install)
+	elif command -v mise &>/dev/null && (cd "$dir" && mise which "$pm" &>/dev/null); then
+		echo "==> mise exec -- $pm install ($dir)"
+		(cd "$dir" && mise exec -- "$pm" install)
+	else
 		echo "⚠  $pm not found — skipping install in $dir"
-		return
 	fi
-	echo "==> $pm install ($dir)"
-	(cd "$dir" && "$pm" install)
 }
 
 while IFS= read -r lock; do
