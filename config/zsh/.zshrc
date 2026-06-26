@@ -153,6 +153,7 @@ load-secrets() {
 	export GITHUB_TOKEN="$(op read 'op://Private/GitHub PAT/credential')"
 	export GITHUB_PACKAGES_TOKEN="$GITHUB_TOKEN"
 	export GITHUB_WORKFLOW_TOKEN="$GITHUB_TOKEN"
+	export GITHUB_MCP_AUTH_HEADER="Bearer $GITHUB_TOKEN"
 	export TAVILY_API_KEY="$(op read 'op://Enzsft/Tavily API Key/credential')"
 	export OPENROUTER_API_KEY="$(op read 'op://Enzsft/Open Router API Key/credential')"
 	export OPENCODE_API_KEY="$(op read 'op://Enzsft/OpenCode Zen API Key/credential')"
