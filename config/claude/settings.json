@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_DISABLE_WORKFLOWS": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(git:*)",
@@ -92,7 +95,5 @@
   },
   "effortLevel": "xhigh",
   "skipAutoPermissionPrompt": true,
-  "env": {
-    "CLAUDE_CODE_DISABLE_WORKFLOWS": "1"
-  }
+  "tui": "fullscreen"
 }
