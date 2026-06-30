@@ -132,9 +132,10 @@ export PATH="$HOME/.local/bin:$PATH"
 # Claude Code multi-account (BPP Team plan via separate config dir)
 alias claude-bpp='CLAUDE_CONFIG_DIR=$HOME/.claude-bpp claude'
 
-# pnpm
+# pnpm (mise manages the pnpm binary; keep PNPM_HOME on PATH for global bins
+# but append so it doesn't shadow mise's pnpm)
 export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$PATH:$PNPM_HOME"
 
 # Hugging Face: enable hf_transfer for faster model downloads
 export HF_HUB_ENABLE_HF_TRANSFER=1
