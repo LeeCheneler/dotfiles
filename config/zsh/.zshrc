@@ -158,6 +158,7 @@ load-secrets() {
 	export TAVILY_API_KEY="$(op read 'op://Enzsft/Tavily API Key/credential')"
 	export OPENROUTER_API_KEY="$(op read 'op://Enzsft/Open Router API Key/credential')"
 	export OPENCODE_API_KEY="$(op read 'op://Enzsft/OpenCode Zen API Key/credential')"
+	export DEEPINFRA_API_KEY="$(op read 'op://Enzsft/DeepInfra API Key/credential')"
 	echo "Secrets loaded"
 }
 
@@ -210,4 +211,3 @@ dotfiles() {
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/leecheneler/.lmstudio/bin"
 # End of LM Studio CLI section
-
