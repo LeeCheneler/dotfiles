@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+# Remove a git worktree — directory and all — then bring the source checkout
+# up to date if it's sitting on the default branch.
+#
+#   rm-worktree <worktree-dir> [-f|--force]
+#
+#   <worktree-dir>  The worktree to remove, or any path inside it.
+#   -f, --force     Remove even if the worktree has uncommitted changes.
+#
+# Refuses to remove the source checkout itself, and refuses to remove a dirty
+# worktree without --force. Ignored files (node_modules, .env symlinks) never
+# count as dirt, and symlinked env files are unlinked, not followed — the
+# source checkout's .env files are safe.
+#
+# The branch is left alone; the command to delete it is printed at the end.
+set -euo pipefail
+
+usage() {
+	echo "usage: rm-worktree <worktree-dir> [-f|--force]" >&2
+}
+
+force=0
+wt_arg=""
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+	-f | --force) force=1 ;;
+	-h | --help)
+		usage
+		exit 0
+		;;
+	-*)
+		echo "error: unknown option '$1'" >&2
+		usage
+		exit 1
+		;;
+	*) wt_arg="$1" ;;
+	esac
+	shift
+done
+
+if [[ -z "$wt_arg" ]]; then
+	usage
+	exit 1
+fi
+
+if ! git -C "$wt_arg" rev-parse --is-inside-work-tree &>/dev/null; then
+	echo "error: '$wt_arg' is not a git worktree" >&2
+	exit 1
+fi
+
+wt="$(git -C "$wt_arg" rev-parse --show-toplevel)"
+# Source checkout = where the real .git lives. Resolves from any worktree.
+main="$(dirname "$(git -C "$wt_arg" rev-parse --path-format=absolute --git-common-dir)")"
+
+if [[ "$wt" == "$main" ]]; then
+	echo "error: '$wt' is the source checkout, not a linked worktree" >&2
+	exit 1
+fi
+
+branch="$(git -C "$wt" symbolic-ref --quiet --short HEAD || true)"
+
+if [[ $force -eq 0 && -n "$(git -C "$wt" status --porcelain)" ]]; then
+	echo "error: '$wt' has uncommitted changes:" >&2
+	git -C "$wt" status --short >&2
+	echo "re-run with --force to remove it anyway" >&2
+	exit 1
+fi
+
+echo "==> git worktree remove ($wt)"
+if [[ $force -eq 1 ]]; then
+	git -C "$main" worktree remove --force "$wt"
+else
+	git -C "$main" worktree remove "$wt"
+fi
+git -C "$main" worktree prune
+
+# The default branch, per origin's HEAD, falling back to whichever of
+# main/master exists locally.
+default_branch() {
+	local ref b
+	if ref="$(git -C "$main" symbolic-ref --quiet refs/remotes/origin/HEAD)"; then
+		echo "${ref#refs/remotes/origin/}"
+		return
+	fi
+	for b in main master; do
+		if git -C "$main" show-ref --verify --quiet "refs/heads/$b"; then
+			echo "$b"
+			return
+		fi
+	done
+}
+
+current="$(git -C "$main" symbolic-ref --quiet --short HEAD || true)"
+default="$(default_branch)"
+
+echo "✅ removed $wt"
+
+if [[ -z "$default" ]]; then
+	echo "ℹ  couldn't work out the default branch — skipping pull"
+elif [[ "$current" != "$default" ]]; then
+	echo "ℹ  $(basename "$main") is on '${current:-detached HEAD}', not '$default' — skipping pull"
+elif ! git -C "$main" remote get-url origin &>/dev/null; then
+	echo "ℹ  no origin remote — skipping pull"
+else
+	# --no-rebase overrides a global pull.rebase=true, which would otherwise
+	# refuse to pull whenever the source checkout has unstaged changes.
+	# --ff-only still means this can only fast-forward, never merge.
+	echo "==> git pull --ff-only ($main)"
+	git -C "$main" pull --ff-only --no-rebase || echo "⚠  pull failed — sort it out in $main"
+fi
+
+if [[ -n "$branch" ]]; then
+	echo "ℹ  branch '$branch' still exists. Delete it with:"
+	echo "     git -C \"$main\" branch -d \"$branch\""
+fi
+
+if [[ "$PWD" == "$wt" || "$PWD" == "$wt"/* ]]; then
+	echo "⚠  your shell is inside the removed worktree — cd $main"
+fi

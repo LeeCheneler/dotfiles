@@ -128,4 +128,33 @@ What it does:
 
 Also reach for it explicitly when I ask to "spin up" or "create a worktree",
 work on another ticket in parallel, or get a fresh branch checkout ready with
-env files and deps in place. Tear down with `git worktree remove <dir>`.
+env files and deps in place. Tear down with `rm-worktree` (below).
+
+### `rm-worktree` — tear down a git worktree
+
+`rm-worktree` is the counterpart to `new-worktree`, also on my PATH. Use it
+whenever I'm done with a worktree — merged, abandoned, or just cleaning up.
+Prefer it over a raw `git worktree remove`.
+
+```
+rm-worktree <worktree-dir> [-f|--force]
+```
+
+- `<worktree-dir>` — the worktree to remove, or any path inside it.
+- `-f`, `--force` — remove even when the worktree has uncommitted changes.
+
+What it does:
+
+- Removes the worktree, directory and all, and prunes the stale admin entry.
+  Git-ignored files (`node_modules`, symlinked `.env` files) don't block it,
+  and env symlinks are unlinked rather than followed, so the source checkout's
+  secrets are untouched.
+- Refuses to remove a worktree with uncommitted changes unless given `--force`,
+  and always refuses to remove the source checkout itself.
+- Finds the source checkout and, if it's sitting on the default branch, runs
+  `git pull --ff-only` so it's up to date. Skipped when it's on another branch
+  or has no origin remote; a failed pull warns rather than aborts.
+
+It leaves the branch alone and prints the command to delete it, so removing a
+worktree never loses work. If I want the branch gone too, run that yourself
+after confirming it's merged.

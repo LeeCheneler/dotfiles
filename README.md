@@ -69,7 +69,8 @@ dotfiles/
 ├── bin/
 │   ├── dotfiles             # Dotfiles CLI (help, update, apply, edit)
 │   ├── init-copilot         # Bootstrap copilot instructions
-│   └── new-worktree         # Create a git worktree (links .env, installs deps)
+│   ├── new-worktree         # Create a git worktree (links .env, installs deps)
+│   └── rm-worktree          # Remove a git worktree (pulls source checkout)
 └── config/
     ├── zsh/.zshrc           # Zsh + zinit config
     ├── kitty/kitty.conf     # Kitty terminal config
