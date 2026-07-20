@@ -155,6 +155,7 @@ What it does:
   `git pull --ff-only` so it's up to date. Skipped when it's on another branch
   or has no origin remote; a failed pull warns rather than aborts.
 
-It leaves the branch alone and prints the command to delete it, so removing a
-worktree never loses work. If I want the branch gone too, run that yourself
-after confirming it's merged.
+It also deletes the worktree's branch (with `-D`, since squash merges mean
+git rarely sees a branch as merged). Git prints the sha it was on, so an
+accidental deletion is recoverable with `git branch <name> <sha>`. The
+default branch is never deleted.

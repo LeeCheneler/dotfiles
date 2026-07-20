@@ -12,7 +12,9 @@
 # count as dirt, and symlinked env files are unlinked, not followed — the
 # source checkout's .env files are safe.
 #
-# The branch is left alone; the command to delete it is printed at the end.
+# The worktree's branch is deleted too (with -D, since squash merges hide
+# merged-ness from git). Git prints the sha it was on, so it's recoverable
+# with `git branch <name> <sha>`. The default branch is never deleted.
 set -euo pipefail
 
 usage() {
@@ -110,8 +112,15 @@ else
 fi
 
 if [[ -n "$branch" ]]; then
-	echo "ℹ  branch '$branch' still exists. Delete it with:"
-	echo "     git -C \"$main\" branch -d \"$branch\""
+	if [[ -n "$default" && "$branch" == "$default" ]]; then
+		echo "ℹ  '$branch' is the default branch — leaving it alone"
+	else
+		# -D, not -d: squash merges mean git rarely sees the branch as merged.
+		# Git prints the sha, so recovery is `git branch <name> <sha>`.
+		echo "==> git branch -D $branch"
+		git -C "$main" branch -D "$branch" ||
+			echo "⚠  couldn't delete branch '$branch' — delete it yourself in $main"
+	fi
 fi
 
 if [[ "$PWD" == "$wt" || "$PWD" == "$wt"/* ]]; then
