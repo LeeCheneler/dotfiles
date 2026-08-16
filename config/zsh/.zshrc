@@ -157,6 +157,7 @@ load-secrets() {
 	export GITHUB_MCP_AUTH_HEADER="Bearer $GITHUB_TOKEN"
 	export TAVILY_API_KEY="$(op read 'op://Enzsft/Tavily API Key/credential')"
 	export OPENROUTER_API_KEY="$(op read 'op://Enzsft/Open Router API Key/credential')"
+	export OPENROUTER_MANAGEMENT_API_KEY="$(op read 'op://Enzsft/Open Router Management API Key/credential')"
 	export OPENCODE_API_KEY="$(op read 'op://Enzsft/OpenCode Zen API Key/credential')"
 	export DEEPINFRA_API_KEY="$(op read 'op://Enzsft/DeepInfra API Key/credential')"
 	echo "Secrets loaded"

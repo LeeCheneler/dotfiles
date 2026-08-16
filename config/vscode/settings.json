@@ -31,9 +31,6 @@
     "strings": true
   },
 
-  // Formatting
-  "editor.formatOnSave": true,
-
   // Files
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
@@ -256,8 +253,6 @@
   "totalTypeScript.hideAllTips": true,
   "totalTypeScript.hideBasicTips": true,
   "chat.agent.maxRequests": 50,
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:claude-opus-4.5",
   "diffEditor.ignoreTrimWhitespace": false,
   "chat.tools.terminal.autoApprove": {
     "pnpm": true,
@@ -269,5 +264,14 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "chat.viewSessions.orientation": "stacked"
+  "chat.viewSessions.orientation": "stacked",
+  "yaml.disableSchemaDetection": [
+    "**/.github/workflows/*.yml",
+    "**/.github/workflows/*.yaml",
+    "**/.gitea/workflows/*.yml",
+    "**/.gitea/workflows/*.yaml",
+    "**/.forgejo/workflows/*.yml",
+    "**/.forgejo/workflows/*.yaml"
+  ],
+  "editor.formatOnSave": true
 }
