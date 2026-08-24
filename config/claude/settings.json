@@ -6,15 +6,11 @@
     "allow": [
       "Bash(git:*)",
       "Bash(npm:*)",
-      "Bash(npx:*)",
       "Bash(pnpm:*)",
       "Bash(yarn:*)",
       "Bash(pip:*)",
       "Bash(cargo:*)",
       "Bash(make:*)",
-      "Bash(node:*)",
-      "Bash(deno:*)",
-      "Bash(python:*)",
       "Bash(tsc:*)",
       "Bash(cat:*)",
       "Bash(head:*)",
@@ -30,7 +26,6 @@
       "Bash(cp:*)",
       "Bash(mv:*)",
       "Bash(touch:*)",
-      "Bash(chmod:*)",
       "Bash(echo:*)",
       "Bash(curl:*)",
       "Bash(jq:*)",
@@ -95,7 +90,41 @@
       }
     }
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "tui": "default",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(new-worktree:*) — routine worktree creation helper, used 25× in this project's transcripts and documented as default workflow in user's global CLAUDE.md",
+      "Bash(rm-worktree:*) — routine worktree teardown helper, used 5× in this project's transcripts and documented as default workflow in user's global CLAUDE.md",
+      "Bash(mise:*) — toolchain/version manager, heavily used (202×) in this project's transcripts"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: AWS (Terraform, serverless, Aurora Postgres) — per user's global CLAUDE.md; no project-level confirmation in this repo",
+      "**Repository visibility**: assume private unless the remote host and repo name indicate otherwise, or a visibility check in the transcript shows public",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: unknown — repo has no remotes and origin/HEAD is unset; not queryable via gh (no origin remote)",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo and its remote(s) only (no additional orgs configured) — as scoped by the Trusted repo and Repository visibility entries above",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: npm.pkg.github.com (from config scan; no corroborating usage found in this project's transcripts)",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar; note kiri-mock/.kiri/mcp-credentials.json flagged by filename scan as a likely credentials file",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment (hyphen/underscore/dot-delimited — e.g. matches `prod-db`, not `producer`)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development — fullstack TypeScript/Node (React, Next.js), AWS/Terraform/serverless/Aurora Postgres, and game engine programming (per user's global CLAUDE.md)",
+      "**Trusted repo**: The git repository the agent started in (/Users/leecheneler/projects/personal) — repo currently has no remotes configured and no tracked files; treat as an empty/local-only scaffold until a remote is added",
+      "**Org-specific CLIs**: None configured — routine local tooling observed: `new-worktree` and `rm-worktree` (global helpers on PATH per ~/.claude/CLAUDE.md), plus `mise`, `sqlite3`, `lsof`, `mdfind`, `perl`, `bunx` seen in this project's transcripts",
+      "routine under ~/.dotfiles/bin prefix: new-worktree, rm-worktree helper scripts are trusted local tooling per user's global CLAUDE.md"
+    ]
+  }
 }

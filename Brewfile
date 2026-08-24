@@ -44,6 +44,7 @@ cask "font-monaspace"                 # GitHub's variable font family
 # GUI Applications
 cask "google-chrome"       # Browser
 cask "visual-studio-code"  # Code editor
+cask "zed"                 # Code editor
 cask "docker-desktop"      # Containers
 cask "kitty"               # Terminal emulator
 cask "rectangle"           # Window management
