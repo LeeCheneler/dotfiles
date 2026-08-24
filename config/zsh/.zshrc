@@ -160,6 +160,8 @@ load-secrets() {
 	export OPENROUTER_MANAGEMENT_API_KEY="$(op read 'op://Enzsft/Open Router Management API Key/credential')"
 	export OPENCODE_API_KEY="$(op read 'op://Enzsft/OpenCode Zen API Key/credential')"
 	export DEEPINFRA_API_KEY="$(op read 'op://Enzsft/DeepInfra API Key/credential')"
+	export RETRO_DIFFUSION_API_KEY="$(op read 'op://Enzsft/Retro Diffusion API/credential')"
+	export RETRO_DIFFUSION_AUTH_HEADER="Bearer $RETRO_DIFFUSION_API_KEY"
 	echo "Secrets loaded"
 }
 
